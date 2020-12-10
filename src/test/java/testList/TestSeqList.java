@@ -1,4 +1,4 @@
-package list.test;
+package testList;
 
 import algorithm.Josephus;
 import list.SeqList;

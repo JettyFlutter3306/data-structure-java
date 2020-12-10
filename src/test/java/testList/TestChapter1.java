@@ -1,4 +1,4 @@
-package list.test;
+package testList;
 
 import algorithm.MyArray;
 import org.junit.Test;

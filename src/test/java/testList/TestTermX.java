@@ -1,4 +1,4 @@
-package list.test;
+package testList;
 
 import app.polynomial.TermX;
 import org.junit.Test;

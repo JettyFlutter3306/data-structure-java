@@ -1,4 +1,4 @@
-package list.test;
+package testList;
 
 import list.SinglyList;
 import list.SortedSinglyList;

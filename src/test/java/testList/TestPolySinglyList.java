@@ -1,4 +1,4 @@
-package list.test;
+package testList;
 
 import app.polynomial.PolySinglyList;
 import app.polynomial.Polynomial;

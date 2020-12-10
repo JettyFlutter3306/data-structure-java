@@ -1,4 +1,4 @@
-package list.test;
+package testList;
 
 import list.SeqList;
 import list.SortedSeqList;
