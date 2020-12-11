@@ -83,5 +83,54 @@ public class TestMyString {
         System.out.println(str.compareToIgnoreCase(str1));
     }
 
+    /**
+     * 测试字符串分割
+     */
+    @Test
+    public void test05(){
+
+        MyString s = new MyString("sdsd dfd effg ergs qwe sf  ");
+
+        MyString string = MyString.upperFirst(s);
+
+        System.out.println("string = " + string);
+
+        MyString.printPrevious(s);
+    }
+
+    /**
+     * 测试判断标识符
+     */
+    @Test
+    public void test06(){
+
+        MyString s = new MyString("$sfs");
+
+        System.out.println(MyString.isIdentifier(s)); //true
+    }
+
+    /**
+     * 测试两串求交集
+     */
+    @Test
+    public void test07(){
+
+        MyString s1 = new MyString("abcdefretdgdg");
+        MyString s2 = new MyString("sfgsdgabcdferg");
+
+        System.out.println(MyString.getSameChars(s1,s2));
+    }
+
+    /**
+     * 测试串逆转
+     */
+    @Test
+    public void test08(){
+
+        MyString s = new MyString("abcdefg");
+
+        System.out.println(MyString.reverse(s));
+    }
+
 
 }

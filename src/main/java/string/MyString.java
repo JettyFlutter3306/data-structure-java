@@ -1,6 +1,7 @@
 package string;
 
 import java.io.Serializable;
+import java.util.*;
 
 public class MyString implements Comparable<MyString>, Serializable {
 
@@ -225,50 +226,144 @@ public class MyString implements Comparable<MyString>, Serializable {
         return this.value.length - s.value.length; //前缀子串,返回两串长度的差值
     }
 
-    //以regex为分割字符串,返回拆分的子串数组
-    public MyString[] split(MyString regex){
+    //分割字符串,以ch为分隔符
+    public MyString[] split(char ch){
 
+        List<MyString> stringList = new ArrayList<>();
 
+        int start = 0;
 
-        return null;
+        for(int i = 0;i < this.length();i++){
+            char sc = this.charAt(i);
+
+            if(ch == sc){
+                if(start < i){
+                    stringList.add(this.subString(start,i));
+                }
+
+                start = i + 1;
+            }
+        }
+
+        //start是根据c计数,不是以c结尾的str在这里加个判断
+        if(start < this.length()){
+            stringList.add(this.subString(start,this.length()));
+        }
+
+        return (MyString[]) stringList.stream().toArray(MyString[] :: new);
     }
 
     //返回将串s中各单词改为大写字母的串,单词以空格分隔
-    public MyString upperFirst(MyString s){
+    public static MyString upperFirst(MyString s){
 
-        return null;
+        MyString[] s1 = s.split(' ');
+
+        for (int i = 0; i < s1.length; i++) {
+            if(isLowerLetter(s1[i].value[0])){
+                s1[i].value[0] -= 'a' - 'A';
+            }
+        }
+
+        String tmp = "";
+
+        for (MyString string : s1) {
+            tmp += string.toString() + " ";
+        }
+
+        return new MyString(tmp);
     }
 
     //将串s反序输出,从后向前
-    public void printPrevious(MyString s){
+    public static void printPrevious(MyString s){
 
+        for (int i = s.value.length - 1; i >= 0; i--) {
+            System.out.print(s.value[i]);
+        }
     }
 
     //返回两串中所有相同字符(不重复)
-    public MyString getSameChars(MyString sa,MyString sb){
+    public static MyString getSameChars(MyString sa,MyString sb){
 
-        return null;
+        Set<Character> set1 = new HashSet<>();
+
+        for (char c : sa.value) {
+            set1.add(c);
+        }
+
+        char[] ch = new char[Math.max(sa.length(), sb.length())];
+
+        int index = 0;
+
+        Set<Character> set2 = new HashSet<>();
+
+        for (char c : sb.value) {
+            if(set1.contains(c)){
+                set2.add(c);
+            }
+        }
+
+        for (char c : set2) {
+            ch[index++] = c;
+        }
+
+        return new MyString(ch);
     }
 
     //返回将串s逆转的串
-    public MyString reverse(MyString s){
+    public static MyString reverse(MyString s){
 
-        return null;
+        for (int i = 0; i < s.value.length/2; i++) {
+            char temp = s.value[i];
+
+            s.value[i] = s.value[s.length()-1-i];
+
+            s.value[s.length()-1-i] = temp;
+        }
+
+        return new MyString(s.value);
     }
 
     //判断字符串str是否为标识符
     public static boolean isIdentifier(MyString str){
-        
+
+        if(str == null || str.length() == 0){
+            return false;
+        }
+
+        char[] ch = str.value;
+
+        //是数字
+        if(ch[0] >= '0' && ch[0] <= '9'){
+            return false;
+        }
+
+        for (char c : ch) {
+            if(!(Character.isJavaIdentifierPart(c))){
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    //判断是否是大写字母
+    public static boolean isUpperLetter(char ch){
+
+        return ch >= 'A' && ch <= 'Z';
+    }
+
+    //判断是否是小写字母
+    public static boolean isLowerLetter(char ch){
+
+        return ch >= 'a' && ch <= 'z';
+    }
+
+    //判断是否是回文字符串 正序和反序一样
+    public static boolean isBackFrontSame(MyString s){
+
+
         return false;
     }
-
-    //返回在字符串str中识别出的所有表示符
-    public static MyString[] toIdentifier(MyString str){
-
-        return null;
-    }
-
-
 
     //比较this与str串的大小,返回两者差值
     @Override

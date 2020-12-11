@@ -145,7 +145,7 @@ public final class MyStringBuffer implements Serializable {
     }
 
     //将从begin到end-1子串全都替换为s串
-    public MyStringBuffer replace(int begin,String s){
+    public MyStringBuffer replace(int begin,int end,String s){
 
 
         return null;
