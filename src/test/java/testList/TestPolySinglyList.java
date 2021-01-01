@@ -1,8 +1,8 @@
 package testList;
 
-import app.polynomial.PolySinglyList;
-import app.polynomial.Polynomial;
-import app.polynomial.TermX;
+import cn.geeklbd.app.polynomial.PolySinglyList;
+import cn.geeklbd.app.polynomial.Polynomial;
+import cn.geeklbd.app.polynomial.TermX;
 import org.junit.Test;
 
 public class TestPolySinglyList {
@@ -22,12 +22,12 @@ public class TestPolySinglyList {
         PolySinglyList<TermX> list = new PolySinglyList<>(terms);
         PolySinglyList<TermX> list1 = new PolySinglyList<>(terms1);
 
-        System.out.println("list = " + list);
+        System.out.println("cn.geeklbd.list = " + list);
         System.out.println("list1 = " + list1);
 
         list.addAll(list1);
 
-        System.out.println("list = " + list);
+        System.out.println("cn.geeklbd.list = " + list);
     }
 
     /**
@@ -41,7 +41,7 @@ public class TestPolySinglyList {
 
         PolySinglyList<TermX> list = new PolySinglyList<>(terms);
 
-        System.out.println("list = " + list);
+        System.out.println("cn.geeklbd.list = " + list);
 
         PolySinglyList<TermX> list1 = new PolySinglyList<>(list);
 

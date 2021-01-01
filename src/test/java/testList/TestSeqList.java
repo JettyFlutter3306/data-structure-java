@@ -1,7 +1,7 @@
 package testList;
 
-import algorithm.Josephus;
-import list.SeqList;
+import cn.geeklbd.algorithm.Josephus;
+import cn.geeklbd.list.SeqList;
 import org.junit.Test;
 
 public class TestSeqList {

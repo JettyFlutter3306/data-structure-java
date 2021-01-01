@@ -1,7 +1,7 @@
 package testList;
 
-import list.SinglyList;
-import list.SortedSinglyList;
+import cn.geeklbd.list.SinglyList;
+import cn.geeklbd.list.SortedSinglyList;
 import org.junit.Test;
 
 public class TestSortedSinglyList {
@@ -47,7 +47,7 @@ public class TestSortedSinglyList {
     }
 
     /**
-     * 测试 void addAll(SinglyList<T> list) 方法
+     * 测试 void addAll(SinglyList<T> cn.geeklbd.list) 方法
      * 实现排序单链表集合并
      */
     @Test
@@ -61,6 +61,6 @@ public class TestSortedSinglyList {
 
         list.addAll(list1);
 
-        System.out.println("list = " + list);
+        System.out.println("cn.geeklbd.list = " + list);
     }
 }

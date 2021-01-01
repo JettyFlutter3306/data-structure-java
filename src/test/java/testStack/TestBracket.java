@@ -1,7 +1,7 @@
 package testStack;
 
 import org.junit.Test;
-import stack.Bracket;
+import cn.geeklbd.stack.Bracket;
 
 public class TestBracket {
 

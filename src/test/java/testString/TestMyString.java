@@ -1,8 +1,8 @@
 package testString;
 
 import org.junit.Test;
-import string.MyString;
-import string.MyStringBuffer;
+import cn.geeklbd.string.MyString;
+import cn.geeklbd.string.MyStringBuffer;
 
 import java.util.Arrays;
 
@@ -93,7 +93,7 @@ public class TestMyString {
 
         MyString string = MyString.upperFirst(s);
 
-        System.out.println("string = " + string);
+        System.out.println("cn.geeklbd.string = " + string);
 
         MyString.printPrevious(s);
     }

@@ -99,7 +99,7 @@ public class TestCompetition2 {
             list.add(max - min);
         }
 
-        System.out.println("list = " + list);
+        System.out.println("cn.geeklbd.list = " + list);
 
         for (int[] ints : arr) {
             System.out.println(Arrays.toString(ints));

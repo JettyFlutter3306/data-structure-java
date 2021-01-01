@@ -1,6 +1,6 @@
 package testList;
 
-import algorithm.MyArray;
+import cn.geeklbd.algorithm.MyArray;
 import org.junit.Test;
 
 import java.util.Arrays;

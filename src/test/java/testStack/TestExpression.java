@@ -1,7 +1,7 @@
 package testStack;
 
 import org.junit.Test;
-import stack.Expression;
+import cn.geeklbd.stack.Expression;
 
 public class TestExpression {
 

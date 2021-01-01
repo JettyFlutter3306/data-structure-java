@@ -1,7 +1,7 @@
 package testList;
 
-import list.Node;
-import list.SinglyList;
+import cn.geeklbd.list.Node;
+import cn.geeklbd.list.SinglyList;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -91,10 +91,10 @@ public class TestSinglyList {
 
         SinglyList<String> list = SinglyList.createReverse(arr);
 
-        System.out.println("list = " + list);
+        System.out.println("cn.geeklbd.list = " + list);
 
         SinglyList.reverse(list);
 
-        System.out.println("list = " + list);
+        System.out.println("cn.geeklbd.list = " + list);
     }
 }
