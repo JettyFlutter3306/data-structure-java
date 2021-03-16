@@ -1,6 +1,6 @@
 package testList;
 
-import cn.geeklbd.app.polynomial.TermX;
+import cn.element.app.polynomial.TermX;
 import org.junit.Test;
 
 public class TestTermX {

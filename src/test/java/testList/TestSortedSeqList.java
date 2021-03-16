@@ -1,7 +1,7 @@
 package testList;
 
-import cn.geeklbd.list.SeqList;
-import cn.geeklbd.list.SortedSeqList;
+import cn.element.list.SeqList;
+import cn.element.list.SortedSeqList;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,7 +1,7 @@
 package testString;
 
 import org.junit.Test;
-import cn.geeklbd.string.MyStringBuffer;
+import cn.element.string.MyStringBuffer;
 
 public class TestMyStringBuffer {
 

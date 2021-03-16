@@ -1,8 +1,8 @@
 package testString;
 
 import org.junit.Test;
-import cn.geeklbd.string.MyString;
-import cn.geeklbd.string.MyStringBuffer;
+import cn.element.string.MyString;
+import cn.element.string.MyStringBuffer;
 
 import java.util.Arrays;
 
@@ -84,7 +84,7 @@ public class TestMyString {
     }
 
     /**
-     * 测试字符串分割
+     * 测试字符串倒序输出
      */
     @Test
     public void test05(){
@@ -131,6 +131,69 @@ public class TestMyString {
 
         System.out.println(MyString.reverse(s));
     }
+
+    /**
+     * 测试BF算法
+     */
+    @Test
+    public void test09(){
+
+        MyString s = new MyString("abcsdwfabcdf");
+
+        MyString pattern = new MyString("abcd");
+
+        int i = s.indexOf(pattern);
+        System.out.println("i = " + i);
+    }
+
+    /**
+     * 测试根据索引删除字符
+     */
+    @Test
+    public void test10(){
+
+        MyString s = new MyString("asfasffasv");
+
+        System.out.println("s = " + s);
+
+        MyString s1 = s.deleteString(3);
+
+        System.out.println("s1 = " + s1);
+    }
+
+    /**
+     * 测试删除子串
+     */
+    @Test
+    public void test11(){
+
+        MyString s = new MyString("asdfascascv");
+
+        s.deleteString(2, 5);
+
+        System.out.println(s);
+    }
+
+    /**
+     * 测试KMP算法
+     */
+    @Test
+    public void test12(){
+
+        String target = "abcosvjsdjvabcjsaklaslabcd";
+
+        String pattern = "abcd";
+
+        int i = MyString.indexOf(target, pattern);
+
+        System.out.println("i = " + i);
+    }
+
+
+
+
+
+
 
 
 }

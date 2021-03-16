@@ -1,7 +1,7 @@
 package testList;
 
-import cn.geeklbd.list.SinglyList;
-import cn.geeklbd.list.SortedSinglyList;
+import cn.element.list.SinglyList;
+import cn.element.list.SortedSinglyList;
 import org.junit.Test;
 
 public class TestSortedSinglyList {

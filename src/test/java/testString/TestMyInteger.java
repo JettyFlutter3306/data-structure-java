@@ -1,7 +1,7 @@
 package testString;
 
 import org.junit.Test;
-import cn.geeklbd.string.MyInteger;
+import cn.element.string.MyInteger;
 
 public class TestMyInteger {
 

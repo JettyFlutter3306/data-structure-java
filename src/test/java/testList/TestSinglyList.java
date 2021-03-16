@@ -1,7 +1,7 @@
 package testList;
 
-import cn.geeklbd.list.Node;
-import cn.geeklbd.list.SinglyList;
+import cn.element.list.Node;
+import cn.element.list.SinglyList;
 import org.junit.Before;
 import org.junit.Test;
 

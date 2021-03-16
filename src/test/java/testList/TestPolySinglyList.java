@@ -1,8 +1,8 @@
 package testList;
 
-import cn.geeklbd.app.polynomial.PolySinglyList;
-import cn.geeklbd.app.polynomial.Polynomial;
-import cn.geeklbd.app.polynomial.TermX;
+import cn.element.app.polynomial.PolySinglyList;
+import cn.element.app.polynomial.Polynomial;
+import cn.element.app.polynomial.TermX;
 import org.junit.Test;
 
 public class TestPolySinglyList {
