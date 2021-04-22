@@ -1,4 +1,4 @@
-package testString;
+package test_string;
 
 import org.junit.Test;
 import cn.element.string.MyStringBuffer;

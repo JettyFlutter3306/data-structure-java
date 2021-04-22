@@ -1,6 +1,6 @@
 package cn.element.list;
 
-public class SeqList<T> {
+public class SeqList<T> implements MyList<T>{
 
     protected Object[] element;  //对象数组存储顺序表的数据元素,保护成员
 
@@ -31,11 +31,11 @@ public class SeqList<T> {
     }
 
     //拷贝构造方法  浅拷贝
-//    public SeqList(SeqList<T> cn.geeklbd.list){
+//    public SeqList(SeqList<T> list){
 //
-//        this.n = cn.geeklbd.list.n;        //int整数赋值,复制了整数值
+//        this.n = list.n;        //int整数赋值,复制了整数值
 //
-//        this.element = cn.geeklbd.list.element;    //数组引用赋值,两个变量共用一个数组,错误
+//        this.element = list.element;    //数组引用赋值,两个变量共用一个数组,错误
 //    }
 
     //顺序表深拷贝

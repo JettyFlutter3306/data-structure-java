@@ -1,6 +1,8 @@
 package cn.element.list;
 
-public class SinglyList<T> {
+import cn.element.list.node.Node;
+
+public class SinglyList<T> implements MyList<T>{
 
     //头指针,指向单链表的头结点
     public Node<T> head;
@@ -36,6 +38,25 @@ public class SinglyList<T> {
     public boolean isEmpty(){   //单链表判空
 
         return this.head.next == null;
+    }
+
+    /**
+     * 返回从value数组第i个元素开始构造的子单链表,即返回第i个结点,递归算法
+     * @param values        数组
+     * @param i             索引
+     * @return              结点
+     */
+    private Node<T> create(T[] values,int i){
+
+        Node<T> p = null;
+
+        if(i < values.length){
+            p = new Node<>(values[i],null);  //创建第i个结点
+
+            p.next = create(values,i+1);
+        }
+
+        return p;
     }
 
     //根据索引获取元素
@@ -262,7 +283,7 @@ public class SinglyList<T> {
 
         Node<T> succ = list.head.next.next; //succ指向p的后继
 
-        //cn.geeklbd.list.SinglyList(UI,VF,XZ,PO,VD,QW,X)
+        //cn.element.list.SinglyList(UI,VF,XZ,PO,VD,QW,X)
         while (p != null){
 
             p.next = front; //p的后继指向front
@@ -284,11 +305,33 @@ public class SinglyList<T> {
 
     }
 
+    /**
+     * 遍历单链表的递归算法
+     * 返回从p结点开始的子单链表描述字符串,递归方法
+     * @param p     结点
+     * @return      字符串
+     */
+    public String toString(Node<T> p){
+
+        if(p == null){  //递归结束约束条件,空单链表返回空串
+            return "";
+        }
+
+        String str = p.data.toString();
+
+        if(p.next != null){
+            str += ",";
+        }
+
+        //递归调用,递归通式;当前结点元素串连接从p的后继结点开始的子单链表
+        return str + this.toString(p.next);
+    }
+
     //返回描述字符串
     @Override
     public String toString() {
 
-        StringBuilder str = new StringBuilder(this.getClass().getName() + "(");
+        StringBuilder str = new StringBuilder(this.getClass().getSimpleName() + "(");
 
         for(Node<T> p = this.head.next;p != null;p = p.next){
             str.append(p.data.toString());
@@ -300,4 +343,6 @@ public class SinglyList<T> {
 
         return str + ")";
     }
+
+
 }

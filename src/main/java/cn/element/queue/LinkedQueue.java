@@ -1,6 +1,6 @@
 package cn.element.queue;
 
-import cn.element.list.Node;
+import cn.element.list.node.Node;
 
 /**
  * 链式队列,最终类

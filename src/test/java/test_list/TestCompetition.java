@@ -1,4 +1,4 @@
-package testList;
+package test_list;
 
 import java.io.*;
 import java.math.BigDecimal;

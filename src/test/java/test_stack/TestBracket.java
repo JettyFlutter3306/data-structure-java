@@ -1,4 +1,4 @@
-package testStack;
+package test_stack;
 
 import org.junit.Test;
 import cn.element.stack.Bracket;

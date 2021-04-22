@@ -1,4 +1,4 @@
-package testString;
+package test_string;
 
 import org.junit.Test;
 import cn.element.string.MyString;
@@ -169,9 +169,9 @@ public class TestMyString {
 
         MyString s = new MyString("asdfascascv");
 
-        s.deleteString(2, 5);
+        MyString str = s.deleteString(2, 5);
 
-        System.out.println(s);
+        System.out.println(str);
     }
 
     /**

@@ -21,7 +21,8 @@ public class MyString implements Comparable<MyString>, Serializable {
         }
     }
 
-    /**以value数组从i开始的n个字符构造串,i>=0,n>=0, i+n<=value.length
+    /**
+     * 以value数组从i开始的n个字符构造串,i>=0,n>=0, i+n<=value.length
      * 若i与n指定序号越界,则抛出字符串序号越界异常
      */
     public MyString(char[] value,int i,int n){
@@ -29,7 +30,7 @@ public class MyString implements Comparable<MyString>, Serializable {
         if(i >= 0 && n >= 0 && i + n <= value.length){
             this.value = new char[n]; //申请字符数组并复制所有的字符
 
-            for(int j=0;j<n;j++){
+            for(int j = 0;j < n;j++){
                 this.value[j] = value[i+j];
             }
         }else{
@@ -50,7 +51,10 @@ public class MyString implements Comparable<MyString>, Serializable {
         this(str.value);
     }
 
-    //由StringBuffer对象构造String对象
+    /**
+     * 由StringBuffer对象构造String对象
+     * @param stringBuffer      StringBuffer对象
+     */
     public MyString(MyStringBuffer stringBuffer){
 
         this.value = new char[stringBuffer.capacity()]; //初始化
@@ -61,7 +65,10 @@ public class MyString implements Comparable<MyString>, Serializable {
 
     }
 
-    //返回字符串的长度,即字符数组的长度
+    /**
+     * 返回字符串的长度,即字符数组的长度
+     * @return      长度
+     */
     public int length(){
 
         return this.value.length;
@@ -79,7 +86,7 @@ public class MyString implements Comparable<MyString>, Serializable {
 
     /**字符串截取,即求子串 区间[begin,end)
      * 返回序号从begin至end-1的子串,
-     * 0<=begin<length(),0<=end<length(),begin<end
+     * 0 <= begin < length(),0 <= end < length(),begin < end
      * 否则抛出字符串序号越界异常
      * @param begin     起始位置
      * @param end       结束位置
@@ -105,15 +112,21 @@ public class MyString implements Comparable<MyString>, Serializable {
      */
     public MyString deleteString(int i){
 
-        if(i >= 0 && i < this.length()){
-            for(int j = i;j < this.length() - 1;j++){
-                this.value[j] = this.value[j+1];
-            }
-
-            this.value[this.length()-1] = ' ';
+        if(i < 0 || i >= this.value.length){
+            throw new IndexOutOfBoundsException("i < 0");
         }
 
-        return this;
+        char[] temp = new char[this.value.length - 1];
+
+        for (int j = 0; j < i; j++) {
+            temp[j] = this.value[j];
+        }
+
+        for (int j = i; j < this.value.length; j++) {
+            temp[j] = this.value[j+1];
+        }
+
+        return new MyString(temp);
     }
 
     /**
@@ -132,11 +145,19 @@ public class MyString implements Comparable<MyString>, Serializable {
             return new MyString();
         }
 
-        for (int i = begin; i < end; i++) {
-            this.deleteString(begin);
+        int offset = end - begin;  //删除的长度
+
+        char[] temp = new char[this.value.length - offset];  //申请一个新的字符数组
+
+        for (int i = 0; i < begin; i++) {
+            temp[i] = this.value[i];
         }
 
-        return this;
+        for (int i = begin; i < temp.length; i++) {
+            temp[i] = this.value[i + offset];
+        }
+
+        return new MyString(temp);
     }
 
     //返回序号从begin至串尾的子串
@@ -406,8 +427,15 @@ public class MyString implements Comparable<MyString>, Serializable {
     //判断是否是回文字符串 正序和反序一样
     public static boolean isBackFrontSame(MyString s){
 
+        int n = s.length();  //拿到长度
 
-        return false;
+        for (int i = 0; i < n / 2; i++) {
+            if(s.charAt(i) != s.charAt(n-i)){
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**

@@ -1,6 +1,6 @@
 package cn.element.app.polynomial;
 
-import cn.element.list.Node;
+import cn.element.list.node.Node;
 import cn.element.list.SortedSinglyList;
 
 /**

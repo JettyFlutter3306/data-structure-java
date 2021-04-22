@@ -1,5 +1,7 @@
 package cn.element.list;
 
+import cn.element.list.node.Node;
+
 public class SortedSinglyList<T extends Comparable<? super T>> extends SinglyList<T>{
 
     public SortedSinglyList(){  //构造空排序单链表

@@ -1,10 +1,12 @@
 package cn.element.list;
 
+import cn.element.list.node.DoubleNode;
+
 /**
  * 循环双链表类,实现ADT List<T>声明的方法
  * T表示数据元素的数据类型
  */
-public class CirDoublyList<T> {
+public class CirDoublyList<T> implements MyList<T>{
 
     public DoubleNode<T> head; //头结点的引用
 
@@ -69,10 +71,25 @@ public class CirDoublyList<T> {
         return q;
     }
 
+    @Override
+    public T get(int i) {
+
+        return this.head.next.data;
+    }
+
+    @Override
+    public int size() {
+
+        return 0;
+    }
+
     /**
-     * 返回所有元素的描述字符串(元素次序从后向前)
+     * 根据索引删除元素
+     * @param i     索引
+     * @return      元素
      */
-    public String toPreviousString(){
+    @Override
+    public T remove(int i) {
 
         return null;
     }
@@ -86,8 +103,33 @@ public class CirDoublyList<T> {
         return null;
     }
 
+    /**
+     * 返回所有元素的描述字符串(元素次序从后向前)
+     */
+    public String toPreviousString(){
 
+        return null;
+    }
 
+    @Override
+    public String toString() {
 
+        StringBuilder sb = new StringBuilder(this.getClass().getSimpleName()+"(");
 
+        DoubleNode<T> p = this.head;
+
+        while(p.next != this.head){
+            p = p.next;
+
+            if(p.next == this.head){
+                sb.append(p.data).append(")");
+
+                break;
+            }
+
+            sb.append(p.data).append(",");
+        }
+
+        return sb.toString();
+    }
 }

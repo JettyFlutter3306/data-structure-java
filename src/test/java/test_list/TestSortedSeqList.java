@@ -1,4 +1,4 @@
-package testList;
+package test_list;
 
 import cn.element.list.SeqList;
 import cn.element.list.SortedSeqList;

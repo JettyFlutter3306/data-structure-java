@@ -1,4 +1,4 @@
-package testList;
+package test_list;
 
 import cn.element.list.SinglyList;
 import cn.element.list.SortedSinglyList;

@@ -1,4 +1,4 @@
-package testList;
+package test_list;
 
 import cn.element.app.polynomial.PolySinglyList;
 import cn.element.app.polynomial.Polynomial;

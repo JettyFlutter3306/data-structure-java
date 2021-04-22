@@ -1,4 +1,4 @@
-package testList;
+package test_list;
 
 import cn.element.algorithm.Josephus;
 import cn.element.list.SeqList;

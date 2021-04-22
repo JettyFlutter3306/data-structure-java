@@ -7,27 +7,66 @@ import cn.element.list.SortedCirDoublyList;
  */
 public final class PriorityQueue<T extends Comparable<? super T>> implements MyQueue<T>{
 
-    private SortedCirDoublyList<T> list;    //使用排序循环双链表存储
+    private final SortedCirDoublyList<T> list;    //使用排序循环双链表存储
 
-    private boolean asc;                //使用asc指定升序 (true) 降序 (false)
+    private final boolean asc;                //使用asc指定升序 (true) 降序 (false)
 
+    public PriorityQueue(boolean asc) { //构造空队列.asc指定升序或降序
+
+        this.list = new SortedCirDoublyList<>();
+        this.asc = asc;
+    }
+
+    public PriorityQueue() {
+
+        this(true);
+    }
+
+    /**
+     * 判断队列元素是否为空
+     * @return      boolean
+     */
     @Override
     public boolean isEmpty() {
-        return false;
+
+        return this.list.isEmpty();
     }
 
+    /**
+     * 元素x入队,空对象不能入队
+     * @param x    元素x
+     * @return      boolean
+     */
     @Override
     public boolean add(T x) {
-        return false;
+
+        return this.list.insert(x) != null;     //排序循环双链表按值插入
     }
 
+    /**
+     * 返回队头元素,没有删除,若队列为空则返回null
+     * @return      元素
+     */
     @Override
     public T peek() {
-        return null;
+
+        return this.asc ? this.list.get(0) : this.list.head.prev.data;
+    }
+
+    /**
+     * 出队,返回队头元素,若队列为空则返回null
+     * @return      元素
+     */
+    @Override
+    public T poll() {
+
+        //升序时,返回队头元素,删除队头结点,降序时,返回队尾元素,删除队尾结点
+        return this.asc ? this.list.remove(0) : this.list.removeLast();
     }
 
     @Override
-    public T poll() {
-        return null;
+    public String toString() {
+
+        return this.getClass().getSimpleName() + "" + (this.asc ? this.list : this.list.toPreviousString());
     }
 }

@@ -1,4 +1,4 @@
-package testMatrix;
+package test_matrix;
 
 import cn.element.matrix.Matrix;
 import org.junit.Test;

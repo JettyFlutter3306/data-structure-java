@@ -9,7 +9,7 @@ public class Matrix {
 
     private int[][] element; //二维数组,存储矩阵元素
 
-    public Matrix(int m,int n){ //构造m * n的零矩阵,若m或n为负数,Java抛出负数数组长度异常
+    public Matrix(int m,int n){ //构造m* n的零矩阵,若m或n为负数,Java抛出负数数组长度异常
 
         this.element = new int[m][n]; //数组元素初始值为0
         this.rows = m;

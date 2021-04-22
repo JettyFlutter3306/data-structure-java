@@ -63,6 +63,7 @@ public class SortedSeqList<T extends Comparable<? super T>> extends SeqList<T>{
     }
 
     //插入不重复的元素,查找不成功时,按值插入
+    @Override
     public int insertDifferent(T x){
 
         if(!super.contains(x)){
@@ -86,6 +87,7 @@ public class SortedSeqList<T extends Comparable<? super T>> extends SeqList<T>{
     }
 
     //顺序查找首次出现的与key相等的元素,返回元素序号i(0<= i <n);若查找不成功,则返回-1,覆盖
+    @Override
     public int search(T key){
 
         for(int i = 0;i < this.n && key.compareTo(this.get(i)) >= 0;i++){
@@ -98,6 +100,7 @@ public class SortedSeqList<T extends Comparable<? super T>> extends SeqList<T>{
     }
 
     //删除首次出现的与key相等的元素,返回被删除的元素,查找不成功则返回null
+    @Override
     public T remove(T key){
 
         return super.remove(this.search(key)); //this.search(key)运行时多态,子类对象调用子类的查找方法

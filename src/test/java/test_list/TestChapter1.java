@@ -1,4 +1,4 @@
-package testList;
+package test_list;
 
 import cn.element.algorithm.MyArray;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package cn.element.list;
+package cn.element.list.node;
 
 /**
  * 双链表结点类,T指定结点的元素类型
