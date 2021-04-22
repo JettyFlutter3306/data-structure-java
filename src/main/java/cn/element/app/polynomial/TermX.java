@@ -1,10 +1,12 @@
 package cn.element.app.polynomial;
 
+import cn.element.common.Addable;
+
 /**
  * 一元多项式类
  * 实现可比较和可相加接口
  */
-public class TermX implements Comparable<TermX>,Addable<TermX>{
+public class TermX implements Comparable<TermX>, Addable<TermX> {
 
     protected int coef,xexp; //系数,x指数(可为正,0),系数可为double
 

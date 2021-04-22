@@ -1,4 +1,4 @@
-package cn.element.app.polynomial;
+package cn.element.common;
 
 /**
  * 可相加接口
