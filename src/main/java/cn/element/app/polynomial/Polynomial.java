@@ -1,5 +1,7 @@
 package cn.element.app.polynomial;
 
+import cn.element.list.PolySinglyList;
+
 public class Polynomial {
 
     private PolySinglyList<TermX> list; //多项式排序单链表

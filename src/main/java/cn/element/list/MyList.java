@@ -6,6 +6,10 @@ public interface MyList<T> {
 
     T get(int i);
 
+    void set(int i,T x);
+
     T remove(int i);
+
+    boolean isEmpty();
 
 }

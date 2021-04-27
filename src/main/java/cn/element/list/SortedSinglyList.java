@@ -83,9 +83,14 @@ public class SortedSinglyList<T extends Comparable<? super T>> extends SinglyLis
     一下顺序表查找和基于查找算法的操作,都是覆盖父类的同名方法
     调用compareTo()方法比较大小的相等
      */
+    @Override
     public Node<T> search(T key){ //查找返回首个与key相等元素的结点,查找不成功返回null
 
         Node<T> p = this.head.next;
+
+        if(this.isEmpty()){
+            return null;
+        }
 
         if(p.data.compareTo(key) > 0){
             return null;

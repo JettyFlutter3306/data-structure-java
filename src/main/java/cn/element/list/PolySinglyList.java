@@ -1,8 +1,7 @@
-package cn.element.app.polynomial;
+package cn.element.list;
 
 import cn.element.common.Addable;
 import cn.element.list.node.Node;
-import cn.element.list.SortedSinglyList;
 
 /**
  * 多项式排序单链表类
@@ -36,15 +35,12 @@ public class PolySinglyList<T extends Comparable<? super T> & Addable> extends S
         Node<T> q = list.head.next; // q指向list的头结点
 
         while(q != null){
-
-            //若p == null,将list单链表中自q结点之后的剩余结点复制并插入到this单链表尾
-            if(p == null){
+            if(p == null){  //若p == null,将list单链表中自q结点之后的剩余结点复制并插入到this单链表尾
                 this.insert(q.data);
 
                 q = q.next;
             }else{
-                //初始状态,若p,q指数相同,则p系数 += q系数,使p,front,q都向右移动
-                if(p.data.compareTo(q.data) == 0){
+                if(p.data.compareTo(q.data) == 0){  //初始状态,若p,q指数相同,则p系数 += q系数,使p,front,q都向右移动
                     int i = p.data.add(q.data);
 
                     if(i == 0){
@@ -74,16 +70,21 @@ public class PolySinglyList<T extends Comparable<? super T> & Addable> extends S
     @Override
     public String toString() {
 
-        StringBuilder sb = new StringBuilder("");
+        Node<T> p = this.head.next;
 
-        Node<T> p = this.head;
+        StringBuilder sb = new StringBuilder("(");
 
-        while (p.next != null){
+        while (p != null){
+            sb.append(p.data.toString());
+
+            if(p.next != null){
+                sb.append(",");
+            }
 
             p = p.next;
-
-            sb.append(p.data.toString());
         }
+
+        sb.append(")");
 
         return sb.toString();
     }

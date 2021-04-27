@@ -19,6 +19,7 @@ public class CirDoublyList<T> implements MyList<T>{
     }
 
     //判空
+    @Override
     public boolean isEmpty(){
 
         return this.head.next == this.head;
@@ -80,7 +81,17 @@ public class CirDoublyList<T> implements MyList<T>{
     @Override
     public int size() {
 
-        return 0;
+        DoubleNode<T> p = this.head.next;
+
+        int count = 0;
+
+        while(p != null){
+            count++;
+
+            p = p.next;
+        }
+
+        return count;
     }
 
     /**
@@ -101,6 +112,11 @@ public class CirDoublyList<T> implements MyList<T>{
     public T removeLast(){
 
         return null;
+    }
+
+    @Override
+    public void set(int i, T x) {
+
     }
 
     /**

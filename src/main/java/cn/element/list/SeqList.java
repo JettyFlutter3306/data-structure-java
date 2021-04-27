@@ -51,20 +51,22 @@ public class SeqList<T> implements MyList<T>{
     }
 
 
-
     //判断顺序表是否为空
+    @Override
     public boolean isEmpty(){
 
         return this.n == 0;
     }
 
     //返回顺序表元素的个数
+    @Override
     public int size(){
 
         return this.n;
     }
 
     //返回第i个元素
+    @Override
     public T get(int i){
 
         //范围 [0,n)
@@ -77,6 +79,7 @@ public class SeqList<T> implements MyList<T>{
     }
 
     //设置第i个元素
+    @Override
     public void set(int i,T x){
 
         if(x == null){
@@ -137,6 +140,7 @@ public class SeqList<T> implements MyList<T>{
     }
 
     //根据索引删除元素
+    @Override
     public T remove(int i){
 
         if(this.n > 0 && i >= 0 && i < this.n){
