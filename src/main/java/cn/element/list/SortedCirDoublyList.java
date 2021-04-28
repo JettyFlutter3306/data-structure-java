@@ -5,6 +5,7 @@ import cn.element.list.node.DoubleNode;
 public class SortedCirDoublyList<T extends Comparable<? super T>> extends CirDoublyList<T>{
 
     public SortedCirDoublyList() {
+
         super();
     }
 

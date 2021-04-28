@@ -48,5 +48,9 @@ public class TestLinkedMatrix {
 
         matrixA.printMatrix();
 
+        System.out.println("=========================");
+
+        System.out.println(matrixA.equals(matrixB));
+
     }
 }

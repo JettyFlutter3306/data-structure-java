@@ -84,6 +84,7 @@ public class SinglyList<T> implements MyList<T>{
     }
 
     //返回单链表长度
+    @Override
     public int size(){
 
         int count = 0;
@@ -325,6 +326,36 @@ public class SinglyList<T> implements MyList<T>{
 
         //递归调用,递归通式;当前结点元素串连接从p的后继结点开始的子单链表
         return str + this.toString(p.next);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        if(obj == this){
+            return true;
+        }
+
+        if(obj instanceof SinglyList){
+            SinglyList<T> list = (SinglyList<T>) obj;
+
+            if(this.size() != list.size()){
+                return false;
+            }else{
+                Node<T> p = this.head;
+                Node<T> q = list.head;
+
+                while(p != null){
+                    if(!p.data.equals(q.data)){
+                        return false;
+                    }
+
+                    p = p.next;
+                    q = q.next;
+                }
+            }
+        }
+
+        return true;
     }
 
     //返回描述字符串

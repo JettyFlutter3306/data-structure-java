@@ -63,6 +63,14 @@ public class LinkedMatrix {
     }
 
     /**
+     * 实现拷贝构造方法,深拷贝,复制所有元素对象
+     * @param matrix            待拷贝的矩阵
+     */
+    public LinkedMatrix(LinkedMatrix matrix) {
+
+    }
+
+    /**
      * 返回矩阵行数
      */
     public int getRows(){
@@ -193,9 +201,31 @@ public class LinkedMatrix {
         }
     }
 
+    /**
+     * 返回this与matrix相加之后的矩阵也就是一个新的矩阵,不改变this和matrix
+     * @param matrix            待相加矩阵
+     * @return                  新的矩阵
+     */
+    public LinkedMatrix union(LinkedMatrix matrix){
+
+
+        return null;
+    }
+
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+
+        if(this == obj){
+            return true;
+        }
+
+        if(obj instanceof LinkedMatrix){
+            LinkedMatrix matrix = (LinkedMatrix) obj;
+
+            return this.rows == matrix.rows && this.columns == matrix.columns && this.rowList.equals(matrix.rowList);
+        }
+
+        return false;
     }
 
     /**
