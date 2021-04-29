@@ -48,6 +48,32 @@ public class TestBinaryTree {
         BinaryTree<String> tree = BinaryTrees.createByGenList(genList);  //创建二叉树
 
         tree.printGenList();  //AA(BB(DD(^,G),^),C(E,F(H,^)))
+    }
+
+    /**
+     * 测试遍历二叉树非递归算法
+     */
+    @Test
+    public void test03(){
+
+        String[] preList = {"A","B","D",null,"G",null,null,null,"C","E",null,null,"F","H"};  //先根遍历序列
+
+        BinaryTree<String> tree = new BinaryTree<>(preList);
+
+        tree.preOrderTraverse();  //A B D ^ G ^ ^ ^ C E ^ ^ F H ^ ^
+    }
+
+    /**
+     * 测试二叉树的层次遍历
+     */
+    @Test
+    public void test04(){
+
+        String[] preList = {"A","B","D",null,"G",null,null,null,"C","E",null,null,"F","H"};  //先根遍历序列
+
+        BinaryTree<String> tree = new BinaryTree<>(preList);
+
+        tree.printLevelOrder();
 
     }
 }

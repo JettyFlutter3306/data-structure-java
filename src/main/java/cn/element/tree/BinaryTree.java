@@ -1,5 +1,10 @@
 package cn.element.tree;
 
+import cn.element.queue.LinkedQueue;
+import cn.element.queue.MyQueue;
+import cn.element.stack.LinkedStack;
+import cn.element.stack.MyStack;
+
 /**
  * 声明二叉树类 BinaryTree<T>
  * 采用二叉链表存储,其中成员变量 root 指向二叉树的根结点
@@ -206,9 +211,63 @@ public class BinaryTree<T> implements Tree<T> {
         }
     }
 
+    /**
+     * 先根遍历二叉树的非递归算法
+     */
+    public void preOrderTraverse(){
+
+        System.out.print("先根次序遍历(非递归算法):  \n");
+
+        MyStack<BinaryNode<T>> stack = new LinkedStack<>();  //多态创建空栈
+
+        BinaryNode<T> p = this.root;
+
+        while(p != null || !stack.isEmpty()){  //p非空或栈非空时
+            if(p != null){
+                System.out.print(p.data + " ");  //访问当前结点
+
+                stack.push(p);  //p结点入栈
+
+                p = p.left;  //进入左子树
+            }else{  //p为空且栈非空时
+                System.out.print("^ ");
+
+                p = stack.pop();  //p指向出栈结点
+
+                p = p.right;  //进入右子树
+            }
+        }
+
+        System.out.println();
+    }
+
+    /**
+     * 层次遍历二叉树
+     */
     @Override
     public void printLevelOrder() {
 
+        System.out.print("层次遍历:  \n");
+
+        MyQueue<BinaryNode<T>> queue = new LinkedQueue<>();  //创建空队列
+
+        BinaryNode<T> p = this.root;  //根结点没有入队
+
+        while(p != null){
+            System.out.print(p.data + " ");  //访问 p 结点
+
+            if(p.left != null){
+                queue.add(p.left);  //p结点的左结点入队
+            }
+
+            if(p.right != null){
+                queue.add(p.right);  //p结点的右结点入队
+            }
+
+            p = queue.poll();  //p指向出队结点,若队列为空则返回 null
+        }
+
+        System.out.println();
     }
 
     @Override

@@ -8,7 +8,7 @@ import cn.element.list.SeqList;
 public final class SeqStack<T> implements MyStack<T> {
 
     //使用顺序表存储栈元素
-    private SeqList<T> list;
+    private final SeqList<T> list;
 
     //构造容量为length的空栈
     public SeqStack(int length) {

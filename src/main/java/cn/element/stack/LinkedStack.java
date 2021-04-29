@@ -8,7 +8,7 @@ import cn.element.list.SinglyList;
 public final class LinkedStack<T> implements MyStack<T>{
 
     //使用单链表存储栈元素
-    private SinglyList<T> list;
+    private final SinglyList<T> list;
 
     //构造空栈
     public LinkedStack() {
