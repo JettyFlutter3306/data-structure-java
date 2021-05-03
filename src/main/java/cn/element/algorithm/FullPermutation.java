@@ -2,6 +2,7 @@ package cn.element.algorithm;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * 实现全排列
@@ -12,29 +13,38 @@ import java.util.List;
  * 思路:
  * 要求1 2 3的全排列,
  * 那么先求1 和 2 3的全排列,再求2 3的全排列记为perm(1,perm(2,3))
+ * 递归 + 回溯
  */
 public class FullPermutation {
 
-    List<String> list = new ArrayList<>();
+    public List<List<String>> getFullPermutation(String[] arr){
 
-    public void getFullPermutation(String[] arr,StringBuilder sb){
+        List<List<String>> lists = new ArrayList<>();
+
+        Stack<String> stack = new Stack<>();
+
+        dfs(arr,stack,lists,0);
+
+        return lists;
+    }
+
+    private void dfs(String[] arr,Stack<String> stack,List<List<String>> lists,int index){
 
         if(arr.length <= 0){
-            list.add(sb.toString());
+            lists.add(new ArrayList<>(stack));
         }else{
-            //不是叶子结点
             for (int i = 0; i < arr.length; i++) {
-                //tempArray是一个临时数组
-                String[] tempArr = new String[arr.length - 1];
+                String[] temp = new String[arr.length - 1];
 
-                System.arraycopy(arr,0,tempArr,0,i);
-                System.arraycopy(arr,i+1,tempArr,i,arr.length-i-1);
+                //拷贝arr数组中除了第 i 个之外的元素
+                System.arraycopy(arr,0,temp,0,i);
+                System.arraycopy(arr,i+1,temp,i,arr.length-i-1);
 
-                sb.append(arr[i]);
+                stack.push(arr[i]);  //元素入栈
 
-                getFullPermutation(tempArr,sb);
+                dfs(temp,stack,lists,i);  //递归
 
-                sb.deleteCharAt(sb.length()-1);
+                stack.pop();  //状态重置,回溯
             }
         }
     }
@@ -45,9 +55,18 @@ public class FullPermutation {
 
         FullPermutation a = new FullPermutation();
 
-        a.getFullPermutation(arr,new StringBuilder());
+        List<List<String>> lists = a.getFullPermutation(arr);
 
-        System.out.println(a.list);//[123, 132, 213, 231, 312, 321]
+        lists.forEach(System.out::println);
+
+        /*
+         * [1, 2, 3]
+         * [1, 3, 2]
+         * [2, 1, 3]
+         * [2, 3, 1]
+         * [3, 1, 2]
+         * [3, 2, 1]
+         */
 
     }
 }

@@ -57,8 +57,8 @@ public class LinkedMatrix {
 
         this(m,n);
 
-        for (int i = 0; i < triples.length; i++) {
-            this.set(triples[i]);
+        for (Triple triple : triples) {
+            this.set(triple);
         }
     }
 

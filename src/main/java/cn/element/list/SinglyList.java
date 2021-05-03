@@ -13,6 +13,8 @@ public class SinglyList<T> implements MyList<T>{
     public SinglyList(){        //构建空单链表
 
         this.head = new Node<>();   //创建头结点,data和next值均为null
+
+        this.n = 0;  //长度置为0
     }
 
     public SinglyList(T[] values){  //构造单链表,由数组提供元素
@@ -21,13 +23,17 @@ public class SinglyList<T> implements MyList<T>{
 
         Node<T> rear = this.head;   //rear指向单链表最后一个结点
 
+        int count = 0;
+
         for (T value : values) {
             rear.next = new Node<>(value, null); //尾插入,创建结点链入rear结点之后
+
+            count++;
 
             rear = rear.next;   //rear指向新的链尾结点
         }
 
-        this.n = this.size();
+        this.n = count;
     }
 
     //深拷贝方法
@@ -83,22 +89,25 @@ public class SinglyList<T> implements MyList<T>{
         p.data = x;
     }
 
-    //返回单链表长度
+    /**
+     * 返回单链表长度,优化了一手
+     * 在单链表创建的时候就已经初始化了长度n的值
+     */
     @Override
     public int size(){
 
-        int count = 0;
+//        int count = 0;
+//
+//        Node<T> p = this.head.next; //从head.next开始
+//
+//        while (p != null){
+//
+//            count++;
+//
+//            p = p.next;
+//        }
 
-        Node<T> p = this.head.next; //从head.next开始
-
-        while (p != null){
-
-            count++;
-
-            p = p.next;
-        }
-
-        return count;
+        return this.n;
     }
 
     //插入操作
@@ -124,6 +133,8 @@ public class SinglyList<T> implements MyList<T>{
         }
 
         front.next = new Node<>(x,front.next);  //在front之后插入值为x的结点
+
+        this.n++;
 
         return front.next;  //返回插入结点
     }
@@ -166,6 +177,8 @@ public class SinglyList<T> implements MyList<T>{
     public void clear(){
 
         this.head.next = null;  //由java虚拟机自动回收所有结点占用的内存空间
+
+        this.n = 0;
     }
 
     //查找返回首个与key相等的元素结点,查找不成功返回null
@@ -220,11 +233,13 @@ public class SinglyList<T> implements MyList<T>{
 
             while (p.next != null) {
                 if (p.next.data.equals(key)) {
+                    T data = p.next.data;
+
                     p.next = p.next.next;
 
                     this.n--;
 
-                    break;
+                    return data;
                 }
 
                 p = p.next;
@@ -362,7 +377,7 @@ public class SinglyList<T> implements MyList<T>{
     @Override
     public String toString() {
 
-        StringBuilder str = new StringBuilder(this.getClass().getSimpleName() + "(");
+        StringBuilder str = new StringBuilder("(");
 
         for(Node<T> p = this.head.next;p != null;p = p.next){
             str.append(p.data.toString());

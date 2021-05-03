@@ -9,11 +9,11 @@ import cn.element.common.Addable;
  */
 public class Triple implements Comparable<Triple>, Addable<Triple> {
 
-    int row;  //行号,默认访问权限
+    public int row;  //行号,默认访问权限
 
-    int column;  //列号
+    public int column;  //列号
 
-    int value;  //值
+    public int value;  //值
 
     public Triple() {
 
