@@ -1,12 +1,16 @@
 package cn.element.list;
 
+import cn.element.common.MyList;
 import cn.element.list.node.DoubleNode;
+
+import java.util.Iterator;
+import java.util.function.Consumer;
 
 /**
  * 循环双链表类,实现ADT List<T>声明的方法
  * T表示数据元素的数据类型
  */
-public class CirDoublyList<T> implements MyList<T>{
+public class CirDoublyList<T> implements MyList<T> {
 
     public DoubleNode<T> head; //头结点的引用
 
@@ -147,5 +151,15 @@ public class CirDoublyList<T> implements MyList<T>{
         }
 
         return sb.toString();
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return null;
+    }
+
+    @Override
+    public void forEach(Consumer<? super T> action) {
+
     }
 }

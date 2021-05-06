@@ -1,8 +1,12 @@
 package cn.element.list;
 
+import cn.element.common.MyList;
 import cn.element.list.node.Node;
 
-public class SinglyList<T> implements MyList<T>{
+import java.util.Iterator;
+import java.util.function.Consumer;
+
+public class SinglyList<T> implements MyList<T> {
 
     //头指针,指向单链表的头结点
     public Node<T> head;
@@ -390,5 +394,13 @@ public class SinglyList<T> implements MyList<T>{
         return str + ")";
     }
 
+    @Override
+    public Iterator<T> iterator() {
+        return null;
+    }
 
+    @Override
+    public void forEach(Consumer<? super T> action) {
+
+    }
 }

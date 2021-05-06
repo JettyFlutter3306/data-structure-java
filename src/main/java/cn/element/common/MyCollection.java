@@ -1,6 +1,6 @@
-package cn.element.list;
+package cn.element.common;
 
-public interface MyList<T> {
+public interface MyCollection<T> extends Iterable<T>{
 
     int size();
 
@@ -11,5 +11,4 @@ public interface MyList<T> {
     T remove(int i);
 
     boolean isEmpty();
-
 }

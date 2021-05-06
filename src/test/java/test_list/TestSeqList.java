@@ -4,11 +4,15 @@ import cn.element.algorithm.Josephus;
 import cn.element.list.SeqList;
 import org.junit.Test;
 
+import java.util.Iterator;
+
 public class TestSeqList {
 
-    private String[] arr = {"X","I","A","Q","W","J","X","Z","M","A"};
+    private final String[] arr = {"X","I","A","Q","W","J","X","Z","M","A"};
 
-
+    /**
+     * 测试创建SeqList
+     */
     @Test
     public void test01(){
 
@@ -19,6 +23,9 @@ public class TestSeqList {
         System.out.println(seqList.toPreviousString());
     }
 
+    /**
+     * 测试使用SeqList实现约瑟夫环算法
+     */
     @Test
     public void test02(){
 
@@ -29,6 +36,9 @@ public class TestSeqList {
         Josephus.Josephus1(5,0,2);
     }
 
+    /**
+     * 测试SeqList的CRUD
+     */
     @Test
     public void test03(){
 
@@ -47,7 +57,10 @@ public class TestSeqList {
         System.out.println(seqList);
     }
 
-    @Test  //测试深拷贝
+    /**
+     * 测试深拷贝
+     */
+    @Test
     public void test04(){
 
         SeqList<String> seqList = new SeqList<>(arr);
@@ -60,8 +73,11 @@ public class TestSeqList {
 
     }
 
+    /**
+     * 测试集合并运算
+     */
     @Test
-    public void test05(){       //集合并运算
+    public void test05(){
 
         SeqList<String> seqList = new SeqList<>(arr);
 
@@ -76,6 +92,33 @@ public class TestSeqList {
         System.out.println("seqList1 = " + seqList1);
 
         System.out.println("seqList = " + seqList);
+    }
+
+    /**
+     * 测试SeqList实现Iterable接口,并使用forEach遍历
+     */
+    @Test
+    public void test06(){
+
+        SeqList<Integer> list = new SeqList<>();
+
+        for (int i = 0; i < 10; i++) {
+            list.insert(i * 2 + 1);
+        }
+
+        list.forEach(v -> {  //使用JDK8的函数式编程forEach(Consumer consumer)遍历列表
+            if(v != null){
+                System.out.print(v + "\t");
+            }
+        });
+
+        System.out.println();
+
+        Iterator<Integer> iterator = list.iterator();  //获取SeqList的迭代器
+
+        while(iterator.hasNext()){  //使用迭代器遍历列表
+            System.out.print(iterator.next() + "\t");
+        }
 
     }
 

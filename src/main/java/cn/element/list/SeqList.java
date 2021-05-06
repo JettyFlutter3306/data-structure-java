@@ -1,6 +1,12 @@
 package cn.element.list;
 
-public class SeqList<T> implements MyList<T>{
+import cn.element.common.MyList;
+
+import java.util.Iterator;
+import java.util.Spliterator;
+import java.util.function.Consumer;
+
+public class SeqList<T> implements MyList<T> {
 
     protected Object[] element;  //对象数组存储顺序表的数据元素,保护成员
 
@@ -283,5 +289,39 @@ public class SeqList<T> implements MyList<T>{
         }
 
         return str + ")";
+    }
+
+    /**
+     * 获得本类的迭代器
+     */
+    @Override
+    public Iterator<T> iterator() {
+
+        return new Iterator<T>() {
+            private int i = -1;
+
+            @Override
+            public boolean hasNext() {
+                return element[++i] != null;
+            }
+
+            @Override
+            public T next() {
+                return (T) element[i];
+            }
+        };
+    }
+
+    @Override
+    public void forEach(Consumer<? super T> action) {
+
+        for (Object o : this.element) {
+            action.accept((T) o);
+        }
+    }
+
+    @Override
+    public Spliterator<T> spliterator() {
+        return null;
     }
 }

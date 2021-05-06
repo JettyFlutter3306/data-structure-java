@@ -1,4 +1,4 @@
-package test_sort;
+package test_search;
 
 import cn.element.search.HashSet;
 import org.junit.Test;
