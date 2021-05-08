@@ -9,16 +9,6 @@ import java.util.Arrays;
  */
 public class SwapSort {
 
-    /**
-     * 交换数组对应下标的数值
-     */
-    private static void swap(int[] keys,int i,int j){
-
-        int temp = keys[i];
-        keys[i] = keys[j];
-        keys[j] = temp;
-    }
-
     public static void bubbleSort(int[] keys){
 
         bubbleSort(keys,true);
@@ -45,7 +35,7 @@ public class SwapSort {
 
             for (int j = 0; j < keys.length - i - 1; j++) {  //每一轮比较的次数  keys.length - i - 1
                 if(asc ? keys[j] > keys[j+1] : keys[j] < keys[j+1]){
-                    swap(keys,j,j+1);
+                    IArrays.swap(keys,j,j+1);
 
                     exchange = true;
                 }

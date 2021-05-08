@@ -1,6 +1,8 @@
 package test_sort;
 
 import cn.element.sort.InsertionSort;
+import cn.element.sort.MergeSort;
+import cn.element.sort.SelectSort;
 import cn.element.sort.SwapSort;
 import org.junit.Test;
 
@@ -109,5 +111,42 @@ public class TestSort {
         SwapSort.quickSort(arr);
 
         System.out.println(Arrays.toString(arr));  //[19, 26, 38, 38, 49, 61, 75, 97]
+    }
+
+    /**
+     * 测试直接选择排序
+     */
+    @Test
+    public void test06(){
+
+        int[] arr = {38,97,26,19,38,15};
+
+        SelectSort.straightSelectSort(arr);
+
+        System.out.println(Arrays.toString(arr));  //[15, 19, 26, 38, 38, 97]
+    }
+
+    /**
+     * 测试堆排序
+     */
+    @Test
+    public void test07(){
+
+        int[] arr = {19,38,19,49,97,76,81,13};
+
+        SelectSort.heapSort(arr);
+    }
+
+    /**
+     * 测试归并排序
+     */
+    @Test
+    public void test08(){
+
+        int[] arr = {97,82,75,53,17,61,70,12,61,58,26};
+
+        MergeSort.mergeSort(arr);
+
+        System.out.println(Arrays.toString(arr));  //[12, 17, 26, 53, 58, 61, 61, 70, 75, 82, 97]
     }
 }

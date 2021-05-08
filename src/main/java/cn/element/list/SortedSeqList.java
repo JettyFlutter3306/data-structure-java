@@ -106,6 +106,21 @@ public class SortedSeqList<T extends Comparable<? super T>> extends SeqList<T>{
         return super.remove(this.search(key)); //this.search(key)运行时多态,子类对象调用子类的查找方法
     }
 
+    /**
+     * 归并this和list排序顺序表
+     */
+    public void merge(SortedSeqList<? extends T> list){
+
+    }
+
+    /**
+     * 返回this和list归并(升序)后的排序顺序表,不改变this和list
+     */
+    public SortedSeqList<T> mergeWith(SortedSeqList<? extends T> list){
+
+        return null;
+    }
+
 
 
 
