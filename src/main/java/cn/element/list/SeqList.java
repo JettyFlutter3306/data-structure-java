@@ -28,8 +28,7 @@ public class SeqList<T> implements MyList<T> {
 
         this(values.length);        //创建容量为values.length的空表
 
-        //复制元素赋值
-        for (int i = 0; i < values.length; i++) {
+        for (int i = 0; i < values.length; i++) {  //复制元素赋值
             this.element[i] = values[i];
         }
 
@@ -55,7 +54,6 @@ public class SeqList<T> implements MyList<T> {
             this.element[i] = list.element[i];
         }
     }
-
 
     //判断顺序表是否为空
     @Override
