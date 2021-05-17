@@ -100,6 +100,68 @@ public class BinarySortTree<T extends Comparable<? super T>> {
     }
 
     /**
+     * 删除关键字为key的结点,返回被删除的元素,若没找到则返回null
+     */
+    public T remove(T key){
+
+        TriNode<T> p = this.searchNode(key);  //查找关键字为key的元素,若查找不成功则返回null
+
+        if(p != null && p.left != null && p.right != null){  //找到待删除的结点p,若p是二度结点
+            TriNode<T> inSuc = this.first(p.right);  //寻找p在中根次序下的后继结点
+
+            T temp = p.data;  //交换待删除元素,作为返回值
+            p.data = inSuc.data;
+            inSuc.data = temp;
+
+            p = inSuc;  //转化为删除inSuc,删除1,0度结点
+        }
+
+        if(p != null && p == this.root){  //p是1度或叶子结点,删除根结点,p.parent == null
+            if(this.root.left != null){
+                this.root = p.left;  //以p的左孩子顶替作为新的根结点
+            }else{
+                this.root = p.right;  //以p的右孩子顶替作为新的根结点
+            }
+
+            if(this.root != null){
+                this.root.parent = null;
+            }
+
+            return p.data;  //返回被删除根结点元素
+        }
+
+        if(p != null && p == p.parent.left){  //p是1度或叶子结点,p是父母的左孩子
+            if(p.left != null){
+                p.parent.left = p.left;  //以p的左孩子顶替
+
+                p.left.parent = p.parent;  //p的左孩子的parent域指向p的父母
+            }else{
+                p.parent.left = p.right;  //以p的右孩子顶替
+
+                if(p.right != null){
+                    p.right.parent = p.parent;
+                }
+            }
+        }
+
+        if(p != null && p == p.parent.right){  //p是1度或叶子结点,p是父母的右孩子
+            if(p.left != null){
+                p.parent.right = p.left;  //以p的左孩子顶替
+
+                p.left.parent = p.parent;
+            }else{
+                p.parent.right = p.right;  //以p的右孩子顶替
+
+                if(p.right != null){
+                    p.right.parent = p.parent;
+                }
+            }
+        }
+
+        return p != null ? p.data : null;
+    }
+
+    /**
      * 返回中根次序遍历二叉树所有结点的描述字符串,迭代遍历,非递归
      */
     @Override
