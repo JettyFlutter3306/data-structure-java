@@ -48,9 +48,9 @@
 
 #### 参与贡献
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
+1.  暴躁程序猿老哥倾力打造
+2.  拉取代码 git pull https://gitee.com/Lobidas_Daddy/data-structure
+3.  提交代码 git push https://gitee.com/Lobidas_Daddy/data-structure
 4.  新建 Pull Request
 
 
