@@ -15,7 +15,7 @@
  **软件架构说明
 这是一个用Maven构建项目,除了一个JUnit Maven依赖,没有用什么第三方类库,这是基本的代码结构截图
 
-![](src\main\resources\assets\main1.png)
+![](https://images.gitee.com/uploads/images/2021/0520/122106_03f08a6e_7713888.png "main1.png")
 
 目录结构
 ```
