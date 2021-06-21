@@ -3,9 +3,13 @@ package cn.element.string;
 import java.io.Serializable;
 import java.util.*;
 
+/**
+ * 声明字符串类MyString
+ * 仿照java.lang.String类构建
+ */
 public class MyString implements Comparable<MyString>, Serializable {
 
-    private final char[] value;  //字符数组,私有最终变量,只能复制一次
+    private final char[] value;  //字符数组,私有最终变量,只能赋值一次
 
     public MyString() {  //构造空串"",串长度为0
 
@@ -16,7 +20,7 @@ public class MyString implements Comparable<MyString>, Serializable {
 
         this.value = new char[str.length()]; //申请字符数组并复制str串的所有字符串
 
-        for(int i=0;i<this.value.length;i++){
+        for(int i = 0;i < this.value.length;i++){
             this.value[i] = str.charAt(i);
         }
     }
@@ -378,15 +382,15 @@ public class MyString implements Comparable<MyString>, Serializable {
     //返回将串s逆转的串
     public static MyString reverse(MyString s){
 
-        for (int i = 0; i < s.value.length/2; i++) {
+        for (int i = 0; i < s.value.length / 2; i++) {
             char temp = s.value[i];
 
-            s.value[i] = s.value[s.length()-1-i];
+            s.value[i] = s.value[s.length() - 1- i];
 
-            s.value[s.length()-1-i] = temp;
+            s.value[s.length() -1 - i] = temp;
         }
 
-        return new MyString(s.value);
+        return s;
     }
 
     //判断字符串str是否为标识符

@@ -14,8 +14,4 @@ public interface MyQueue<T> {
     T peek(); //返回对头元素,没有删除,若队列为空,则返回null
 
     T poll(); //出队,返回队头元素,若队列为空,则返回null
-
-
-
-
 }

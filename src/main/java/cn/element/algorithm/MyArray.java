@@ -3,7 +3,7 @@ package cn.element.algorithm;
 import java.util.*;
 
 /**
- * @author mothercucker
+ * @author cn.element
  */
 public class MyArray {
 

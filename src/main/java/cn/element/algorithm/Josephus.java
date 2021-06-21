@@ -14,7 +14,7 @@ public class Josephus {
      * @param start         起始位置
      * @param distance      间隔
      */
-    public Josephus(int number,int start,int distance){
+    public static void josephus1(int number,int start,int distance){
 
         System.out.println("Josephus(" + number + "," + start + "," + distance + "),");
 
@@ -38,7 +38,7 @@ public class Josephus {
             System.out.println(seqList);
         }
 
-        System.out.println("被赦免者是" + seqList.get(0));
+        System.out.println("被赦免者是: " + seqList.get(0));
     }
 
     /**
@@ -50,7 +50,7 @@ public class Josephus {
      * @param start         起始位置
      * @param distance      间隔
      */
-    public static void Josephus1(int number,int start,int distance){
+    public static void josephus2(int number,int start,int distance){
 
         System.out.println("Josephus(" + number + "," + start + "," + distance + "),");
 
@@ -76,7 +76,7 @@ public class Josephus {
             System.out.println(singlyList);
         }
 
-        System.out.println("被赦免者是:"+singlyList.get(0));
+        System.out.println("被赦免者是: "+singlyList.get(0));
     }
 
 }

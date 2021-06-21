@@ -37,5 +37,34 @@ public class TestMatrixGraph {
 
         System.out.println("带权无向图: \n" + graph);
 
+        int i = graph.insertVertex("F");  //插入顶点F,扩容
+        graph.insertEdge(3,i,13);  //插入边(D,F,13)
+        graph.insertEdge(new Triple(i,3,13));  //插入边(F,D,13)
+        graph.insertEdge(4,i,11);  //插入边(E,F,11)
+        graph.insertEdge(new Triple(i,4,11));  //插入边(F,E,11)
+
+        System.out.println("======================");
+
+        System.out.println("带权无向图: \n" + graph);
+
+        System.out.println("==========================");
+        System.out.println("深度优先遍历: ");
+
+        for (int j = 0; j < graph.vertexCount(); j++) {  //测试遍历无向图
+            graph.dfsTraverse(j);
+        }
+
+        System.out.println("==========================");
+        System.out.println("广度优先遍历: ");
+
+        for (int j = 0; j < graph.vertexCount(); j++) {
+            graph.bfsTraverse(j);
+        }
+
+        System.out.println("=========================");
+        System.out.println("最小生成树: ");
+
+        graph.minSpanTree();  //测试最小生成树
+
     }
 }

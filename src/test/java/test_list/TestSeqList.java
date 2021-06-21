@@ -31,9 +31,9 @@ public class TestSeqList {
 
 //        System.out.println((char)('A' + 1));
 
-        new Josephus(5,0,2);
+        Josephus.josephus1(5,0,2);
 
-        Josephus.Josephus1(5,0,2);
+        Josephus.josephus2(5,0,2);
     }
 
     /**

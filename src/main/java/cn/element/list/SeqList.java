@@ -127,7 +127,7 @@ public class SeqList<T> implements MyList<T> {
         }
 
         for (int j = this.n - 1; j >= i; j--) {
-            element[j+1] = source[j];
+            this.element[j+1] = this.element[j];
         }
 
         this.element[i] = x;

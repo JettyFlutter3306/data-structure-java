@@ -16,7 +16,7 @@ public class LinkedMatrix {
 
     private int columns; //列数
 
-    SeqList<PolySinglyList<Triple>> rowList; //行指针顺序表,元素是多项式排序单链表
+    public SeqList<PolySinglyList<Triple>> rowList; //行指针顺序表,元素是多项式排序单链表
 
     /**
      * 构造 m * n 的零矩阵,若行数,列数 <= 0,抛出无效参数异常

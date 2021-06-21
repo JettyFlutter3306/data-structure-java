@@ -10,6 +10,7 @@ public class PolySinglyList<T extends Comparable<? super T> & Addable> extends S
 
     //构造方法
     public PolySinglyList(){
+
         super();
     }
 
