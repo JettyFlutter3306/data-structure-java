@@ -81,7 +81,7 @@ public class TestSinglyList {
 
         SinglyList<Integer> list = new SinglyList<>(intArr);
 
-        double average = singlyList.average(list);
+        double average = SinglyList.average(list);
 
         System.out.println("average = " + average);
     }

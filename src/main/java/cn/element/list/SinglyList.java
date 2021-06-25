@@ -4,15 +4,14 @@ import cn.element.common.MyList;
 import cn.element.list.node.Node;
 
 import java.util.Iterator;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 public class SinglyList<T> implements MyList<T> {
 
-    //头指针,指向单链表的头结点
-    public Node<T> head;
+    public Node<T> head;  //头结点的引用,指向单链表的头结点
 
-    //单链表改进,增加长度属性 n
-    public int n;
+    public int n;  //单链表改进,增加长度属性 n
 
     public SinglyList(){        //构建空单链表
 
@@ -43,9 +42,46 @@ public class SinglyList<T> implements MyList<T> {
     //深拷贝方法
     public SinglyList(SinglyList<T> list){
 
+
     }
 
-    public boolean isEmpty(){   //单链表判空
+    /**
+     * 返回单链表第0个元素结点
+     */
+    public Node<T> first() {
+
+        return null;
+    }
+
+    /**
+     * 返回结点p的后继结点
+     */
+    public Node<T> next(Node<T> p) {
+
+        return null;
+    }
+
+    /**
+     * 返回结点p的前驱结点
+     */
+    public Node<T> previous(Node<T> p) {
+
+        return null;
+    }
+
+    /**
+     * 返回单链表最后一个元素的结点
+     */
+    public Node<T> last() {
+
+        return null;
+    }
+
+    /**
+     * 单链表判空
+     * @return      boolean
+     */
+    public boolean isEmpty(){
 
         return this.head.next == null;
     }
@@ -69,7 +105,11 @@ public class SinglyList<T> implements MyList<T> {
         return p;
     }
 
-    //根据索引获取元素
+    /**
+     * 根据索引获取元素
+     * @param i         索引
+     * @return          T
+     */
     public T get(int i){    //返回第i个元素
 
         Node<T> p = this.head.next; //起点从head.next开始
@@ -78,10 +118,14 @@ public class SinglyList<T> implements MyList<T> {
             p = p.next;
         }
 
-        return (i >= 0 && p != null) ? p.data : null;
+        return i >= 0 ? p.data : null;
     }
 
-    //设置第i个元素为x,0<= i <表长度,x != null
+    /**
+     * 设置第i个元素为x,0<= i <表长度,x != null
+     * @param i         索引,从0开始
+     * @param x         泛型元素
+     */
     public void set(int i,T x){
 
         Node<T> p = this.head.next;
@@ -114,7 +158,12 @@ public class SinglyList<T> implements MyList<T> {
         return this.n;
     }
 
-    //插入操作
+    /**
+     * 在指定位置插入元素
+     * @param i         索引
+     * @param x         元素
+     * @return          Node
+     */
     public Node<T> insert(int i,T x){
 
         if(x == null){
@@ -143,11 +192,12 @@ public class SinglyList<T> implements MyList<T> {
         return front.next;  //返回插入结点
     }
 
-    //尾插入
+    /**
+     * 尾插入
+     */
     public Node<T> insert(T x){
 
-        //调用insert(i,x); 用整数最大值指定插入在最后,遍历一次,i必须容错
-        return insert(Integer.MAX_VALUE,x);
+        return insert(Integer.MAX_VALUE,x);  //调用insert(i,x); 用整数最大值指定插入在最后,遍历一次,i必须容错
     }
 
     /**
@@ -163,8 +213,7 @@ public class SinglyList<T> implements MyList<T> {
 
         Node<T> front = this.head;  //front指向头结点
 
-        //循环遍历到索引 i-1
-        for(int j = 0;j < i;j++){
+        for(int j = 0;j < i;j++){  //循环遍历到索引 i-1
             front = front.next;
         }
 
@@ -177,7 +226,9 @@ public class SinglyList<T> implements MyList<T> {
         return old;
     }
 
-    //清除元素
+    /**
+     * 清空单链表
+     */
     public void clear(){
 
         this.head.next = null;  //由java虚拟机自动回收所有结点占用的内存空间
@@ -185,7 +236,11 @@ public class SinglyList<T> implements MyList<T> {
         this.n = 0;
     }
 
-    //查找返回首个与key相等的元素结点,查找不成功返回null
+    /**
+     * 查找返回首个与key相等的元素结点,查找不成功返回null
+     * @param key       关键字
+     * @return          Node
+     */
     public Node<T> search(T key){
 
         if(key == null){
@@ -205,7 +260,9 @@ public class SinglyList<T> implements MyList<T> {
         return null;
     }
 
-    //判断是否包含关键字为key的元素
+    /**
+     * 判断是否包含关键字为key的元素
+     */
     public boolean contains(T key){
 
         Node<T> node = this.search(key);
@@ -213,7 +270,9 @@ public class SinglyList<T> implements MyList<T> {
         return node != null;
     }
 
-    //插入不重复的元素,查找不成功时尾插入
+    /**
+     * 判断是否包含关键字为key的元素
+     */
     public Node<T> insertDifferent(T x){
 
         Node<T> node = this.search(x);
@@ -227,7 +286,9 @@ public class SinglyList<T> implements MyList<T> {
         return null;
     }
 
-    //删除首个与key相等元素,返回被删除元素;查找不成功时返回null
+    /**
+     * 删除首个与key相等元素,返回被删除元素;查找不成功时返回null
+     */
     public T remove(T key){
 
         Node<T> node = this.search(key);
@@ -253,23 +314,44 @@ public class SinglyList<T> implements MyList<T> {
         return null;
     }
 
-    public double average(SinglyList<Integer> list){
+    /**
+     * 求一个整数单链表的平均值
+     * @param list      单链表,泛型<Integer>
+     * @return          double
+     */
+    public static double average(SinglyList<Integer> list){
 
         int sum = 0;
 
-        int num = 0;
-
-        Node<Integer> p = list.head;
-
-        while (p.next != null){
-            p  = p.next;
-
-            num++;
-
-            sum += p.data;
+        for (Integer integer : list) {
+            sum += integer;
         }
 
-        return (double) sum / num;
+        return (double) sum / list.n;
+    }
+
+    /**
+     * 去掉一个最大值和一个最小值再求平均值
+     */
+    public static double averageExceptMaxMin(SinglyList<Integer> list) {
+
+        return 0;
+    }
+
+    /**
+     * 返回单链表list最大值,T类必须能够比较对象大小
+     */
+    public static <T extends Comparable<? super T>> T max(SinglyList<T> list) {
+
+        return null;
+    }
+
+    /**
+     * 判断单链表list是否是排序,若asc取值为true,否则降序
+     */
+    public static <T extends Comparable<? super T>> boolean isSorted(SinglyList<T> list) {
+
+        return false;
     }
 
     /**
@@ -283,8 +365,8 @@ public class SinglyList<T> implements MyList<T> {
 
         list.head = null;   //置空
 
-        for (int i = 0; i < values.length; i++) {
-            list.head = new Node<>(values[i],list.head);
+        for (T value : values) {
+            list.head = new Node<>(value, list.head);
         }
 
         list.head = new Node<>(null,list.head);
@@ -301,7 +383,7 @@ public class SinglyList<T> implements MyList<T> {
 
         Node<T> p = list.head.next; //p指向第0个结点
 
-        Node<T> succ = list.head.next.next; //succ指向p的后继
+        Node<T> suc = list.head.next.next; //suc指向p的后继
 
         //cn.element.list.SinglyList(UI,VF,XZ,PO,VD,QW,X)
         while (p != null){
@@ -310,18 +392,130 @@ public class SinglyList<T> implements MyList<T> {
 
             front = p;  //front向后移动一个单位
 
-            p = succ;   //p向后移动一个单位
+            p = suc;   //p向后移动一个单位
 
-            if(succ != null){
-                succ = succ.next;   //succ向后移动一个单位
+            if(suc != null){
+                suc = suc.next;   //suc向后移动一个单位
             }
         }
 
         list.head.next = front;
     }
 
-    //集合并操作
+    /**
+     * 集合并操作
+     * @param list      SinglyList
+     */
     public void addAll(SinglyList<T> list){
+
+        addAll(this.n, list);
+    }
+
+    public void addAll(int i, SinglyList<T> list) {
+
+    }
+
+    /**
+     * 顺序查找,并将所有与key相等的元素替换为x
+     */
+    public void replaceAll(T key, T x) {
+
+    }
+
+    /**
+     * 顺序查找并删除所有与key相等元素的结点
+     */
+    public void removeAll(T key) {
+
+    }
+
+    /**
+     * 返回由 begin ~ end 之间的元素组成的子表
+     * @param begin         开始
+     * @param end           结束
+     * @return              SinglyList
+     */
+    public SinglyList<T> subList(int begin, int end) {
+
+        return null;
+    }
+
+    /**
+     * 删除 begin ~ end 之间的元素,返回被删除元素组成的表
+     * @param begin         开始
+     * @param end           结束
+     * @return              SinglyList
+     */
+    public SinglyList<T> remove(int begin, int end) {
+
+        return null;
+    }
+
+    /**
+     * 判断this单链表是否包含list的所有元素
+     */
+    public boolean contains(SinglyList<T> list) {
+
+        return false;
+    }
+
+    /**
+     * 返回将this与list合并连接的单链表,并集
+     */
+    public SinglyList<T> union(SinglyList<T> list) {
+
+        return null;
+    }
+
+    /**
+     * 删除那些也在list中的元素
+     */
+    public void subtract(SinglyList<T> list) {
+
+    }
+
+    /**
+     * 返回this与list的差集
+     */
+    public SinglyList<T> difference(SinglyList<T> list) {
+
+        return null;
+    }
+
+    /**
+     * 仅保留那些也包含在list中的元素
+     */
+    public void retainAll(SinglyList<T> list) {
+
+    }
+
+    /**
+     * 返回this与list的交集
+     */
+    public SinglyList<T> intersection(SinglyList<T> list) {
+
+        return null;
+    }
+
+    /**
+     * 查找并返回this中首个与pattern匹配的子表,包含模式匹配
+     */
+    public Node<T> search(SinglyList<T> pattern) {
+
+        return null;
+    }
+
+    /**
+     * 删除this中所有与pattern匹配的子表,模式匹配
+     */
+    public void removeAll(SinglyList<T> pattern) {
+
+    }
+
+    /**
+     * 将this中所有与pattern匹配的子表替换为list,模式匹配
+     */
+    public void replaceAll(SinglyList<T> pattern, SinglyList<T> list) {
 
     }
 
@@ -396,11 +590,35 @@ public class SinglyList<T> implements MyList<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return null;
+
+        return new Iterator<T>() {
+            Node<T> p = SinglyList.this.head;
+
+            @Override
+            public boolean hasNext() {
+
+                return p.next != null;
+            }
+
+            @Override
+            public T next() {
+
+                p = p.next;
+
+                return p.data;
+            }
+        };
     }
 
     @Override
     public void forEach(Consumer<? super T> action) {
 
+        Node<T> p = this.head;
+
+        while(p.next != null){
+            p = p.next;
+
+            action.accept(p.data);
+        }
     }
 }

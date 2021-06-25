@@ -155,7 +155,18 @@ public class CirDoublyList<T> implements MyList<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return null;
+
+        return new Iterator<T>() {
+            @Override
+            public boolean hasNext() {
+                return false;
+            }
+
+            @Override
+            public T next() {
+                return null;
+            }
+        };
     }
 
     @Override

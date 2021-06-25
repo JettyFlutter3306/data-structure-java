@@ -48,6 +48,7 @@ public class Polynomial {
     //比较两个多项式是否相等
     @Override
     public boolean equals(Object obj) {
+
         return super.equals(obj);
     }
 

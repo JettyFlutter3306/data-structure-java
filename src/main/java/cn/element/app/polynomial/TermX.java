@@ -8,42 +8,45 @@ import cn.element.common.Addable;
  */
 public class TermX implements Comparable<TermX>, Addable<TermX> {
 
-    protected int coef,xexp; //系数,x指数(可为正,0),系数可为double
+    protected int coefficient;  //系数,系数可为double
+
+    protected int exponent;  //指数(可为正,0)
 
     //构造一项
-    public TermX(int coef,int xexp){
+    public TermX(int coefficient,int exponent){
 
-        this.coef = coef;
-        this.xexp = xexp;
+        this.coefficient = coefficient;
+        this.exponent = exponent;
     }
 
     //拷贝构造方法
     public TermX(TermX term){
 
-        this.coef = term.coef;
-        this.xexp = term.xexp;
+        this.coefficient = term.coefficient;
+        this.exponent = term.exponent;
     }
 
     @Override
     public int add(TermX termX) {
 
-        if(termX.xexp == this.xexp){
+        if(termX.exponent == this.exponent){
 
-            this.coef += termX.coef;
+            this.coefficient += termX.coefficient;
         }
 
-        return this.coef;
+        return this.coefficient;
     }
 
     @Override
     public boolean removable() {
-        return false;
+
+        return this.coefficient == 0;
     }
 
     @Override
     public int compareTo(TermX o) {
 
-        return this.xexp - o.xexp;
+        return this.exponent - o.exponent;
     }
 
     @Override
@@ -53,17 +56,17 @@ public class TermX implements Comparable<TermX>, Addable<TermX> {
             return true;
         }
 
-        TermX termX = null;
-
         if(obj instanceof TermX){
-            termX = (TermX) obj;
+            TermX termX = (TermX) obj;
+
+            if(this.exponent != termX.exponent){
+                return false;
+            }
+
+            return this.coefficient == termX.coefficient;
         }
 
-        if(this.xexp != termX.xexp){
-            return false;
-        }
-
-        return this.coef == termX.coef;
+        return false;
     }
 
     //格式化代数项
@@ -71,43 +74,43 @@ public class TermX implements Comparable<TermX>, Addable<TermX> {
     public String toString() {
 
         //先处理特殊情况
-        if(this.xexp > 0 && this.xexp != 1){
-            if(this.coef == 1){
-                return "x^" + this.xexp;
-            }else if(this.coef == -1){
-                return "-x^" + this.xexp;
+        if(this.exponent > 0 && this.exponent != 1){
+            if(this.coefficient == 1){
+                return "x^" + this.exponent;
+            }else if(this.coefficient == -1){
+                return "-x^" + this.exponent;
             }
-        }else if(this.xexp == 0){
-            if(this.coef == 1){
+        }else if(this.exponent == 0){
+            if(this.coefficient == 1){
                 return "1";
-            }else if(this.coef == -1){
+            }else if(this.coefficient == -1){
                 return "-1";
             }else{
-                if(this.coef > 0){
-                    return "+"+this.coef+"";
+                if(this.coefficient > 0){
+                    return "+"+this.coefficient+"";
                 }
 
-                return this.coef+"";
+                return this.coefficient+"";
             }
-        }else if(this.xexp == 1){
-            if(this.coef == 1){
+        }else if(this.exponent == 1){
+            if(this.coefficient == 1){
                 return "+x";
-            }else if(this.coef == -1){
+            }else if(this.coefficient == -1){
                 return "-x";
             }else{
-                if(this.coef > 0){
-                    return "+"+this.coef+"x";
+                if(this.coefficient > 0){
+                    return "+"+this.coefficient+"x";
                 }
 
-                return this.coef+"x";
+                return this.coefficient+"x";
             }
         }
 
         //给正项加一个 + 号
-        if(this.coef > 0){
-            return "+"+this.coef+"x^"+this.xexp;
+        if(this.coefficient > 0){
+            return "+"+this.coefficient + "x^" + this.exponent;
         }
 
-        return this.coef+"x^"+this.xexp;
+        return this.coefficient + "x^" + this.exponent;
     }
 }

@@ -320,6 +320,7 @@ public class SeqList<T> implements MyList<T> {
 
     @Override
     public Spliterator<T> spliterator() {
+
         return null;
     }
 }

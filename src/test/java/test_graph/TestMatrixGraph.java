@@ -66,5 +66,11 @@ public class TestMatrixGraph {
 
         graph.minSpanTree();  //测试最小生成树
 
+        System.out.println("==========================");
+        graph.shortestPath(0);  //测试最短路径 Dijkstra算法
+
+        System.out.println("==========================");
+        graph.shortestPath();  //测试每对顶点间的最短路径  Floyd算法
+
     }
 }

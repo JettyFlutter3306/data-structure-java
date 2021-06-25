@@ -1,6 +1,8 @@
 package cn.element.graph;
 
 import cn.element.list.SeqList;
+import cn.element.list.SinglyList;
+import cn.element.matrix.Matrix;
 import cn.element.matrix.Triple;
 import cn.element.queue.LinkedQueue;
 import cn.element.queue.MyQueue;
@@ -205,14 +207,139 @@ public abstract class AbstractGraph<T> implements Graph<T>{
         System.out.println(", 最小代价为: " + minCost);
     }
 
+    /**
+     * 求带权图中顶点vi的单源最短路径,Dijkstra算法
+     */
     @Override
     public void shortestPath(int i) {
 
+        int n = this.vertexCount();  //图的顶点数
+
+        boolean[] vSet = new boolean[n];  //已经求出最短路径的顶点集合,初始值全为false
+
+        vSet[i] = true;  //标记源点vi在集合S中
+
+        int[] dist = new int[n];  //最短路径长度
+
+        int[] path = new int[n];  //最短路径的终点的前一个顶点
+
+        for (int j = 0; j < n; j++) {  //初始化dist和path数组
+            dist[j] = this.weight(i,j);
+
+            path[j] = (j != i && dist[j] < MAX_WEIGHT) ? i : -1;
+        }
+
+        for (int j = (i + 1) % n; j != i; j = (j + 1) % n) {  //寻找从vi到vj的最短路径,vj在V-S集合中
+            int mindDist = MAX_WEIGHT;  //求路径长度最小
+            int min = 0;  //最短路径下标
+
+            for (int k = 0; k < n; k++) {
+                if(!vSet[k] && dist[k] < mindDist){
+                    mindDist = dist[k];  //路径长度最小值
+                    min = k;  //路径长度最小值下标
+                }
+            }
+
+            if(mindDist == MAX_WEIGHT){  //若没有其他最短路径则算法结束,此语句对非连通图必须
+                break;
+            }
+
+            vSet[min] = true;  //确定一条最短路径(vi,min),终点min并入集合S
+
+            for (int k = 0; k < n; k++) {  //调整从vi到V-S中其他顶点的最短路径以及长度
+                if(!vSet[k] && this.weight(min,k) < MAX_WEIGHT && dist[min] + this.weight(min,k) < dist[k]){
+                    dist[k] = dist[min] + this.weight(min,k);  //用更短路径替换
+
+                    path[k] = min;  //最短路径经过min顶点
+                }
+            }
+        }
+
+        System.out.println(this.getVertex(i) + "顶点的单源最短路径: ");
+
+        for (int j = 0; j < n; j++) {  //输出顶点vi的单源最短路径
+            if(j != i){
+                SinglyList<T> pathLink = new SinglyList<>();  //路径单链表,记录最短路径经过的各个顶点,用于反序
+
+                pathLink.insert(0, this.getVertex(j));  //单链表插入最短路径终点vj
+
+                for (int k = path[j]; k != i && k != j && k != -1; k = path[k]) {  //寻找从vi到vj的最短路径
+                    pathLink.insert(0, this.getVertex(k));  //单链表头插入经过的顶点,反序
+                }
+
+                pathLink.insert(0, this.getVertex(i));  //最短路径的起点vi
+
+                System.out.print(pathLink + "长度" + (dist[j] == MAX_WEIGHT ? "∞" :dist[j]) + ", ");
+            }
+        }
+
+        System.out.println();
     }
 
+    /**
+     * 求带权图每对顶点间的最短路径Floyd算法
+     */
     @Override
     public void shortestPath() {
 
+        int n = this.vertexCount();  //图的顶点数
+
+        Matrix path = new Matrix(n);  //最短路径
+        Matrix dist = new Matrix(n);  //长度矩阵,初值为0
+
+        for (int i = 0; i < n; i++) {  //初始化dist,path矩阵
+            for (int j = 0; j < n; j++) {
+                int w = this.weight(i, j);
+
+                dist.set(i, j, w);  //dist初值是图的邻接矩阵
+
+                path.set(i, j, (i != j && w < MAX_WEIGHT ? i : -1));
+            }
+        }
+
+        for (int k = 0; k < n; k++) {  //以vk作为其他路径的中间顶点
+            for (int i = 0; i < n; i++) {  //测试每对从vi到vj路径长度是否更短
+                if(i != k){
+                    for (int j = 0; j < n; j++) {
+                        if(j != k && j != i && dist.get(i, j) > dist.get(i, k) + dist.get(k, j)){  //若更短,则替换
+                            dist.set(i, j, dist.get(i, k) + dist.get(k, j));
+
+                            path.set(i, j, path.get(k, j));
+                        }
+                    }
+                }
+            }
+        }
+
+        System.out.println("每对顶点间的最短路径如下: ");
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if(i != j){
+                    System.out.println(toPath(path, i, j) + "长度" + (dist.get(i, j) == MAX_WEIGHT ? "∞" : dist.get(i, j) + ", "));
+                }
+            }
+
+            System.out.println();
+        }
+    }
+
+    /**
+     * 返回path路径矩阵中从顶点vi从vj的一条路径字符串
+     */
+    private String toPath(Matrix path, int i, int j) {
+
+        SinglyList<T> pathLink = new SinglyList<>();  //单链表,记录最短路径经过的顶点,用于反序
+
+        pathLink.insert(0, this.getVertex(j));  //单链表插入最短路径终点vj
+
+        for (int k = path.get(i, j); k != i && k != j && k != -1; k = path.get(i, k)) {
+            pathLink.insert(0, this.getVertex(k));  //单链表头插入经过的顶点,反序
+        }
+
+        pathLink.insert(0, this.getVertex(i));  //最短路径的起点vi
+
+        return pathLink.toString();
     }
 
     @Override

@@ -6,7 +6,7 @@ import cn.element.list.node.Node;
 /**
  * 多项式排序单链表类
  */
-public class PolySinglyList<T extends Comparable<? super T> & Addable> extends SortedSinglyList<T> {
+public class PolySinglyList<T extends Comparable<? super T> & Addable<T>> extends SortedSinglyList<T> {
 
     //构造方法
     public PolySinglyList(){
@@ -42,9 +42,9 @@ public class PolySinglyList<T extends Comparable<? super T> & Addable> extends S
                 q = q.next;
             }else{
                 if(p.data.compareTo(q.data) == 0){  //初始状态,若p,q指数相同,则p系数 += q系数,使p,front,q都向右移动
-                    int i = p.data.add(q.data);
+                    p.data.add(q.data);
 
-                    if(i == 0){
+                    if(p.data.removable()){
                         this.remove(p.data);
                     }
 

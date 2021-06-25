@@ -22,12 +22,12 @@ public class TestPolySinglyList {
         PolySinglyList<TermX> list = new PolySinglyList<>(terms);
         PolySinglyList<TermX> list1 = new PolySinglyList<>(terms1);
 
-        System.out.println("cn.geeklbd.list = " + list);
+        System.out.println("list = " + list);
         System.out.println("list1 = " + list1);
 
         list.addAll(list1);
 
-        System.out.println("cn.geeklbd.list = " + list);
+        System.out.println("list = " + list);
     }
 
     /**
@@ -41,7 +41,7 @@ public class TestPolySinglyList {
 
         PolySinglyList<TermX> list = new PolySinglyList<>(terms);
 
-        System.out.println("cn.geeklbd.list = " + list);
+        System.out.println("list = " + list);
 
         PolySinglyList<TermX> list1 = new PolySinglyList<>(list);
 
