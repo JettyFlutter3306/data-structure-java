@@ -1,9 +1,11 @@
 package cn.element.tree;
 
+import java.io.Serializable;
+
 /**
  * 声明二叉树的二叉链表结点类
  */
-public class BinaryNode<T>{
+public class BinaryNode<T> implements Serializable{
 
     public T data;  //数据域
 

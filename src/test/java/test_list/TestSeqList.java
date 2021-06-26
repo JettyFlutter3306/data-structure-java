@@ -4,6 +4,7 @@ import cn.element.algorithm.Josephus;
 import cn.element.list.SeqList;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.Iterator;
 
 public class TestSeqList {
@@ -61,7 +62,7 @@ public class TestSeqList {
      * 测试深拷贝
      */
     @Test
-    public void test04(){
+    public void test04() throws IOException, ClassNotFoundException {
 
         SeqList<String> seqList = new SeqList<>(arr);
 
@@ -71,6 +72,9 @@ public class TestSeqList {
 
         System.out.println("seqList1 = " + seqList1);
 
+        //二者hashcode不相等,成功实现深拷贝
+        System.out.println(seqList.hashCode());
+        System.out.println(seqList1.hashCode());
     }
 
     /**
@@ -121,9 +125,6 @@ public class TestSeqList {
         }
 
     }
-
-
-
 
 
 }

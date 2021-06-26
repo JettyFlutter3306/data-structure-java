@@ -10,7 +10,7 @@ import java.util.function.Consumer;
  * 循环双链表类,实现ADT List<T>声明的方法
  * T表示数据元素的数据类型
  */
-public class CirDoublyList<T> implements MyList<T> {
+public class CirDoublyList<T> extends MyList<T> {
 
     public DoubleNode<T> head; //头结点的引用
 

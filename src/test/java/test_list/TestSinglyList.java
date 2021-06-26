@@ -5,6 +5,8 @@ import cn.element.list.SinglyList;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
+
 public class TestSinglyList {
 
     public static String[] arr = {"X","QW","VD","PO","XZ","VF","UI"};
@@ -22,6 +24,9 @@ public class TestSinglyList {
         System.out.println(singlyList);
     }
 
+    /**
+     * 测试单链表增删改查
+     */
     @Test
     public void test01(){
 
@@ -36,6 +41,9 @@ public class TestSinglyList {
         System.out.println(singlyList.size());
     }
 
+    /**
+     * 测试单链表按索引删除
+     */
     @Test
     public void test02(){
 
@@ -46,6 +54,9 @@ public class TestSinglyList {
         System.out.println(singlyList);
     }
 
+    /**
+     * 测试单链表搜索
+     */
     @Test
     public void test03(){
 
@@ -66,6 +77,9 @@ public class TestSinglyList {
         System.out.println(singlyList);
     }
 
+    /**
+     * 测试单链表根据关键字删除
+     */
     @Test
     public void test04(){
 
@@ -74,6 +88,9 @@ public class TestSinglyList {
         System.out.println("singlyList = " + singlyList);
     }
 
+    /**
+     * 测试求单链表平均值
+     */
     @Test
     public void test05(){
 
@@ -86,6 +103,9 @@ public class TestSinglyList {
         System.out.println("average = " + average);
     }
 
+    /**
+     * 测试单链表逆转
+     */
     @Test
     public void test06(){
 
@@ -96,5 +116,22 @@ public class TestSinglyList {
         SinglyList.reverse(list);
 
         System.out.println("cn.element.list = " + list);
+    }
+
+    /**
+     * 测试单链表深拷贝
+     */
+    @Test
+    public void test07() throws IOException, ClassNotFoundException {
+
+        Integer[] intArr = {1,32,54,90,52,12,35,78,92,10};
+
+        SinglyList<Integer> list = new SinglyList<>(intArr);
+
+        SinglyList<Integer> list1 = new SinglyList<>(list);
+
+        System.out.println(list.hashCode());
+        System.out.println(list1.hashCode());
+
     }
 }

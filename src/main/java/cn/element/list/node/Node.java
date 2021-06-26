@@ -1,7 +1,9 @@
 package cn.element.list.node;
 
+import java.io.Serializable;
+
 //单链表结点类,T指定结点的元素类型
-public class Node<T> {
+public class Node<T> implements Serializable {
 
     public T data;  //数据域,存储数据元素
 

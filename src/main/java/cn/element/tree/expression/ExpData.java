@@ -1,10 +1,12 @@
 package cn.element.tree.expression;
 
+import java.io.Serializable;
+
 /**
  * 声明表达式二叉树的元素类
  *
  */
-public class ExpData {
+public class ExpData implements Serializable {
 
     int value;  //元素值
 

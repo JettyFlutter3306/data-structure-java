@@ -6,7 +6,7 @@ import cn.element.list.SortedSeqList;
 public class SeqListStudent {
 
     //分类统计线性表list的元素信息,分段信息存于grade数组,返回保存统计结果的数组
-    public static int[] groupCount(SeqList<Student> list,int grade[]){
+    public static int[] groupCount(SeqList<Student> list, int[] grade){
 
         int[] result = new int[grade.length];   //result数组保存统计结果
 

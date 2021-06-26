@@ -5,11 +5,13 @@ import cn.element.queue.MyQueue;
 import cn.element.stack.LinkedStack;
 import cn.element.stack.MyStack;
 
+import java.io.Serializable;
+
 /**
  * 声明二叉树类 BinaryTree<T>
  * 采用二叉链表存储,其中成员变量 root 指向二叉树的根结点
  */
-public class BinaryTree<T> implements Tree<T> {
+public class BinaryTree<T extends Serializable> implements Tree<T> {
 
     public BinaryNode<T> root;  //根结点,二叉链表结点结构
 

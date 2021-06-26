@@ -2,10 +2,12 @@ package cn.element.stack;
 
 import cn.element.list.SeqList;
 
+import java.io.Serializable;
+
 /**
  * 顺序栈
  */
-public final class SeqStack<T> implements MyStack<T> {
+public final class SeqStack<T extends Serializable> implements MyStack<T> {
 
     //使用顺序表存储栈元素
     private final SeqList<T> list;

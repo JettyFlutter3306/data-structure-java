@@ -6,7 +6,7 @@ import cn.element.list.node.Node;
 /**
  * 多项式排序单链表类
  */
-public class PolySinglyList<T extends Comparable<? super T> & Addable<T>> extends SortedSinglyList<T> {
+public class PolySinglyList<T extends Comparable<? super T> & Addable<T>> extends SortedSinglyList<T>{
 
     //构造方法
     public PolySinglyList(){

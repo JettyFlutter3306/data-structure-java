@@ -1,6 +1,8 @@
 package cn.element.app.app_seqList;
 
-public class Student implements Comparable<Student>{
+import java.io.Serializable;
+
+public class Student implements Comparable<Student>, Serializable {
 
     private String name;//姓名
 

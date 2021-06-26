@@ -1,6 +1,11 @@
 package cn.element.list;
 
-//排序顺序表类
+import java.io.IOException;
+import java.io.Serializable;
+
+/**
+ * 声明排序顺序表类
+ */
 public class SortedSeqList<T extends Comparable<? super T>> extends SeqList<T>{
 
     //构造一个空的排序顺序表
@@ -18,8 +23,8 @@ public class SortedSeqList<T extends Comparable<? super T>> extends SeqList<T>{
 
         super(values.length);       //创建空的排序顺序表,指定容量
 
-        for (int i = 0; i < values.length; i++) {
-            this.insert(values[i]);
+        for (T value : values) {
+            this.insert(value);
         }
     }
 
@@ -33,9 +38,9 @@ public class SortedSeqList<T extends Comparable<? super T>> extends SeqList<T>{
         }
     }
 
-    public SortedSeqList(SortedSeqList<? extends T> list){  //排序顺序表拷贝构造方法,深拷贝,O(n)
+    public SortedSeqList(SortedSeqList<? extends T> list) throws IOException, ClassNotFoundException {  //排序顺序表拷贝构造方法,深拷贝,O(n)
 
-        super(list);                        //调用SeqList(SeqList<T> cn.geeklbd.list)
+        super(list);                        //调用SeqList(SeqList<T> list)
     }
 
     /**

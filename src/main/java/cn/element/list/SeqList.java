@@ -1,12 +1,14 @@
 package cn.element.list;
 
 import cn.element.common.MyList;
+import cn.element.util.SerializeUtil;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
-public class SeqList<T> implements MyList<T> {
+public class SeqList<T> extends MyList<T> {
 
     protected Object[] element;  //对象数组存储顺序表的数据元素,保护成员
 
@@ -44,15 +46,11 @@ public class SeqList<T> implements MyList<T> {
 //    }
 
     //顺序表深拷贝
-    public SeqList(SeqList<? extends T> list){
+    public SeqList(SeqList<? extends T> list) throws IOException, ClassNotFoundException {
 
         this.n = list.n;
 
-        this.element = new Object[list.element.length];     //申请一个数组
-
-        for (int i = 0; i < list.n; i++) {
-            this.element[i] = list.element[i];
-        }
+        this.element = (Object[]) SerializeUtil.deepClone(list.element);
     }
 
     //判断顺序表是否为空
@@ -300,11 +298,13 @@ public class SeqList<T> implements MyList<T> {
 
             @Override
             public boolean hasNext() {
+
                 return element[++i] != null;
             }
 
             @Override
             public T next() {
+
                 return (T) element[i];
             }
         };

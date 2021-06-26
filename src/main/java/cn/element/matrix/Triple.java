@@ -2,12 +2,14 @@ package cn.element.matrix;
 
 import cn.element.common.Addable;
 
+import java.io.Serializable;
+
 /**
  * 声明描述稀疏矩阵非零元素的三元组类Triple
  * 实现 Comparable<T> 接口,提供比较三元组对象大小的 compareTo() 方法:
  * 实现 Addable<T> 接口,提供矩阵加法运算的 add(Triple) 和 removable() 方法
  */
-public class Triple implements Comparable<Triple>, Addable<Triple> {
+public class Triple implements Comparable<Triple>, Addable<Triple>, Serializable {
 
     public int row;  //行号,默认访问权限
 

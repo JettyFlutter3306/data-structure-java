@@ -2,12 +2,14 @@ package cn.element.list;
 
 import cn.element.common.MyList;
 import cn.element.list.node.Node;
+import cn.element.util.SerializeUtil;
 
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.Iterator;
-import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
-public class SinglyList<T> implements MyList<T> {
+public class SinglyList<T> extends MyList<T> implements Serializable {
 
     public Node<T> head;  //头结点的引用,指向单链表的头结点
 
@@ -40,9 +42,13 @@ public class SinglyList<T> implements MyList<T> {
     }
 
     //深拷贝方法
-    public SinglyList(SinglyList<T> list){
+    public SinglyList(SinglyList<T> list) throws IOException, ClassNotFoundException {
 
+        SinglyList<T> list1 = (SinglyList<T>) SerializeUtil.deepClone(list);
 
+        this.head = list1.head;
+
+        this.n = list1.n;
     }
 
     /**
@@ -122,7 +128,7 @@ public class SinglyList<T> implements MyList<T> {
     }
 
     /**
-     * 设置第i个元素为x,0<= i <表长度,x != null
+     * 设置第i个元素为x,0<= i < 表长度,x != null
      * @param i         索引,从0开始
      * @param x         泛型元素
      */

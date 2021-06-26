@@ -5,10 +5,12 @@ import cn.element.list.node.Node;
 import cn.element.matrix.LinkedMatrix;
 import cn.element.matrix.Triple;
 
+import java.io.Serializable;
+
 /**
  * 邻接表示的带权有向图类,继承抽象图类
  */
-public class AdjListGraph<T> extends AbstractGraph<T> {
+public class AdjListGraph<T extends Serializable> extends AbstractGraph<T> {
 
     protected LinkedMatrix adjList;  //图的邻接表,结构同矩阵行的单链表
 

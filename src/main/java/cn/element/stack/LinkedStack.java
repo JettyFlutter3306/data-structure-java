@@ -2,10 +2,12 @@ package cn.element.stack;
 
 import cn.element.list.SinglyList;
 
+import java.io.Serializable;
+
 /**
  * 链式栈
  */
-public final class LinkedStack<T> implements MyStack<T>{
+public final class LinkedStack<T extends Serializable> implements MyStack<T>{
 
     //使用单链表存储栈元素
     private final SinglyList<T> list;

@@ -7,7 +7,7 @@ public class HuffmanTree {
 
     private String charset;  //字符集合
 
-    private TriElement[] hufTree;  //静态三叉链表结点数组
+    private final TriElement[] hufTree;  //静态三叉链表结点数组
 
     /**
      * 构造Huffman树,weights指定权值集合,数组长度为叶子结点数,默认字符集合从A开始
