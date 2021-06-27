@@ -15,10 +15,15 @@
 软件架构说明
 这是一个用Maven构建项目,除了一个JUnit Maven依赖,没有用什么第三方类库,这是基本的代码结构截图
 
-![](https://images.gitee.com/uploads/images/2021/0520/122106_03f08a6e_7713888.png "main1.png")
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0607/102305_4e3d09b3_7713888.png "QQ截图20210607102200.png")
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0607/102314_0cf85e22_7713888.png "QQ截图20210607102217.png")
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0607/102324_976d4bcb_7713888.png "QQ截图20210607102240.png")
+![顺序表类](https://images.gitee.com/uploads/images/2021/0520/122106_03f08a6e_7713888.png "main1.png")
+
+![字符串类](https://images.gitee.com/uploads/images/2021/0607/102305_4e3d09b3_7713888.png "QQ截图20210607102200.png")
+
+![二叉树类](https://images.gitee.com/uploads/images/2021/0607/102314_0cf85e22_7713888.png "QQ截图20210607102217.png")
+
+![散列表类](https://images.gitee.com/uploads/images/2021/0607/102324_976d4bcb_7713888.png "QQ截图20210607102240.png")
+
+![集合UML类图](https://images.gitee.com/uploads/images/2021/0627/222452_27963dfd_7713888.png "集合UML图.png")
 
 目录结构
 ```
