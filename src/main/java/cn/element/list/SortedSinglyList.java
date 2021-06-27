@@ -13,8 +13,8 @@ public class SortedSinglyList<T extends Comparable<? super T>> extends SinglyLis
 
         super();    //创建空单链表,默认调用SinglyList()
 
-        for (int i = 0; i < values.length; i++) {
-            this.insert(values[i]);     //排序单链表按值插入
+        for (T value : values) {
+            this.insert(value);     //排序单链表按值插入
         }
     }
 

@@ -1,9 +1,11 @@
 package cn.element.list.node;
 
-import java.io.Serializable;
+import cn.element.common.AbstractBaseEntity;
 
-//单链表结点类,T指定结点的元素类型
-public class Node<T> implements Serializable {
+/**
+ * 声明单链表结点类,T指定结点的元素类型
+ */
+public class Node<T> extends AbstractBaseEntity {
 
     public T data;  //数据域,存储数据元素
 
@@ -16,6 +18,7 @@ public class Node<T> implements Serializable {
     }
 
     public Node(){
+
         this(null,null);
     }
 

@@ -1,13 +1,14 @@
 package cn.element.stack;
 
+import cn.element.common.AbstractStack;
 import cn.element.list.SinglyList;
 
-import java.io.Serializable;
+import java.util.Iterator;
 
 /**
  * 链式栈
  */
-public final class LinkedStack<T extends Serializable> implements MyStack<T>{
+public final class LinkedStack<T> extends AbstractStack<T> {
 
     //使用单链表存储栈元素
     private final SinglyList<T> list;
@@ -52,6 +53,12 @@ public final class LinkedStack<T extends Serializable> implements MyStack<T>{
     public T pop() {
 
         return this.list.remove(0);
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+
+        return null;
     }
 }
 

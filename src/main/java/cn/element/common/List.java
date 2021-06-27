@@ -1,6 +1,6 @@
 package cn.element.common;
 
-public interface MyCollection<T> extends Iterable<T>{
+public interface List<T> extends Collection<T> {
 
     int size();
 

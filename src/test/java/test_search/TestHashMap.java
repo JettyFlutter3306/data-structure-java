@@ -1,7 +1,7 @@
 package test_search;
 
 import cn.element.search.HashMap;
-import cn.element.search.Map;
+import cn.element.common.Map;
 import org.junit.Test;
 
 import java.util.Arrays;

@@ -1,16 +1,17 @@
 package cn.element.graph;
 
+import cn.element.common.AbstractGraph;
 import cn.element.list.SortedSinglyList;
 import cn.element.list.node.Node;
 import cn.element.matrix.LinkedMatrix;
 import cn.element.matrix.Triple;
 
-import java.io.Serializable;
+import java.util.Iterator;
 
 /**
  * 邻接表示的带权有向图类,继承抽象图类
  */
-public class AdjListGraph<T extends Serializable> extends AbstractGraph<T> {
+public class AdjListGraph<T> extends AbstractGraph<T> {
 
     protected LinkedMatrix adjList;  //图的邻接表,结构同矩阵行的单链表
 
@@ -243,5 +244,11 @@ public class AdjListGraph<T extends Serializable> extends AbstractGraph<T> {
     public String toString() {
 
         return super.toString() + "出边表: \n" + this.adjList.toString();
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+
+        return null;
     }
 }

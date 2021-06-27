@@ -1,5 +1,7 @@
-package cn.element.tree;
+package cn.element.common;
 
+
+import cn.element.tree.BinaryNode;
 
 /**
  * 声明 "树" 抽象数据类型
@@ -8,7 +10,7 @@ package cn.element.tree;
  * 因此,获得,插入,删除对孩子结点的操作采用序号 i (o <= i < 孩子结点数)作为识别各孩子结点的标记
  * 若 i 指定结点序号超出范围,则抛出序号越界异常
  */
-public interface Tree<T> {
+public interface Tree<T> extends Collection<T> {
 
     boolean isEmpty();  //判断是否是空树
 

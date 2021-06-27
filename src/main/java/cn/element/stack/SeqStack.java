@@ -1,13 +1,14 @@
 package cn.element.stack;
 
+import cn.element.common.AbstractStack;
 import cn.element.list.SeqList;
 
-import java.io.Serializable;
+import java.util.Iterator;
 
 /**
  * 顺序栈
  */
-public final class SeqStack<T extends Serializable> implements MyStack<T> {
+public final class SeqStack<T> extends AbstractStack<T> {
 
     //使用顺序表存储栈元素
     private final SeqList<T> list;
@@ -64,5 +65,11 @@ public final class SeqStack<T extends Serializable> implements MyStack<T> {
     public T pop() {
 
         return this.list.remove(list.size()-1);
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+
+        return null;
     }
 }

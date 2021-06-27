@@ -1,11 +1,12 @@
 package cn.element.matrix.node;
 
+import cn.element.common.AbstractBaseEntity;
 import cn.element.matrix.GenList;
 
 /**
  * 声明广义表双链表示的结点类
  */
-public class GenNode<T> {
+public class GenNode<T> extends AbstractBaseEntity {
 
     public T data;  //数据域
 

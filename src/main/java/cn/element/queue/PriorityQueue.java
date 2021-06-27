@@ -1,11 +1,14 @@
 package cn.element.queue;
 
+import cn.element.common.AbstractQueue;
 import cn.element.list.SortedCirDoublyList;
+
+import java.util.Iterator;
 
 /**
  * 优先队列类(升序或者降序),最终类,实现自定义队列接口,T表示数据元素的数据类型
  */
-public final class PriorityQueue<T extends Comparable<? super T>> implements MyQueue<T>{
+public final class PriorityQueue<T extends Comparable<? super T>> extends AbstractQueue<T> {
 
     private final SortedCirDoublyList<T> list;    //使用排序循环双链表存储
 
@@ -68,5 +71,11 @@ public final class PriorityQueue<T extends Comparable<? super T>> implements MyQ
     public String toString() {
 
         return this.getClass().getSimpleName() + "" + (this.asc ? this.list : this.list.toPreviousString());
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+
+        return null;
     }
 }

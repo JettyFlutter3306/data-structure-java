@@ -1,9 +1,11 @@
 package cn.element.tree;
 
+import cn.element.common.AbstractBaseEntity;
+
 /**
  * 声明线索二叉树的二叉链表结点类
  */
-public class ThreadNode<T>{
+public class ThreadNode<T> extends AbstractBaseEntity {
 
     public T data;  //数据元素
 

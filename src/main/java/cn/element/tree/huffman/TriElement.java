@@ -1,10 +1,12 @@
 package cn.element.tree.huffman;
 
+import cn.element.common.AbstractBaseEntity;
+
 /**
  * 二叉树的静态三叉链表结点类
  * 用于构建Huffman树
  */
-public class TriElement {
+public class TriElement extends AbstractBaseEntity {
 
     int data;  //数据域
 

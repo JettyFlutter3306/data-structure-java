@@ -1,17 +1,21 @@
 package cn.element.tree;
 
+import cn.element.common.AbstractTree;
+import cn.element.common.Queue;
 import cn.element.queue.LinkedQueue;
-import cn.element.queue.MyQueue;
 import cn.element.stack.LinkedStack;
-import cn.element.stack.MyStack;
+import cn.element.common.Stack;
+import cn.element.util.SerializeUtil;
 
-import java.io.Serializable;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.function.Consumer;
 
 /**
  * 声明二叉树类 BinaryTree<T>
  * 采用二叉链表存储,其中成员变量 root 指向二叉树的根结点
  */
-public class BinaryTree<T extends Serializable> implements Tree<T> {
+public class BinaryTree<T> extends AbstractTree<T> {
 
     public BinaryNode<T> root;  //根结点,二叉链表结点结构
 
@@ -27,8 +31,11 @@ public class BinaryTree<T extends Serializable> implements Tree<T> {
      * 实现二叉树的深拷贝
      * @param binaryTree        二叉树
      */
-    public BinaryTree(BinaryTree<T> binaryTree) {
+    public BinaryTree(BinaryTree<T> binaryTree) throws IOException, ClassNotFoundException {
 
+        this.root = (BinaryNode<T>) SerializeUtil.deepClone(binaryTree);
+
+        this.i = 0;
     }
 
     /**
@@ -220,7 +227,7 @@ public class BinaryTree<T extends Serializable> implements Tree<T> {
 
         System.out.print("先根次序遍历(非递归算法):  \n");
 
-        MyStack<BinaryNode<T>> stack = new LinkedStack<>();  //多态创建空栈
+        Stack<BinaryNode<T>> stack = new LinkedStack<>();  //多态创建空栈
 
         BinaryNode<T> p = this.root;
 
@@ -251,7 +258,7 @@ public class BinaryTree<T extends Serializable> implements Tree<T> {
 
         System.out.print("层次遍历:  \n");
 
-        MyQueue<BinaryNode<T>> queue = new LinkedQueue<>();  //创建空队列
+        Queue<BinaryNode<T>> queue = new LinkedQueue<>();  //创建空队列
 
         BinaryNode<T> p = this.root;  //根结点没有入队
 
@@ -400,5 +407,14 @@ public class BinaryTree<T extends Serializable> implements Tree<T> {
         return p.data.toString() + " " + toString(p.left) + toString(p.right);  //递归调用
     }
 
+    @Override
+    public Iterator<T> iterator() {
 
+        return null;
+    }
+
+    @Override
+    public void forEach(Consumer<? super T> action) {
+
+    }
 }

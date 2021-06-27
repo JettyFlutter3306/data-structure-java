@@ -1,17 +1,16 @@
-package cn.element.graph;
+package cn.element.common;
 
 import cn.element.list.SeqList;
 import cn.element.list.SinglyList;
 import cn.element.matrix.Matrix;
 import cn.element.matrix.Triple;
 import cn.element.queue.LinkedQueue;
-import cn.element.queue.MyQueue;
 
 /**
  * 声明抽象图类
  * @param <T>  顶点元素类型
  */
-public abstract class AbstractGraph<T> implements Graph<T>{
+public abstract class AbstractGraph<T> extends AbstractCollection<T> implements Graph<T> {
 
     protected static final int MAX_WEIGHT = 0x0000ffff;  //最大权值
 
@@ -132,7 +131,7 @@ public abstract class AbstractGraph<T> implements Graph<T>{
 
         visited[i] = true;  //设置访问标记
 
-        MyQueue<Integer> queue = new LinkedQueue<>();  //创建链式队列
+        Queue<Integer> queue = new LinkedQueue<>();  //创建链式队列
 
         queue.add(i);  //访问过的顶点vi序号入队,自动转换成Integer(自动装箱操作)
 

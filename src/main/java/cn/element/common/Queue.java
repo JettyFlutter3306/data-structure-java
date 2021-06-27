@@ -1,11 +1,11 @@
-package cn.element.queue;
+package cn.element.common;
 
 /**
  * 队列接口,描述队列抽象数据类型
  *
  * @param <T> 数据元素的数据类型
  */
-public interface MyQueue<T> {
+public interface Queue<T> extends Collection<T> {
 
     boolean isEmpty(); //判断队列是否为空
 

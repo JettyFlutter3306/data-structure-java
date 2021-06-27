@@ -1,8 +1,8 @@
 package cn.element.algorithm;
 
+import cn.element.common.Queue;
 import cn.element.list.SeqList;
 import cn.element.list.SortedSeqList;
-import cn.element.queue.MyQueue;
 import cn.element.queue.SeqQueue;
 
 /**
@@ -24,7 +24,7 @@ public class PrimeRing {
 
         ring.insert(1);         //素数环添加Integer(1)
 
-        MyQueue<Integer> queue = new SeqQueue<>(max);  //创建空队列,链式队列也可以
+        Queue<Integer> queue = new SeqQueue<>(max);  //创建空队列,链式队列也可以
 
         for (int i = 2; i <= max; i++) {
             queue.add(i);

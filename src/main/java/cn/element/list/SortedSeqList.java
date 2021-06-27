@@ -1,7 +1,6 @@
 package cn.element.list;
 
 import java.io.IOException;
-import java.io.Serializable;
 
 /**
  * 声明排序顺序表类

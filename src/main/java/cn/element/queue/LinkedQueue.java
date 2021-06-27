@@ -1,12 +1,16 @@
 package cn.element.queue;
 
+import cn.element.common.AbstractQueue;
+import cn.element.common.Queue;
 import cn.element.list.node.Node;
+
+import java.util.Iterator;
 
 /**
  * 链式队列,最终类
  * @param <T>  元素类型
  */
-public final class LinkedQueue<T> implements MyQueue<T>{
+public final class LinkedQueue<T> extends AbstractQueue<T> {
 
     private Node<T> front,rear;  //front和rear分别指向队列头和队列尾结点
 
@@ -76,5 +80,11 @@ public final class LinkedQueue<T> implements MyQueue<T>{
         }
 
         return x;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+
+        return null;
     }
 }

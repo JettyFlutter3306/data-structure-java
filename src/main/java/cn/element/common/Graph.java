@@ -1,9 +1,9 @@
-package cn.element.graph;
+package cn.element.common;
 
 /**
  * 声明抽象数据类型 Graph(图结构)
  */
-public interface Graph<T> {
+public interface Graph<T> extends Collection<T> {
 
     int vertexCount();  //返回定点数
 

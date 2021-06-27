@@ -1,9 +1,11 @@
 package cn.element.list.node;
 
+import cn.element.common.AbstractBaseEntity;
+
 /**
  * 双链表结点类,T指定结点的元素类型
  */
-public class DoubleNode<T> {
+public class DoubleNode<T> extends AbstractBaseEntity {
 
     public T data; //数据域,存储数据元素
 

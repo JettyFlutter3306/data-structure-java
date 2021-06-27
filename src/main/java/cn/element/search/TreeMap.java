@@ -1,5 +1,6 @@
 package cn.element.search;
 
+import cn.element.common.Map;
 import cn.element.search.sort_tree.BinarySortTree;
 
 public class TreeMap<K extends Comparable<? super K>,V> implements Map<K,V> {

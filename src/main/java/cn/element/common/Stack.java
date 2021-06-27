@@ -1,8 +1,6 @@
-package cn.element.stack;
+package cn.element.common;
 
-import java.io.Serializable;
-
-public interface MyStack<T extends Serializable> {
+public interface Stack<T> extends Collection<T> {
 
     //判断是否是空栈
     boolean isEmpty();

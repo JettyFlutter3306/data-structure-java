@@ -1,6 +1,6 @@
 package cn.element.list;
 
-import cn.element.common.MyList;
+import cn.element.common.AbstractList;
 import cn.element.util.SerializeUtil;
 
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.util.Iterator;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
-public class SeqList<T> extends MyList<T> {
+public class SeqList<T> extends AbstractList<T> {
 
     protected Object[] element;  //对象数组存储顺序表的数据元素,保护成员
 

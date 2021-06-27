@@ -1,6 +1,13 @@
 package cn.element.queue;
 
-public final class SeqQueue<T> implements MyQueue<T>{
+import cn.element.common.AbstractQueue;
+
+import java.util.Iterator;
+
+/**
+ * 声明顺序队列
+ */
+public final class SeqQueue<T> extends AbstractQueue<T> {
 
     private Object[] element; //存储队列数据元素的数组
 
@@ -117,5 +124,11 @@ public final class SeqQueue<T> implements MyQueue<T>{
         }
 
         return sb.toString();
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+
+        return null;
     }
 }

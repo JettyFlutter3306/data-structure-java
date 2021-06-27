@@ -1,12 +1,12 @@
 package cn.element.tree.expression;
 
-import java.io.Serializable;
+import cn.element.common.AbstractBaseEntity;
 
 /**
  * 声明表达式二叉树的元素类
  *
  */
-public class ExpData implements Serializable {
+public class ExpData extends AbstractBaseEntity {
 
     int value;  //元素值
 

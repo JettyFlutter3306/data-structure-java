@@ -1,11 +1,11 @@
 package cn.element.tree;
 
-import java.io.Serializable;
+import cn.element.common.AbstractBaseEntity;
 
 /**
  * 声明二叉树的二叉链表结点类
  */
-public class BinaryNode<T> implements Serializable{
+public class BinaryNode<T> extends AbstractBaseEntity {
 
     public T data;  //数据域
 

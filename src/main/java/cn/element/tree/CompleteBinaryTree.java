@@ -1,11 +1,9 @@
 package cn.element.tree;
 
-import java.io.Serializable;
-
 /**
  * 声明完全二叉树类,集成二叉树类
  */
-public class CompleteBinaryTree<T extends Serializable> extends BinaryTree<T> {
+public class CompleteBinaryTree<T> extends BinaryTree<T> {
 
     /**
      * 构造空二叉树

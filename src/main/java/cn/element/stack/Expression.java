@@ -1,11 +1,13 @@
 package cn.element.stack;
 
+import cn.element.common.Stack;
+
 public class Expression {
 
     //返回将infix中缀表达式准换成的后缀表达式
     public static StringBuffer toPostfix(String infix){
 
-        MyStack<String> stack = new SeqStack<>(infix.length());//运算符栈,顺序栈
+        Stack<String> stack = new SeqStack<>(infix.length());//运算符栈,顺序栈
 
         StringBuffer postfix = new StringBuffer(infix.length() * 2);//后缀表达式字符串
 
@@ -72,7 +74,7 @@ public class Expression {
     //计算后缀表达式的值
     public static int toValue(StringBuffer postfix){
 
-        MyStack<Integer> stack = new LinkedStack<>(); //操作数栈,链式栈
+        Stack<Integer> stack = new LinkedStack<>(); //操作数栈,链式栈
 
         int value = 0;
 

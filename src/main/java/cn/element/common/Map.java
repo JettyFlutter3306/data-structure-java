@@ -1,4 +1,4 @@
-package cn.element.search;
+package cn.element.common;
 
 /**
  * 声明Map<K,V>映射接口如下

@@ -1,16 +1,17 @@
 package cn.element.graph;
 
+import cn.element.common.AbstractGraph;
 import cn.element.matrix.Matrix;
 import cn.element.matrix.Triple;
 
-import java.io.Serializable;
+import java.util.Iterator;
 
 /**
  * 声明邻接矩阵表示的带权图类
  * 继承抽象图类,继承了常量MAX_WEIGHT和成员变量vertexList
  * 增加了新的成员变量 matrix 存储图的邻接矩阵
  */
-public class MatrixGraph<T extends Serializable> extends AbstractGraph<T> {
+public class MatrixGraph<T> extends AbstractGraph<T> {
 
     protected Matrix matrix;  //矩阵对象,存储图的邻接矩阵
 
@@ -205,5 +206,11 @@ public class MatrixGraph<T extends Serializable> extends AbstractGraph<T> {
         }
 
         return sb.toString();
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+
+        return null;
     }
 }

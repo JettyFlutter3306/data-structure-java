@@ -1,8 +1,8 @@
 package cn.element.app.app_seqList;
 
-import java.io.Serializable;
+import cn.element.common.AbstractBaseEntity;
 
-public class Student implements Comparable<Student>, Serializable {
+public class Student extends AbstractBaseEntity implements Comparable<Student> {
 
     private String name;//姓名
 
