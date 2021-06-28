@@ -74,6 +74,18 @@ public class TestBinaryTree {
         BinaryTree<String> tree = new BinaryTree<>(preList);
 
         tree.printLevelOrder();
+    }
+/**
+ * 测试打印二叉树的层次结构
+ */
 
+    @Test
+    public void test05() {
+
+        String[] preList = {"A","B","D",null,"G",null,null,null,"C","E",null,null,"F","H"};  //先根遍历序列
+
+        BinaryTree<String> tree = new BinaryTree<>(preList);
+
+        BinaryTrees.show(tree);
     }
 }

@@ -387,6 +387,14 @@ public class BinaryTree<T> extends AbstractTree<T> {
         }
     }
 
+    /**
+     * 二叉树结构示例:
+     *              1
+     *            /   \
+     *          2       3
+     *        /   \   /   \
+     *       4     5  6    7
+     */
     @Override
     public String toString() {
 

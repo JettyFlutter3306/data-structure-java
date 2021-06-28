@@ -1,7 +1,6 @@
 package cn.element.queue;
 
 import cn.element.common.AbstractQueue;
-import cn.element.common.Queue;
 import cn.element.list.node.Node;
 
 import java.util.Iterator;
