@@ -74,7 +74,7 @@
 
 #### 特技
 
-1.打印二叉树的层次结构
+**1.打印二叉树的层次结构**
 
 ```
 /**
@@ -90,7 +90,7 @@
 
   工具类BinaryTrees的静态show(BinaryTree<T> tree)方法可以直观清晰地打印二叉树的层次结构
 
-    
+
 ```
    /**
     * 测试打印二叉树的层次结构
@@ -117,4 +117,64 @@
               G                   H 
 ```
 
+**2.论Java如何实现深拷贝?**
+
+​	Java语言实现深拷贝通常有以下几种方法:
+
+​	(1) 直接对一个类使用 new 关键字,然后填充要拷贝的源数据的值,此种方法不推荐,十分繁琐!
+
+​	(2) 实现Cloneable接口,重写Object的clone()方法.注意!Cloneable接口里面什么也没有跟Serializable接口一样,它仅仅是一个标识接口而已.clone()方法,默认是浅拷贝,必须要重写!但是假如一个类中有多种引用数据类型,而且这些引用数据类型内部又嵌套了其他的引用数据类型,就跟俄罗斯套娃一样,层层嵌套,用clone()方法实现深拷贝就显得有些捉襟见肘了!所以也不推荐!
+
+What?  你 TM 逗老子玩呢?  这也不行,那也不行,那到底改怎么办?
+别急! 听老油条码农娓娓道来!
+
+最终大招!  序列化和反序列化实现深拷贝!
+
+​	(3)  首先先让要拷贝的类实现Serializable接口,上面说了Serializable接口里面什么也没有,仅仅是一种标识接口而已.这表示这个类可以序列化成数据流.我们常用的JSON组件如GSON,Jackson等组件实现了将Java对象转换为JSON数据流返回给前端,或者将前端传给后端的JSON数据转换为Java对象,这其中就用到了序列化和反序列化的知识,只不过它们要转换为JSON格式的而已!在这里,我们仅仅是想把Java对象转为普通数据流而已,Java有默认的序列化方式,我们不必操心.
+
+​		我们再来说说序列化和反序列化的本质是什么?
+
+​		序列化和反序列化本质是一种I/O操作,I/O操作必然要调用操作系统内核API,因为一切底层操作必然由操作系统来完成.序列化就是把数据从应用程序所在内存(这里是JVM)拷贝到操作系统内核所在内存,相当于操作系统帮我们完成了拷贝!反序列化刚好与之相反,就是把数据流从操作系统内核所在内存拷贝到应用程序所在内存,然后转为Java对象,就这么简单,这一切操作都相当于操作系统在帮我们完成!
+
+​		说了这么多废话!直接上代码!为了代码的复用,我们最好在项目里面创建工具类!名称为SerializeUtil,里面有三个方法.
+
+```java
+/**
+ * 序列化
+ */
+public static void serialize(Object obj) throws IOException {
+
+  //将对象写到流里面
+  os = new ByteArrayOutputStream();
+
+  ObjectOutputStream oo = new ObjectOutputStream(os);
+
+  oo.writeObject(obj);
+}
+
+/**
+ * 反序列化
+ */
+public static Object deserialize(OutputStream os) throws IOException,ClassNotFoundException{
+
+	//从流里面读取出来
+	InputStream is = new ByteArrayInputStream(((ByteArrayOutputStream) os).toByteArray());
+
+        ObjectInputStream oi = new ObjectInputStream(is);
+
+        return (oi.readObject());
+}
+
+/**
+ * 使用序列化和反序列化实现深拷贝
+ */
+public static Object deepClone(Object obj) throws IOException, ClassNotFoundException {
+
+	serialize(obj);
+
+	return deserialize(os);
+}
+```
+
+如何测试是否成功拷贝,很简单,打印两个对象的hashcode比较是否相等,或者直接System.out.println(o1 == o2);比较两个对象是否相等,如果返回false,那么就拷贝成功了!在上面的UML图中可知道所有的集合都继承AbstractCollection类,并实现了Serializable接口!所以可以用此法实现深拷贝!
 
