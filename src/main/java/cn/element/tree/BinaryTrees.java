@@ -1,5 +1,8 @@
 package cn.element.tree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * BinaryTree工具类
  */
@@ -69,6 +72,48 @@ public class BinaryTrees {
         }
 
         return p;
+    }
+
+    /**
+     * 根据层次遍历序列构建一棵二叉树
+     */
+    public static <T> BinaryTree<T> createTreeNodeByLevel(T[] value) {
+
+        BinaryNode<T> p = new BinaryNode<>(value[0]);
+
+        BinaryNode<T> q = p;
+
+        Queue<BinaryNode<T>> queue = new LinkedList<>();
+
+        int i = 0;
+
+        while(p != null) {
+            if(2 * i + 1 < value.length){
+                if(value[2 * i + 1] != null){
+                    p.left = new BinaryNode<>(value[2 * i + 1]);
+                }
+
+                queue.add(p.left);  //p的左子树入队
+            }
+
+            if(2 * i + 2 < value.length){
+                if(value[2 * i + 2] != null){
+                    p.right = new BinaryNode<>(value[2 * i + 2]);
+                }
+
+                queue.add(p.right);  //p的右子树入队
+            }
+
+            p = queue.poll();  //出队,p指向下一层
+
+            i += 1;  //索引+1
+        }
+
+        BinaryTree<T> tree = new BinaryTree<>();
+
+        tree.root = q;
+
+        return tree;
     }
 
     /**
