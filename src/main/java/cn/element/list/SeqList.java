@@ -50,7 +50,7 @@ public class SeqList<T> extends AbstractList<T> {
 
         this.n = list.n;
 
-        this.element = (Object[]) SerializeUtil.deepClone(list.element);
+        this.element = SerializeUtil.deepClone(list.element);
     }
 
     //判断顺序表是否为空

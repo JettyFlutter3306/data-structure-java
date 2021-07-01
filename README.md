@@ -140,39 +140,55 @@ What?  你 TM 逗老子玩呢?  这也不行,那也不行,那到底改怎么办?
 
 ```java
 /**
- * 序列化
+ * 序列化工具类
  */
-public static void serialize(Object obj) throws IOException {
+public class SerializeUtil {
 
-  //将对象写到流里面
-  os = new ByteArrayOutputStream();
+    private static OutputStream os;
 
-  ObjectOutputStream oo = new ObjectOutputStream(os);
+    /**
+     * 序列化
+     */
+    public static <T> void serialize(T obj) throws IOException {
 
-  oo.writeObject(obj);
-}
+        //将对象写到流里面
+        os = new ByteArrayOutputStream();
 
-/**
- * 反序列化
- */
-public static Object deserialize(OutputStream os) throws IOException,ClassNotFoundException{
+        ObjectOutputStream oo = new ObjectOutputStream(os);
 
-	//从流里面读取出来
-	InputStream is = new ByteArrayInputStream(((ByteArrayOutputStream) os).toByteArray());
+        oo.writeObject(obj);
+    }
+
+    /**
+     * 反序列化
+     */
+    public static <T> T deserialize(OutputStream os) throws IOException, ClassNotFoundException {
+
+        //从流里面读取出来
+        InputStream is = new ByteArrayInputStream(((ByteArrayOutputStream) os).toByteArray());
 
         ObjectInputStream oi = new ObjectInputStream(is);
 
-        return (oi.readObject());
-}
+        T obj = (T) oi.readObject();
 
-/**
- * 使用序列化和反序列化实现深拷贝
- */
-public static Object deepClone(Object obj) throws IOException, ClassNotFoundException {
+        os.close();
+        is.close();
+        oi.close();
 
-	serialize(obj);
+        return obj;
+    }
 
-	return deserialize(os);
+    /**
+     * 使用序列化和反序列化实现深拷贝
+     */
+    public static <T> T deepClone(T obj) throws IOException, ClassNotFoundException {
+
+        serialize(obj);
+
+        return deserialize(os);
+    }
+
+
 }
 ```
 

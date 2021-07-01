@@ -33,7 +33,7 @@ public class BinaryTree<T> extends AbstractTree<T> {
      */
     public BinaryTree(BinaryTree<T> binaryTree) throws IOException, ClassNotFoundException {
 
-        this.root = (BinaryNode<T>) SerializeUtil.deepClone(binaryTree);
+        this.root = SerializeUtil.deepClone(binaryTree.root);
 
         this.i = 0;
     }

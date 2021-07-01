@@ -43,7 +43,7 @@ public class SinglyList<T> extends AbstractList<T> {
     //深拷贝方法
     public SinglyList(SinglyList<T> list) throws IOException, ClassNotFoundException {
 
-        this.head = (Node<T>) SerializeUtil.deepClone(list.head);
+        this.head = SerializeUtil.deepClone(list.head);
 
         this.n = list.n;
     }

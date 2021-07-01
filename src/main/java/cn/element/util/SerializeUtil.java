@@ -12,7 +12,7 @@ public class SerializeUtil {
     /**
      * 序列化
      */
-    public static void serialize(Object obj) throws IOException {
+    public static <T> void serialize(T obj) throws IOException {
 
         //将对象写到流里面
         os = new ByteArrayOutputStream();
@@ -25,20 +25,26 @@ public class SerializeUtil {
     /**
      * 反序列化
      */
-    public static Object deserialize(OutputStream os) throws IOException, ClassNotFoundException {
+    public static <T> T deserialize(OutputStream os) throws IOException, ClassNotFoundException {
 
         //从流里面读取出来
         InputStream is = new ByteArrayInputStream(((ByteArrayOutputStream) os).toByteArray());
 
         ObjectInputStream oi = new ObjectInputStream(is);
 
-        return (oi.readObject());
+        T obj = (T) oi.readObject();
+
+        os.close();
+        is.close();
+        oi.close();
+
+        return obj;
     }
 
     /**
      * 使用序列化和反序列化实现深拷贝
      */
-    public static Object deepClone(Object obj) throws IOException, ClassNotFoundException {
+    public static <T> T deepClone(T obj) throws IOException, ClassNotFoundException {
 
         serialize(obj);
 
