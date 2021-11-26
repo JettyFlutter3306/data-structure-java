@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * 插入排序(Insertion Sort)算法思想,每趟将一个元素,按其关键字值的大小插入到它前面已排序的子序列中,
  * 依此重复,直到插入全部元素
- * 插入培训有 直接插入排序, 二分插入排序 和 希尔排序
+ * 插入排序有 直接插入排序, 二分插入排序 和 希尔排序
  */
 public class InsertionSort {
 
@@ -16,7 +16,7 @@ public class InsertionSort {
      * 比较大小确定
      * 2.重复执行步骤1,n个元素共需要n-1趟,每趟将一个元素ai插入到它前面的子序列中
      */
-    public static void straightInsertionSort(int[] keys){
+    public static void straightInsertionSort(int[] keys) {
 
         for (int i = 1; i < keys.length; i++) {
             int temp = keys[i];
@@ -36,7 +36,7 @@ public class InsertionSort {
     /**
      * 泛型的插入排序,只需要让泛型类实现Comparable接口,重写compare(Object o)方法即可
      */
-    public static<T extends Comparable<? super T>> void straightInsertSort(T[] values){
+    public static<T extends Comparable<? super T>> void straightInsertSort(T[] values) {
 
         for (int i = 1; i < values.length; i++) {
             T temp = values[i];
@@ -60,7 +60,7 @@ public class InsertionSort {
      */
 
     /**
-     * 希尔排序(Shell Sort)  时间复杂度O(n^(1.3—2))  空间复杂度  O(1)
+     * 希尔排序(Shell Sort)  时间复杂度O(n^(1.3~2))  空间复杂度  O(1)
      * 希尔排序又称为缩小增量排序,基本思想是分组的直接插入排序
      * 由直接插入排序算法分析可知,若数据序列越接近有序,则时间效率越高,再者,当n很小的时候,时间效率也比较高,
      * 希尔排序正是基于这两点对直接插入排序算法进行改造
@@ -75,7 +75,7 @@ public class InsertionSort {
      *   2.中间循环for语句进行一趟扫描,序列分为delta组,每组由相距 delta 远的 n/delta 个元素组成,每组元素分别进行直接插入排序
      *   3.最内层循环for语句进行一组直接插入排序,将一个元素keys[i]插入到其所在组前面的排序子序列中去
      */
-    public static void shellSort(int[] keys){
+    public static void shellSort(int[] keys) {
 
         for (int delta = keys.length / 2; delta > 0; delta /= 2) {  //若干趟,控制增量没趟减半
             for (int i = delta; i < keys.length; i++) {  //一趟分为若干组,每组直接插入排序
@@ -84,10 +84,10 @@ public class InsertionSort {
                 int j;
 
                 for (j = i - delta; j >= 0 && temp < keys[j]; j -= delta) {  //组内进行插入排序,寻找插入位置
-                    keys[j+delta] = keys[j];  //每组元素相距delta远
+                    keys[j + delta] = keys[j];  //每组元素相距delta远
                 }
 
-                keys[j+delta] = temp;  //插入元素
+                keys[j + delta] = temp;  //插入元素
             }
 
             System.out.println("delta = " + delta + " " + Arrays.toString(keys));

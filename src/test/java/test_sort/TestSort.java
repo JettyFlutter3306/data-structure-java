@@ -95,7 +95,7 @@ public class TestSort {
 
         int[] arr = {32,26,97,72,26,17};
 
-        SwapSort.bubbleSort(arr,false);
+        SwapSort.bubbleSort(arr);
 
         System.out.println(Arrays.toString(arr));
     }
@@ -107,6 +107,8 @@ public class TestSort {
     public void test05(){
 
         int[] arr = {38,38,97,75,61,19,26,49};
+
+        System.out.println("快速排序: ");
 
         SwapSort.quickSort(arr);
 

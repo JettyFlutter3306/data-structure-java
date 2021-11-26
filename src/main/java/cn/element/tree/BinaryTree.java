@@ -132,18 +132,16 @@ public class BinaryTree<T> extends AbstractTree<T> {
 
     /**
      * 求以 p 结点为根结点的二叉树的高度
+     * 深度优先遍历(递归)
+     * 求出左子树和右子树二者最大深度再加1
      */
     private int height(BinaryNode<T> p){
 
-        int h = 0;
-
-        if(p != null){
-            h = Math.max(height(p.left),h);
-
-            h = Math.max(height(p.right),h);
+        if(p == null){
+            return 0;
         }
 
-        return h + 1;
+        return 1 + Math.max(height(p.left), height(p.right));
     }
 
     /**

@@ -74,27 +74,27 @@ public class SwapSort {
      *   5.一趟快速排序将数据序列划分成两个子序列,范围分别为begin ~ j-1,i+1 ~ end,每个子序列均较短,再对两个子序列分别进行
      *     快速排序,直到子序列长度为1
      */
-    public static void quickSort(int[] keys,int begin,int end){
+    public static void quickSort(int[] keys, int begin, int end) {
 
-        if(begin >= 0 && begin < keys.length && end >= 0 && end < keys.length && begin < end){  //序列有效
+        if (begin >= 0 && end >= 0 && end < keys.length && begin < end) {  //序列有效
             int i = begin, j = end;  //i,j下标分别从子序列的前后两端开始
 
             int vot = keys[i];
 
-            while(i != j){
-                while(i < j && keys[j] >= vot){  //从后向前寻找较小值,不移动与基准值相等元素
+            while (i != j) {
+                while (i < j && keys[j] >= vot) {  //从后向前寻找较小值,不移动与基准值相等元素
                     j--;
                 }
 
-                if(i < j){
+                if (i < j) {
                     keys[i++] = keys[j];  //子序列从后端较小元素向前移动
                 }
 
-                while(i < j && keys[i] <= vot){  //从前向后寻找较大值,不移动与基准值相等的元素
+                while (i < j && keys[i] <= vot) {  //从前向后寻找较大值,不移动与基准值相等的元素
                     i++;
                 }
 
-                if(i < j){
+                if (i < j) {
                     keys[j--] = keys[i];  //子序列前端较大元素向后移动
                 }
             }
@@ -103,10 +103,9 @@ public class SwapSort {
 
             System.out.println(begin + ".." + end + ", vot = " + vot + " " + Arrays.toString(keys));
 
-            quickSort(keys,begin,j-1);  //前端子序列再排序,递归调用
-            quickSort(keys,i+1,end);  //后端子序列再排序,递归调用
+            quickSort(keys,begin, j-1);  //前端子序列再排序,递归调用
+            quickSort(keys,i+1, end);  //后端子序列再排序,递归调用
         }
-
     }
 
 

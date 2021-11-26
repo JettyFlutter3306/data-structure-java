@@ -1,14 +1,14 @@
 package test_string;
 
 import org.junit.Test;
-import cn.element.string.MyStringBuffer;
+import cn.element.string.IStringBuffer;
 
 public class TestMyStringBuffer {
 
     @Test
     public void test01(){
 
-        MyStringBuffer sbuf = new MyStringBuffer(8);
+        IStringBuffer sbuf = new IStringBuffer(8);
 
         System.out.println("空串, \""+sbuf+"\", length()="+sbuf.length()+", capacity()="+sbuf.capacity());
 

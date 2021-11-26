@@ -1,5 +1,8 @@
 package cn.element.sort;
 
+/**
+ * Array工具类
+ */
 public class IArrays {
 
     /**

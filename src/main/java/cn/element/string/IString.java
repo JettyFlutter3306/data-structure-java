@@ -4,23 +4,23 @@ import java.io.Serializable;
 import java.util.*;
 
 /**
- * 声明字符串类MyString
+ * 声明字符串类IString, 最终类
  * 仿照java.lang.String类构建
  */
-public class MyString implements Comparable<MyString>, Serializable {
+public final class IString implements Comparable<IString>, Serializable {
 
     private final char[] value;  //字符数组,私有最终变量,只能赋值一次
 
-    public MyString() {  //构造空串"",串长度为0
+    public IString() {  //构造空串"",串长度为0
 
         this.value = new char[0];
     }
 
-    public MyString(String str){ //由字符串常量构造串
+    public IString(String str) { //由字符串常量构造串
 
         this.value = new char[str.length()]; //申请字符数组并复制str串的所有字符串
 
-        for(int i = 0;i < this.value.length;i++){
+        for (int i = 0; i < this.value.length; i++) {
             this.value[i] = str.charAt(i);
         }
     }
@@ -29,28 +29,26 @@ public class MyString implements Comparable<MyString>, Serializable {
      * 以value数组从i开始的n个字符构造串,i>=0,n>=0, i+n<=value.length
      * 若i与n指定序号越界,则抛出字符串序号越界异常
      */
-    public MyString(char[] value,int i,int n){
+    public IString(char[] value,int i,int n) {
 
-        if(i >= 0 && n >= 0 && i + n <= value.length){
+        if (i >= 0 && n >= 0 && i + n <= value.length) {
             this.value = new char[n]; //申请字符数组并复制所有的字符
 
-            for(int j = 0;j < n;j++){
-                this.value[j] = value[i+j];
-            }
-        }else{
-            throw new StringIndexOutOfBoundsException("i="+i+", n="+n+", i+n="+(i+n));
+            System.arraycopy(value, i, this.value, 0, n);
+        } else {
+            throw new StringIndexOutOfBoundsException("i = "+i+", n = "+n+", i + n = " + (i+n));
         }
     }
 
 
     //以字符数组构造串
-    public MyString(char[] value){
+    public IString(char[] value) {
 
-        this(value,0,value.length);
+        this(value, 0, value.length);
     }
 
     //拷贝构造方法,深度拷贝,复制字符
-    public MyString(MyString str){
+    public IString(IString str) {
 
         this(str.value);
     }
@@ -59,11 +57,11 @@ public class MyString implements Comparable<MyString>, Serializable {
      * 由StringBuffer对象构造String对象
      * @param stringBuffer      StringBuffer对象
      */
-    public MyString(MyStringBuffer stringBuffer){
+    public IString(IStringBuffer stringBuffer) {
 
         this.value = new char[stringBuffer.capacity()]; //初始化
 
-        for(int i = 0;i < stringBuffer.length();i++){
+        for (int i = 0; i < stringBuffer.length(); i++) {
             this.value[i] = stringBuffer.charAt(i);
         }
 
@@ -73,13 +71,13 @@ public class MyString implements Comparable<MyString>, Serializable {
      * 返回字符串的长度,即字符数组的长度
      * @return      长度
      */
-    public int length(){
+    public int length() {
 
         return this.value.length;
     }
 
     //返回第i个字符,0<=i<length(),若i越界,则抛出字符串序号越界异常
-    public char charAt(int i){
+    public char charAt(int i) {
 
         if(i >= 0 && i < this.value.length){
             return this.value[i];
@@ -96,7 +94,7 @@ public class MyString implements Comparable<MyString>, Serializable {
      * @param end       结束位置
      * @return          子串
      */
-    public MyString subString(int begin,int end){
+    public IString subString(int begin,int end) {
 
         if(begin >= end){
             throw new StringIndexOutOfBoundsException("begin >= end");
@@ -106,7 +104,7 @@ public class MyString implements Comparable<MyString>, Serializable {
             return this;
         }
 
-        return new MyString(this.value,begin,end-begin);
+        return new IString(this.value,begin,end-begin);
     }
 
     /**
@@ -114,7 +112,7 @@ public class MyString implements Comparable<MyString>, Serializable {
      * @param i         索引
      * @return          当前串
      */
-    public MyString deleteString(int i){
+    public IString deleteString(int i) {
 
         if(i < 0 || i >= this.value.length){
             throw new IndexOutOfBoundsException("i < 0");
@@ -122,15 +120,11 @@ public class MyString implements Comparable<MyString>, Serializable {
 
         char[] temp = new char[this.value.length - 1];
 
-        for (int j = 0; j < i; j++) {
-            temp[j] = this.value[j];
-        }
+        System.arraycopy(this.value, 0, temp, 0, i);
 
-        for (int j = i; j < this.value.length; j++) {
-            temp[j] = this.value[j+1];
-        }
+        System.arraycopy(this.value, i + 1, temp, i, this.value.length - i);
 
-        return new MyString(temp);
+        return new IString(temp);
     }
 
     /**
@@ -139,42 +133,42 @@ public class MyString implements Comparable<MyString>, Serializable {
      * @param end       结束的索引
      * @return          原来的串
      */
-    public MyString deleteString(int begin,int end){
+    public IString deleteString(int begin, int end){
 
         if(begin >= end){
             throw new StringIndexOutOfBoundsException("begin >= end");
         }
 
         if(begin == 0 && end == this.length()){
-            return new MyString();
+            return new IString();
         }
 
         int offset = end - begin;  //删除的长度
 
         char[] temp = new char[this.value.length - offset];  //申请一个新的字符数组
 
-        for (int i = 0; i < begin; i++) {
-            temp[i] = this.value[i];
+        if (begin >= 0) {
+            System.arraycopy(this.value, 0, temp, 0, begin);
         }
 
-        for (int i = begin; i < temp.length; i++) {
-            temp[i] = this.value[i + offset];
+        if (temp.length - begin >= 0) {
+            System.arraycopy(this.value, begin + offset, temp, begin, temp.length - begin);
         }
 
-        return new MyString(temp);
+        return new IString(temp);
     }
 
     //返回序号从begin至串尾的子串
-    public MyString subString(int begin){
+    public IString subString(int begin){
 
         return subString(begin,this.value.length);
     }
 
     //返回this与str串连接生成的串,若str == null,则插入"null"
-    public MyString concat(MyString str){
+    public IString concat(IString str){
 
         if(str == null){
-            str = new MyString("null");
+            str = new IString("null");
         }
 
         char[] buffer = new char[this.value.length + str.length()];
@@ -187,16 +181,16 @@ public class MyString implements Comparable<MyString>, Serializable {
         }
 
         //复制指定串
-        for(int j = 0;j < str.length();j++){
-            buffer[i+j] = str.value[j];
+        if (str.length() >= 0) {
+            System.arraycopy(str.value, 0, buffer, i, str.length());
         }
 
         //以字符数组构造串对象
-        return new MyString(buffer);
+        return new IString(buffer);
     }
 
     //返回当前串删除所有空格的字符串
-    public MyString trim(){
+    public IString trim(){
 
         int i = 0;
 
@@ -213,15 +207,15 @@ public class MyString implements Comparable<MyString>, Serializable {
         char[] temp = new char[i];
 
         //复制
-        for (int j = 0; j < temp.length; j++) {
-            temp[j] = buffer[j];
+        if (temp.length >= 0) {
+            System.arraycopy(buffer, 0, temp, 0, temp.length);
         }
 
-        return new MyString(temp);
+        return new IString(temp);
     }
 
     //返回将所有小写字母转成大写的串
-    public MyString toUpperCase(){
+    public IString toUpperCase(){
 
         for (int i = 0; i < this.value.length; i++) {
             if(this.value[i] >= 'a' && this.value[i] <= 'z'){//是小写字母
@@ -233,7 +227,7 @@ public class MyString implements Comparable<MyString>, Serializable {
     }
 
     //返回将所有大写字母转成小写字母
-    public MyString toLowerCase(){
+    public IString toLowerCase(){
 
         for (int i = 0; i < this.value.length; i++) {
             if(this.value[i] >= 'A' && this.value[i] <= 'Z'){//是大写字母
@@ -245,7 +239,7 @@ public class MyString implements Comparable<MyString>, Serializable {
     }
 
     //比较串与s是否相等,忽略大小写
-    public boolean equalsIgnoreCase(MyString s){
+    public boolean equalsIgnoreCase(IString s){
 
         if(s == null){
             throw new NullPointerException("s == null");
@@ -277,7 +271,7 @@ public class MyString implements Comparable<MyString>, Serializable {
     }
 
     //比较两串大小忽略字母大小写
-    public int compareToIgnoreCase(MyString s){
+    public int compareToIgnoreCase(IString s){
 
         for(int i = 0;i < this.value.length && i < s.value.length;i++){
             if(this.value[i] >= 'a' && this.value[i] <= 'z' && s.charAt(i) >= 'A' && s.charAt(i) <= 'Z'){
@@ -297,9 +291,9 @@ public class MyString implements Comparable<MyString>, Serializable {
     }
 
     //分割字符串,以ch为分隔符
-    public MyString[] split(char ch){
+    public IString[] split(char ch){
 
-        List<MyString> stringList = new ArrayList<>();
+        List<IString> stringList = new ArrayList<>();
 
         int start = 0;
 
@@ -320,31 +314,31 @@ public class MyString implements Comparable<MyString>, Serializable {
             stringList.add(this.subString(start,this.length()));
         }
 
-        return stringList.stream().toArray(MyString[] :: new);
+        return stringList.toArray(new IString[0]);
     }
 
     //返回将串s中各单词改为大写字母的串,单词以空格分隔
-    public static MyString upperFirst(MyString s){
+    public static IString upperFirst(IString s){
 
-        MyString[] s1 = s.split(' ');
+        IString[] s1 = s.split(' ');
 
-        for (int i = 0; i < s1.length; i++) {
-            if(isLowerLetter(s1[i].value[0])){
-                s1[i].value[0] -= 'a' - 'A';
+        for (IString IString : s1) {
+            if (isLowerLetter(IString.value[0])) {
+                IString.value[0] -= 'a' - 'A';
             }
         }
 
-        String tmp = "";
+        StringBuilder tmp = new StringBuilder();
 
-        for (MyString string : s1) {
-            tmp += string.toString() + " ";
+        for (IString string : s1) {
+            tmp.append(string.toString()).append(" ");
         }
 
-        return new MyString(tmp);
+        return new IString(tmp.toString());
     }
 
     //将串s反序输出,从后向前
-    public static void printPrevious(MyString s){
+    public static void printPrevious(IString s){
 
         for (int i = s.value.length - 1; i >= 0; i--) {
             System.out.print(s.value[i]);
@@ -352,7 +346,7 @@ public class MyString implements Comparable<MyString>, Serializable {
     }
 
     //返回两串中所有相同字符(不重复)
-    public static MyString getSameChars(MyString sa,MyString sb){
+    public static IString getSameChars(IString sa,IString sb){
 
         Set<Character> set1 = new HashSet<>();
 
@@ -376,11 +370,11 @@ public class MyString implements Comparable<MyString>, Serializable {
             ch[index++] = c;
         }
 
-        return new MyString(ch);
+        return new IString(ch);
     }
 
     //返回将串s逆转的串
-    public static MyString reverse(MyString s){
+    public static IString reverse(IString s){
 
         for (int i = 0; i < s.value.length / 2; i++) {
             char temp = s.value[i];
@@ -394,7 +388,7 @@ public class MyString implements Comparable<MyString>, Serializable {
     }
 
     //判断字符串str是否为标识符
-    public static boolean isIdentifier(MyString str){
+    public static boolean isIdentifier(IString str){
 
         if(str == null || str.length() == 0){
             return false;
@@ -429,7 +423,7 @@ public class MyString implements Comparable<MyString>, Serializable {
     }
 
     //判断是否是回文字符串 正序和反序一样
-    public static boolean isBackFrontSame(MyString s){
+    public static boolean isBackFrontSame(IString s){
 
         int n = s.length();  //拿到长度
 
@@ -447,7 +441,7 @@ public class MyString implements Comparable<MyString>, Serializable {
      * @param pattern       模式串
      * @return              序号
      */
-    public int indexOf(MyString pattern){
+    public int indexOf(IString pattern){
 
         return this.indexOf(pattern,0);
     }
@@ -460,7 +454,7 @@ public class MyString implements Comparable<MyString>, Serializable {
      * @param begin     开始的索引
      * @return          序号
      */
-    public int indexOf(MyString pattern,int begin){
+    public int indexOf(IString pattern,int begin){
 
         int n = this.length();
         int m = pattern.length();
@@ -520,7 +514,7 @@ public class MyString implements Comparable<MyString>, Serializable {
      * @param begin         开始的位置
      * @return              索引
      */
-    public static int indexOf(String target,String pattern,int begin){
+    public static int indexOf(String target, String pattern, int begin){
 
         int n = target.length(), m = pattern.length();
 
@@ -537,13 +531,13 @@ public class MyString implements Comparable<MyString>, Serializable {
         int i = begin,j = 0;  //i,j分别为目标串,模式串比较字符下标
 
         while(i < n && j < m){
-            if(j == -1 || target.charAt(i) == pattern.charAt(j)){ //若当前两字符相等,则继续比较后续字符
+            if (j == -1 || target.charAt(i) == pattern.charAt(j)) { //若当前两字符相等,则继续比较后续字符
                 i++;
                 j++;
-            }else{          //否则下次匹配,目标串下标i不回溯
+            } else {          //否则下次匹配,目标串下标i不回溯
                 j = next[j];  //模式串下标j退回到下次比较字符序号
 
-                if(n-i+1 < m-j+1){ //若目标串剩余子串的长度不够,不在比较
+                if (n - i + 1 < m - j + 1) { //若目标串剩余子串的长度不够,不在比较
                     break;
                 }
             }
@@ -568,13 +562,13 @@ public class MyString implements Comparable<MyString>, Serializable {
 
         next[0] = -1;
 
-        while(j < pattern.length() - 1){
-            if(k == -1 || pattern.charAt(j) == pattern.charAt(k)){
+        while (j < pattern.length() - 1) {
+            if (k == -1 || pattern.charAt(j) == pattern.charAt(k)) {
                 j++;
                 k++;
 
                 next[j] = k;
-            }else{
+            } else {
                 k = next[k];
             }
         }
@@ -584,7 +578,7 @@ public class MyString implements Comparable<MyString>, Serializable {
 
     //比较this与str串的大小,返回两者差值
     @Override
-    public int compareTo(MyString str) {
+    public int compareTo(IString str) {
 
         for(int i = 0;i < this.value.length && i < str.value.length;i++){
             if(this.value[i] != str.value[i]){
@@ -602,9 +596,8 @@ public class MyString implements Comparable<MyString>, Serializable {
             return true;
         }
 
-        if(obj instanceof MyString){
-
-            MyString str = (MyString) obj;
+        if(obj instanceof IString){
+            IString str = (IString) obj;
 
             if(str.length() != this.length()){
                 return false;

@@ -8,39 +8,50 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.function.Consumer;
 
+/**
+ * 声明单链表类继承自抽象列表类,泛型类
+ */
 public class SinglyList<T> extends AbstractList<T> {
 
     public Node<T> head;  //头结点的引用,指向单链表的头结点
 
     public int n;  //单链表改进,增加长度属性 n
 
-    public SinglyList(){        //构建空单链表
+    /**
+     * 构建空单链表
+     */
+    public SinglyList() {
 
         this.head = new Node<>();   //创建头结点,data和next值均为null
 
         this.n = 0;  //长度置为0
     }
 
-    public SinglyList(T[] values){  //构造单链表,由数组提供元素
+    /**
+     * 构造单链表,由数组提供元素
+     * @param values            数据源
+     */
+    public SinglyList(T[] values) {
 
         this(); //构造空表
 
         Node<T> rear = this.head;   //rear指向单链表最后一个结点
 
-        int count = 0;
-
         for (T value : values) {
             rear.next = new Node<>(value, null); //尾插入,创建结点链入rear结点之后
-
-            count++;
 
             rear = rear.next;   //rear指向新的链尾结点
         }
 
-        this.n = count;
+        this.n = values.length;
     }
 
-    //深拷贝方法
+    /**
+     * 深拷贝单链表
+     * @param list                      数据源
+     * @throws IOException              IO异常
+     * @throws ClassNotFoundException   类型转换异常
+     */
     public SinglyList(SinglyList<T> list) throws IOException, ClassNotFoundException {
 
         this.head = SerializeUtil.deepClone(list.head);
@@ -244,7 +255,7 @@ public class SinglyList<T> extends AbstractList<T> {
      * @param key       关键字
      * @return          Node
      */
-    public Node<T> search(T key){
+    public Node<T> search(T key) {
 
         if(key == null){
             throw new NullPointerException("key == null!");
@@ -266,7 +277,7 @@ public class SinglyList<T> extends AbstractList<T> {
     /**
      * 判断是否包含关键字为key的元素
      */
-    public boolean contains(T key){
+    public boolean contains(T key) {
 
         Node<T> node = this.search(key);
 
@@ -276,7 +287,7 @@ public class SinglyList<T> extends AbstractList<T> {
     /**
      * 判断是否包含关键字为key的元素
      */
-    public Node<T> insertDifferent(T x){
+    public Node<T> insertDifferent(T x) {
 
         Node<T> node = this.search(x);
 
@@ -292,7 +303,7 @@ public class SinglyList<T> extends AbstractList<T> {
     /**
      * 删除首个与key相等元素,返回被删除元素;查找不成功时返回null
      */
-    public T remove(T key){
+    public T remove(T key) {
 
         Node<T> node = this.search(key);
 
@@ -322,7 +333,7 @@ public class SinglyList<T> extends AbstractList<T> {
      * @param list      单链表,泛型<Integer>
      * @return          double
      */
-    public static double average(SinglyList<Integer> list){
+    public static double average(SinglyList<Integer> list) {
 
         int sum = 0;
 
@@ -362,7 +373,7 @@ public class SinglyList<T> extends AbstractList<T> {
      * 采用头插入,单链表次序与数组次序相反
      * @return  SinglyList
      */
-    public static <T> SinglyList<T> createReverse(T[] values){
+    public static <T> SinglyList<T> createReverse(T[] values) {
 
         SinglyList<T> list = new SinglyList<>();
 
@@ -380,7 +391,7 @@ public class SinglyList<T> extends AbstractList<T> {
     /**
      * 将list单链表逆转
      */
-    public static <T> void reverse(SinglyList<T> list){
+    public static <T> void reverse(SinglyList<T> list) {
 
         Node<T> front = null;  //front指向p的前驱
 
@@ -409,7 +420,7 @@ public class SinglyList<T> extends AbstractList<T> {
      * 集合并操作
      * @param list      SinglyList
      */
-    public void addAll(SinglyList<T> list){
+    public void addAll(SinglyList<T> list) {
 
         addAll(this.n, list);
     }

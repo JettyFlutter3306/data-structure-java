@@ -56,7 +56,7 @@ public class Josephus {
 
         String[] arr = new String[number];
 
-        for(int i=0;i<number;i++){
+        for (int i = 0; i < number; i++) {
             arr[i] = (char)('A'+i) + "";
         }
 

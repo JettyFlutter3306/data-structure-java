@@ -1,24 +1,24 @@
 package test_string;
 
 import org.junit.Test;
-import cn.element.string.MyString;
-import cn.element.string.MyStringBuffer;
+import cn.element.string.IString;
+import cn.element.string.IStringBuffer;
 
 import java.util.Arrays;
 
-public class TestMyString {
+public class TestIString {
 
     /**
-     * 测试MyString(MyStringBuffer msb)方法
+     * 测试IString(IStringBuffer msb)方法
      */
     @Test
     public void test01(){
 
-        MyStringBuffer msba = new MyStringBuffer("abcdf");
+        IStringBuffer msba = new IStringBuffer("abcdf");
 
         System.out.println("msba = " + msba);
 
-        MyString msa = new MyString(msba);
+        IString msa = new IString(msba);
 
         System.out.println("msa = " + msa);
     }
@@ -29,9 +29,9 @@ public class TestMyString {
     @Test
     public void test02(){
 
-        MyString str = new MyString("ACSDFabefwed234DFGDG");
+        IString str = new IString("ACSDFabefwed234DFGDG");
 
-        MyString str1 = str.toUpperCase();
+        IString str1 = str.toUpperCase();
 
         System.out.println(str == str1);
 
@@ -39,7 +39,7 @@ public class TestMyString {
 
         System.out.println("str = " + str);
 
-        MyString str2 = str1.toLowerCase();
+        IString str2 = str1.toLowerCase();
 
         System.out.println("str2 = " + str2);
 
@@ -72,9 +72,9 @@ public class TestMyString {
     @Test
     public void test04(){
 
-        MyString str = new MyString("abcdEFqq");
+        IString str = new IString("abcdEFqq");
 
-        MyString str1 = new MyString("ABCDefed");
+        IString str1 = new IString("ABCDefed");
 
         boolean b = str.equalsIgnoreCase(str1);
 
@@ -89,13 +89,13 @@ public class TestMyString {
     @Test
     public void test05(){
 
-        MyString s = new MyString("sdsd dfd effg ergs qwe sf  ");
+        IString s = new IString("sdsd dfd effg ergs qwe sf  ");
 
-        MyString string = MyString.upperFirst(s);
+        IString string = IString.upperFirst(s);
 
         System.out.println("cn.geeklbd.string = " + string);
 
-        MyString.printPrevious(s);
+        IString.printPrevious(s);
     }
 
     /**
@@ -104,9 +104,9 @@ public class TestMyString {
     @Test
     public void test06(){
 
-        MyString s = new MyString("$sfs");
+        IString s = new IString("$sfs");
 
-        System.out.println(MyString.isIdentifier(s)); //true
+        System.out.println(IString.isIdentifier(s)); //true
     }
 
     /**
@@ -115,10 +115,10 @@ public class TestMyString {
     @Test
     public void test07(){
 
-        MyString s1 = new MyString("abcdefretdgdg");
-        MyString s2 = new MyString("sfgsdgabcdferg");
+        IString s1 = new IString("abcdefretdgdg");
+        IString s2 = new IString("sfgsdgabcdferg");
 
-        System.out.println(MyString.getSameChars(s1,s2));
+        System.out.println(IString.getSameChars(s1,s2));
     }
 
     /**
@@ -127,9 +127,9 @@ public class TestMyString {
     @Test
     public void test08(){
 
-        MyString s = new MyString("abcdefg");
+        IString s = new IString("abcdefg");
 
-        System.out.println(MyString.reverse(s));
+        System.out.println(IString.reverse(s));
     }
 
     /**
@@ -138,9 +138,9 @@ public class TestMyString {
     @Test
     public void test09(){
 
-        MyString s = new MyString("abcsdwfabcdf");
+        IString s = new IString("abcsdwfabcdf");
 
-        MyString pattern = new MyString("abcd");
+        IString pattern = new IString("abcd");
 
         int i = s.indexOf(pattern);
         System.out.println("i = " + i);
@@ -152,11 +152,11 @@ public class TestMyString {
     @Test
     public void test10(){
 
-        MyString s = new MyString("asfasffasv");
+        IString s = new IString("asfasffasv");
 
         System.out.println("s = " + s);
 
-        MyString s1 = s.deleteString(3);
+        IString s1 = s.deleteString(3);
 
         System.out.println("s1 = " + s1);
     }
@@ -167,9 +167,9 @@ public class TestMyString {
     @Test
     public void test11(){
 
-        MyString s = new MyString("asdfascascv");
+        IString s = new IString("asdfascascv");
 
-        MyString str = s.deleteString(2, 5);
+        IString str = s.deleteString(2, 5);
 
         System.out.println(str);
     }
@@ -184,9 +184,14 @@ public class TestMyString {
 
         String pattern = "abcd";
 
-        int i = MyString.indexOf(target, pattern);
+        int i = IString.indexOf(target, pattern);
 
         System.out.println("i = " + i);
+    }
+
+    @Test
+    public void test13() {
+
     }
 
 

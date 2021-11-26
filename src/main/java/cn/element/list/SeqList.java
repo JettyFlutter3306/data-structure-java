@@ -8,6 +8,9 @@ import java.util.Iterator;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
+/**
+ * 声明顺序表类继承自抽象列表类,泛型类
+ */
 public class SeqList<T> extends AbstractList<T> {
 
     protected Object[] element;  //对象数组存储顺序表的数据元素,保护成员
@@ -30,9 +33,7 @@ public class SeqList<T> extends AbstractList<T> {
 
         this(values.length);        //创建容量为values.length的空表
 
-        for (int i = 0; i < values.length; i++) {  //复制元素赋值
-            this.element[i] = values[i];
-        }
+        System.arraycopy(values, 0, this.element, 0, values.length);  //复制元素赋值
 
         this.n = element.length;
     }
@@ -45,7 +46,9 @@ public class SeqList<T> extends AbstractList<T> {
 //        this.element = list.element;    //数组引用赋值,两个变量共用一个数组,错误
 //    }
 
-    //顺序表深拷贝
+    /**
+     * 顺序表深拷贝
+     */
     public SeqList(SeqList<? extends T> list) throws IOException, ClassNotFoundException {
 
         this.n = list.n;
@@ -53,21 +56,27 @@ public class SeqList<T> extends AbstractList<T> {
         this.element = SerializeUtil.deepClone(list.element);
     }
 
-    //判断顺序表是否为空
+    /**
+     * 判断顺序表是否为空
+     */
     @Override
     public boolean isEmpty(){
 
         return this.n == 0;
     }
 
-    //返回顺序表元素的个数
+    /**
+     * 返回顺序表元素的个数
+     */
     @Override
     public int size(){
 
         return this.n;
     }
 
-    //返回第i个元素
+    /**
+     * 返回第i个元素
+     */
     @Override
     public T get(int i){
 
@@ -80,7 +89,9 @@ public class SeqList<T> extends AbstractList<T> {
         return null;
     }
 
-    //设置第i个元素
+    /**
+     * 设置第i个元素
+     */
     @Override
     public void set(int i,T x){
 
@@ -119,13 +130,11 @@ public class SeqList<T> extends AbstractList<T> {
         if(this.element.length == this.n){      //如果数组已满,则扩充顺序表的容量
             this.element = new Object[this.n * 2];      //申请一个更大的数组
 
-            for (int j = 0; j < i; j++) {
-                this.element[j] = source[j];
-            }
+            System.arraycopy(source, 0, this.element, 0, i);
         }
 
-        for (int j = this.n - 1; j >= i; j--) {
-            this.element[j+1] = this.element[j];
+        if (this.n - i >= 0) {
+            System.arraycopy(this.element, i, this.element, i + 1, this.n - i);
         }
 
         this.element[i] = x;
@@ -135,21 +144,26 @@ public class SeqList<T> extends AbstractList<T> {
         return i;       //返回x的序号
     }
 
-    //尾部插入,方法重载
+    /**
+     * 尾部插入,方法重载
+     */
     public int insert(T x){
 
         return this.insert(this.n,x);
     }
 
-    //根据索引删除元素
+    /**
+     * 根据索引删除元素
+     */
     @Override
     public T remove(int i){
 
         if(this.n > 0 && i >= 0 && i < this.n){
             T old = (T) this.element[i];        //获取索引为i的元素
 
-            for(int j = i;j < this.n-1;j++){
-                this.element[j] = this.element[j+1];  //索引i之后的元素都向前移动一个位置
+            //索引i之后的元素都向前移动一个位置
+            if (this.n - 1 - i >= 0) {
+                System.arraycopy(this.element, i + 1, this.element, i, this.n - 1 - i);
             }
 
             this.element[this.n-1] = null;      //设置数组元素对象为空,释放原引用实例
@@ -162,7 +176,9 @@ public class SeqList<T> extends AbstractList<T> {
         return null;
     }
 
-    //删除顺序表所有的元素
+    /**
+     * 删除顺序表所有的元素
+     */
     public void clear(){
 
         this.element = null;
@@ -170,7 +186,9 @@ public class SeqList<T> extends AbstractList<T> {
         this.n = 0;
     }
 
-    //查找方法,查找首次与Key相等的元素,返回元素索引,查找不成功返回-1,key==null,返回NullPointerException
+    /**
+     * 查找方法,查找首次与Key相等的元素,返回元素索引,查找不成功返回-1,key==null,返回NullPointerException
+     */
     public int search(T key){
 
         if(key == null){
@@ -186,14 +204,18 @@ public class SeqList<T> extends AbstractList<T> {
         return -1;
     }
 
-    //判断是否包含关键字为key的元素
-    public boolean contains(T key){
+    /**
+     * 判断是否包含关键字为key的元素
+     */
+    public boolean contains(T key) {
 
         return this.search(key) != -1;
     }
 
-    //插入不重复的元素
-    public int insertDifferent(T x){
+    /**
+     * 插入不重复的元素
+     */
+    public int insertDifferent(T x) {
 
         if(!this.contains(x)){
             this.insert(x);
@@ -204,7 +226,9 @@ public class SeqList<T> extends AbstractList<T> {
         return -1;
     }
 
-    //删除首个出现的与key相等的元素,返回被删除的元素
+    /**
+     * 删除首个出现的与key相等的元素,返回被删除的元素
+     */
     public T remove(T key){
 
         int i = this.search(key);
@@ -216,19 +240,21 @@ public class SeqList<T> extends AbstractList<T> {
         return this.remove(i);
     }
 
-    //实现集合并运算
+    /**
+     * 实现集合并运算
+     */
     public void addAll(SeqList<? extends T> list){
 
         for (int i = 0; i < list.element.length; i++) {
-
             if(!this.contains(list.get(i))){
                 this.insert(list.get(i));
             }
         }
     }
 
-
-    //顺序表比较相等
+    /**
+     * 顺序表比较相等
+     */
     @Override
     public boolean equals(Object obj) {
 
@@ -237,7 +263,6 @@ public class SeqList<T> extends AbstractList<T> {
         }
 
         if(obj instanceof SeqList<?>){  //若obj引用顺序表实例,SeqList<?>是所有的SeqList<T>的父类
-
             SeqList<T> list = (SeqList<T>) obj;
 
             if(this.n == list.n){
@@ -254,7 +279,9 @@ public class SeqList<T> extends AbstractList<T> {
         return false;
     }
 
-    //返回描述的字符串
+    /**
+     * 返回描述的字符串
+     */
     @Override
     public String toString(){
 
@@ -271,7 +298,9 @@ public class SeqList<T> extends AbstractList<T> {
         return str + ")";
     }
 
-    //返回所有元素的描述字符串(从后向前)
+    /**
+     * 返回所有元素的描述字符串(从后向前)
+     */
     public String toPreviousString(){
 
         StringBuilder str = new StringBuilder(this.getClass().getName() + "(");       //返回类名

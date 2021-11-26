@@ -23,7 +23,7 @@ public class MergeSort {
             n *= 2;  //子序列长度加倍
 
             if(n < x.length){
-                mergePass(y,x,n);  //一趟归并,将y中若干相邻子序列再归并到x
+                mergePass(y, x, n);  //一趟归并,将y中若干相邻子序列再归并到x
 
                 n *= 2;
             }
