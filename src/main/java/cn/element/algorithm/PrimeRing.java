@@ -15,7 +15,6 @@ public class PrimeRing {
     }
 
     public PrimeRing(int max) { //求1~max的素数环
-
         SortedSeqList<Integer> primeList = this.createPrime(max);  //排序顺序表存储
 
         System.out.println("素数集合: " + primeList);
@@ -34,7 +33,7 @@ public class PrimeRing {
 
         int i = 0;
 
-        while(!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             int key = queue.poll();     //出队
 
             if(primeList.contains(ring.get(i) + key)){  //判断素数,排序顺序表包含(查找)
@@ -54,9 +53,8 @@ public class PrimeRing {
      * @param max         最大值
      * @return            排序顺序表
      */
-    public SortedSeqList<Integer> createPrime(int max){
-
-        if(max <= 0){
+    public SortedSeqList<Integer> createPrime(int max) {
+        if (max <= 0) {
             return null;
         }
 
@@ -67,7 +65,7 @@ public class PrimeRing {
         for (int i = 3; i < max * 2; i += 2) {  //测试奇数,其他偶数不需要测试
             int j = 0;
 
-            while(j < primeList.size() && i % primeList.get(j) != 0){
+            while (j < primeList.size() && i % primeList.get(j) != 0) {
                 j++;
             }
 
@@ -80,7 +78,6 @@ public class PrimeRing {
     }
 
     public static void main(String[] args) {
-
         //tip: max为30时无解
         new PrimeRing(10);
     }

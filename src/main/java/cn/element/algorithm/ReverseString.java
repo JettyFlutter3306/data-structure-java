@@ -5,8 +5,7 @@ package cn.element.algorithm;
  */
 public class ReverseString {
 
-    public static String reverseStr(String str){
-
+    public static String reverseStr(String str) {
         char[] chars = str.toCharArray();
 
         recurse(chars,0,chars.length - 1);
@@ -14,9 +13,8 @@ public class ReverseString {
         return new String(chars);
     }
 
-    private static void recurse(char[] chars,int i,int j){
-
-        if(i > j){
+    private static void recurse(char[] chars, int i, int j) {
+        if (i > j) {
             return;
         }
 
@@ -28,7 +26,6 @@ public class ReverseString {
     }
 
     public static void main(String[] args) {
-
         String temp = "abcdefg";
 
         String s = reverseStr(temp);

@@ -15,8 +15,7 @@ public class RadixExchange {
      *      八进制是31.64
      *      十六进制是19.D
      */
-    public static void changeRadix(int base){
-
+    public static void changeRadix(int base) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("请输入一个数");
@@ -27,7 +26,7 @@ public class RadixExchange {
 
         Queue<String> queue = new LinkedList<>(); //定义一个队列 存放小数部分
 
-        while (!num.contains(".")){
+        while (!num.contains(".")) {
             System.out.println("请输入标准格式!例如 25.9818");
 
             num = scanner.next();
@@ -43,7 +42,7 @@ public class RadixExchange {
         double b = Double.valueOf(arr[1]) / Math.pow(10,arr[1].length());
 
         //处理整数部分
-        while (a != 0){
+        while (a != 0) {
 
             int answer = a / base;  //获得两数之商
 
@@ -59,9 +58,9 @@ public class RadixExchange {
          */
         int count = 0;  //定义一个计数器
 
-        while (b != 0.0){
+        while (b != 0.0) {
 
-            if(count == 6){
+            if (count == 6) {
                 break;
             }
 
@@ -79,18 +78,18 @@ public class RadixExchange {
 
         StringBuilder sb = new StringBuilder("");
 
-        while (!stack.isEmpty()){
+        while (!stack.isEmpty()) {
             sb.append(stack.pop()); //出栈字符串拼接
         }
 
         sb.append(".");
 
-        while (!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             sb.append(queue.poll()); //出队
         }
 
         //打印
-        switch (base){
+        switch (base) {
             case 2 :
                 System.out.println("二进制是: "+ sb);break;
             case 8 :
@@ -106,10 +105,9 @@ public class RadixExchange {
      * @param base  数制
      * @return      主要是针对十六进制
      */
-    public static String radixFormat(String num,int base){
-
-        if(base > 10){
-            switch (num){
+    private static String radixFormat(String num,int base) {
+        if (base > 10) {
+            switch (num) {
                 case "10":
                     return "A";
                 case "11":

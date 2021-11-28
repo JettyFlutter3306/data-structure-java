@@ -17,7 +17,9 @@ public class Triple extends AbstractBaseEntity implements Comparable<Triple>, Ad
     public int value;  //值
 
     public Triple() {
-
+        this.row = 0;
+        this.column = 0;
+        this.value = 0;
     }
 
     /**
@@ -28,8 +30,7 @@ public class Triple extends AbstractBaseEntity implements Comparable<Triple>, Ad
      * @param value         值
      */
     public Triple(int row, int column, int value) {
-
-        if(row >= 0 && column >= 0){
+        if (row >= 0 && column >= 0) {
             this.row = row;
             this.column = column;
             this.value = value;
@@ -41,7 +42,6 @@ public class Triple extends AbstractBaseEntity implements Comparable<Triple>, Ad
      * @param triple            三元组对象
      */
     public Triple(Triple triple) {
-
         this(triple.row,triple.column,triple.value);
     }
 
@@ -52,10 +52,9 @@ public class Triple extends AbstractBaseEntity implements Comparable<Triple>, Ad
      */
     @Override
     public int add(Triple triple) {
-
-        if(this.compareTo(triple) == 0){
+        if (this.compareTo(triple) == 0) {
             this.value += triple.value;
-        }else{
+        } else {
             throw new IllegalArgumentException("两项的前置系数不同,不能相加.");
         }
 
@@ -68,7 +67,6 @@ public class Triple extends AbstractBaseEntity implements Comparable<Triple>, Ad
      */
     @Override
     public boolean removable() {
-
         return this.value == 0;
     }
 
@@ -77,7 +75,6 @@ public class Triple extends AbstractBaseEntity implements Comparable<Triple>, Ad
      * 返回矩阵对称位置元素的三元组
      */
     public Triple toSymmetry(){
-
         return new Triple(this.column,this.row,this.value);
     }
 
@@ -88,8 +85,7 @@ public class Triple extends AbstractBaseEntity implements Comparable<Triple>, Ad
      */
     @Override
     public int compareTo(Triple triple) {
-
-        if(this.row == triple.row && this.column == triple.column){
+        if (this.row == triple.row && this.column == triple.column) {
             return 0;
         }
 
@@ -101,15 +97,14 @@ public class Triple extends AbstractBaseEntity implements Comparable<Triple>, Ad
      */
     @Override
     public boolean equals(Object obj) {
-
-        if(this == obj){
+        if (this == obj) {
             return true;
         }
 
-        if(obj instanceof Triple){
+        if (obj instanceof Triple) {
             Triple triple = (Triple) obj;
 
-            if(this.compareTo(triple) == 0){
+            if (this.compareTo(triple) == 0) {
                 return this.value == triple.value;
             }
         }
@@ -122,7 +117,6 @@ public class Triple extends AbstractBaseEntity implements Comparable<Triple>, Ad
      */
     @Override
     public String toString() {
-
         return "(" + row + "," + column + "," + value + ")";
     }
 

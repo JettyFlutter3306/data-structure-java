@@ -31,7 +31,6 @@ public class TriNode<T> {
 
     @Override
     public String toString() {
-
         return "("+this.data+")";
     }
 
@@ -39,7 +38,6 @@ public class TriNode<T> {
      * 判断是否是叶子结点
      */
     public boolean isLeaf(){
-
         return this.left == null && this.right == null;
     }
 

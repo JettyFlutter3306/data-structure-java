@@ -15,13 +15,12 @@ public class BinaryTrees {
      * @param genList           广义表字符串
      * @return                  二叉树
      */
-    public static BinaryTree<String> createByGenList(String genList){
-
+    public static BinaryTree<String> createByGenList(String genList) {
         BinaryTree<String> binaryTree = new BinaryTree<>();
 
         i = 0;
 
-        if(genList.length() > 0){
+        if (genList.length() > 0) {
             binaryTree.root = create(genList);  //创建子树,子树根值是 genList[0]
         }
 
@@ -33,13 +32,12 @@ public class BinaryTrees {
      * @param genList           广义表字符串
      * @return                  二叉树
      */
-    private static BinaryNode<String> create(String genList){
-
+    private static BinaryNode<String> create(String genList) {
         BinaryNode<String> p;
 
         char ch = genList.charAt(i);
 
-        if(ch == '^'){
+        if (ch == '^') {
             i++;
 
             return null;
@@ -47,7 +45,7 @@ public class BinaryTrees {
 
         int end = i;
 
-        while(ch != '(' && ch != ',' && ch != ')'){
+        while (ch != '(' && ch != ',' && ch != ')') {
             end++;  //一个元素占多个字符,以'(' ')'分割
 
             ch = genList.charAt(end);
@@ -59,7 +57,7 @@ public class BinaryTrees {
 
         p = new BinaryNode<>(str);  //创建叶子结点
 
-        if(genList.charAt(i) == '('){
+        if (genList.charAt(i) == '(') {
             i++;  //跳过'('
 
             p.left = create(genList);  //创建左子树,递归调用
@@ -78,7 +76,6 @@ public class BinaryTrees {
      * 根据层次遍历序列构建一棵二叉树
      */
     public static <T> BinaryTree<T> createTreeNodeByLevel(T[] value) {
-
         BinaryNode<T> p = new BinaryNode<>(value[0]);
 
         BinaryNode<T> q = p;
@@ -87,17 +84,17 @@ public class BinaryTrees {
 
         int i = 0;
 
-        while(p != null) {
-            if(2 * i + 1 < value.length){
-                if(value[2 * i + 1] != null){
+        while (p != null) {
+            if (2 * i + 1 < value.length) {
+                if (value[2 * i + 1] != null) {
                     p.left = new BinaryNode<>(value[2 * i + 1]);
                 }
 
                 queue.add(p.left);  //p的左子树入队
             }
 
-            if(2 * i + 2 < value.length){
-                if(value[2 * i + 2] != null){
+            if (2 * i + 2 < value.length) {
+                if (value[2 * i + 2] != null) {
                     p.right = new BinaryNode<>(value[2 * i + 2]);
                 }
 
@@ -120,8 +117,7 @@ public class BinaryTrees {
      * 打印树形结构图
      */
     public static <T> void show(BinaryTree<T> tree) {
-
-        if(tree.isEmpty()){
+        if (tree.isEmpty()) {
             System.out.println("EMPTY TREE");
         }
 
@@ -161,8 +157,7 @@ public class BinaryTrees {
     }
 
     private static <T> void writeArray(BinaryNode<T> node, int rowIndex, int columnIndex, String[][] res, int treeDepth) {
-
-        if(node == null){  //保证输入的树不为空
+        if (node == null) {  //保证输入的树不为空
             return;
         }
 
@@ -170,7 +165,7 @@ public class BinaryTrees {
 
         int currLevel = (rowIndex + 1) / 2;  //计算当前位于树的第几层
 
-        if(currLevel == treeDepth){  //若到了最后一层,则返回
+        if (currLevel == treeDepth) {  //若到了最后一层,则返回
             return;
         }
 

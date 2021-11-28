@@ -19,7 +19,6 @@ public class SelectSort {
      *   时间复杂度O(n²)  空间复杂度O(1)  直接选择排序算法不稳定
      */
     public static void straightSelectSort(int[] keys){
-
         for (int i = 0; i < keys.length - 1; i++) {  //n-1趟排序
             int min = i;
 
@@ -36,7 +35,6 @@ public class SelectSort {
     }
 
     public static void heapSort(int[] keys){
-
         heapSort(keys,true);
     }
 
@@ -47,7 +45,6 @@ public class SelectSort {
      *   堆排序算法不稳定
      */
     public static void heapSort(int[] keys,boolean minHeap){
-
         for (int i = keys.length / 2; i >= 0 ; i--) {  //创建最小/大堆,根结点值最小/大
             sift(keys,i,keys.length - 1,minHeap);
         }
@@ -64,7 +61,6 @@ public class SelectSort {
      * 私有方法,只被堆排序方法调用,确保 parent, end 在范围内
      */
     private static void sift(int[] keys,int parent,int end,boolean miniHeap){
-
         System.out.println("sift " + parent + ".." + end + " ");
 
         int child = 2 * parent + 1;  //child是parent的左孩子

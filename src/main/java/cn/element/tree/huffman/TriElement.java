@@ -35,7 +35,6 @@ public class TriElement extends AbstractBaseEntity {
      * @param data          数据
      */
     public TriElement(int data) {
-
         this(data,-1,-1,-1);
     }
 
@@ -43,13 +42,11 @@ public class TriElement extends AbstractBaseEntity {
      * 判断是否是叶子结点
      */
     public boolean isLeaf(){
-
         return this.left == -1 && this.right == -1;
     }
 
     @Override
     public String toString() {
-
         return "("+this.data+","+this.parent+","+this.left+","+this.right+")";
     }
 

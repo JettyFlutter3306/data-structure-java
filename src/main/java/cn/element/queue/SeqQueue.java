@@ -13,10 +13,11 @@ public final class SeqQueue<T> extends AbstractQueue<T> {
 
     private int front,rear; //front,rear分别为队列头尾下标
 
-    //构造容量为length的队列
+    /**
+     * 构造容量为length的队列
+     */
     public SeqQueue(int length) {
-
-        if(length < 64){
+        if (length < 64) {
             length = 64;
         }
 
@@ -27,9 +28,10 @@ public final class SeqQueue<T> extends AbstractQueue<T> {
         this.front = this.rear = 0;
     }
 
-    //构造默认容量的空队列
+    /**
+     * 构造默认容量的空队列
+     */
     public SeqQueue() {
-
         this(64);
     }
 
@@ -39,7 +41,6 @@ public final class SeqQueue<T> extends AbstractQueue<T> {
      */
     @Override
     public boolean isEmpty() {
-
         return this.front == this.rear;
     }
 
@@ -50,20 +51,19 @@ public final class SeqQueue<T> extends AbstractQueue<T> {
      */
     @Override
     public boolean add(Object x) {
-
-        if(x == null){
+        if (x == null) {
             return false;
         }
 
         //若队列满,则扩充数组
-        if(this.front == (this.rear + 1) % this.element.length){
+        if (this.front == (this.rear + 1) % this.element.length) {
             Object[] temp = this.element;
 
             this.element = new Object[temp.length * 2]; //重新申请一个容量更大的数组
 
             int j = 0;
 
-            for(int i = this.front;i != this.rear;i = (i+1) % temp.length){
+            for (int i = this.front; i != this.rear; i = (i+1) % temp.length) {
                 this.element[j++] = temp[i]; //按照队列元素次序复制数组元素
             }
 
@@ -80,12 +80,11 @@ public final class SeqQueue<T> extends AbstractQueue<T> {
     }
 
     /**
-     *  返回队头元素,没有删除,若队列为空,则返回null
+     * 返回队头元素,没有删除,若队列为空,则返回null
      * @return  队头元素
      */
     @Override
     public T peek() {
-
         return this.isEmpty() ? null : (T) this.element[this.front];
     }
 
@@ -95,8 +94,7 @@ public final class SeqQueue<T> extends AbstractQueue<T> {
      */
     @Override
     public T poll() {
-
-        if(this.isEmpty()){
+        if (this.isEmpty()) {
             return null;
         }
 
@@ -109,11 +107,9 @@ public final class SeqQueue<T> extends AbstractQueue<T> {
 
     @Override
     public String toString() {
-
         StringBuilder sb = new StringBuilder(this.getClass().getSimpleName() + "(");
 
         for (int i = front; i < rear; i++) {
-
             if(i == rear - 1){
                 sb.append(this.element[i]).append(")");
 
@@ -128,7 +124,6 @@ public final class SeqQueue<T> extends AbstractQueue<T> {
 
     @Override
     public Iterator<T> iterator() {
-
         return null;
     }
 }

@@ -1,4 +1,4 @@
-package cn.element.search;
+package cn.element.hash;
 
 import cn.element.common.Map;
 import cn.element.list.SinglyList;
@@ -11,14 +11,13 @@ import cn.element.list.node.Node;
  */
 public class HashMap<K,V> implements Map<K,V> {
 
-    HashSet<KeyValue<K,V>> set;  //散列表,元素是 KeyValue<K,V>
+    protected HashSet<KeyValue<K,V>> set;  //散列表,元素是 KeyValue<K,V>
 
     /**
      * 构造容量为length的散列映射
      * @param length        容量
      */
     public HashMap(int length) {
-
         this.set = new HashSet<>(length);
     }
 
@@ -26,19 +25,16 @@ public class HashMap<K,V> implements Map<K,V> {
      * 构造默认容量的散列表
      */
     public HashMap() {
-
         this.set = new HashSet<>();
     }
 
     @Override
     public boolean isEmpty() {
-
         return this.set.isEmpty();
     }
 
     @Override
     public int size() {
-
         return this.set.size();
     }
 
@@ -49,7 +45,6 @@ public class HashMap<K,V> implements Map<K,V> {
      */
     @Override
     public V get(K key) {
-
         KeyValue<K,V> find = this.set.search(new KeyValue<>(key,null));  //查找
 
         return find != null ? find.value : null;  //查找成功,返回值,否则返回null
@@ -63,7 +58,6 @@ public class HashMap<K,V> implements Map<K,V> {
      */
     @Override
     public V put(K key, V value) {
-
         KeyValue<K,V> keyValue = new KeyValue<>(key,value);
 
         if(!this.set.add(keyValue)){  //插入不成功,表示关键字重复
@@ -75,25 +69,21 @@ public class HashMap<K,V> implements Map<K,V> {
 
     @Override
     public V remove(K key) {
-
         return this.set.remove(new KeyValue<K, V>(key, null)).value;
     }
 
     @Override
     public boolean containsKey(K key) {
-
         return this.set.contains(new KeyValue<>(key,null));
     }
 
     @Override
     public void clear() {
-
         this.set = new HashSet<>();
     }
 
     @Override
     public Object[] values() {
-
         SinglyList<KeyValue<K, V>>[] lists = this.set.getTable();
 
         Object[] arr = new Object[this.set.size()];
@@ -108,7 +98,6 @@ public class HashMap<K,V> implements Map<K,V> {
             }
         }
 
-
         return arr;
     }
 
@@ -116,7 +105,6 @@ public class HashMap<K,V> implements Map<K,V> {
      * 返回关键字集合
      */
     public HashSet<K> keySet(){
-
         HashSet<K> set = new HashSet<>();
 
         SinglyList<KeyValue<K, V>>[] lists = this.set.getTable();
@@ -134,7 +122,6 @@ public class HashMap<K,V> implements Map<K,V> {
 
     @Override
     public String toString() {
-
         return this.set.toString();
     }
 }

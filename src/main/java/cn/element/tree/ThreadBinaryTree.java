@@ -11,7 +11,6 @@ public class ThreadBinaryTree<T> {
      * 构造空二叉树
      */
     public ThreadBinaryTree() {
-
         this.root = new ThreadNode<>(null);
     }
 
@@ -20,7 +19,6 @@ public class ThreadBinaryTree<T> {
      * @param preList       先根次序遍历序列
      */
     public ThreadBinaryTree(T[] preList) {
-
         this.root = create(preList);
 
         this.inOrderThread(this.root);  //中序线索化二叉树
@@ -40,20 +38,19 @@ public class ThreadBinaryTree<T> {
      * @param p          结点
      */
     private void inOrderThread(ThreadNode<T> p) {
-
         if(p != null){
             inOrderThread(p.left);  //中序线索化 p 的左子树
 
-            if(p.left == null){  //若 p 的左子树为空
+            if (p.left == null) {  //若 p 的左子树为空
                 p.lTag = true;  //设置左线索标记
                 p.left = front;  //设置 p.left 为指向前驱 front 的线索
             }
 
-            if(p.right == null){  //若 p 的右子树为空
+            if (p.right == null) {  //若 p 的右子树为空
                 p.rTag = true;  //设置右线索标记
             }
 
-            if(front != null && front.rTag){   //设置前驱 front.right 为指向后继 p 的线索
+            if (front != null && front.rTag) {   //设置前驱 front.right 为指向后继 p 的线索
                 front.right = p;
             }
 
@@ -71,15 +68,14 @@ public class ThreadBinaryTree<T> {
      * @param p         结点
      * @return          后继结点
      */
-    public ThreadNode<T> inNext(ThreadNode<T> p){
-
-        if(p.rTag){  //右线索标记,则 p.right 指向 p 的后继结点
+    public ThreadNode<T> inNext(ThreadNode<T> p) {
+        if (p.rTag) {  //右线索标记,则 p.right 指向 p 的后继结点
             return p.right;
         }
 
         p = p.right;  //进入 p 的右子树
 
-        while(!p.lTag){  //找到最左边的后代结点
+        while (!p.lTag) {  //找到最左边的后代结点
             p = p.left;
         }
 
@@ -89,24 +85,21 @@ public class ThreadBinaryTree<T> {
     /**
      * 构建二叉树,算法同 BinaryTree 类
      */
-    private ThreadNode<T> create(T[] preList){
-
-
+    private ThreadNode<T> create(T[] preList) {
         return null;
     }
 
     /**
      * 判断是否是空二叉树
      */
-    public boolean isEmpty(){
-
+    public boolean isEmpty() {
         return this.root.left == null && this.root.right == null;
     }
 
     /**
      * 中根次序遍历中序线索二叉树,非递归算法
      */
-    public void inOrder(){
+    public void inOrder() {
 
     }
 
@@ -115,8 +108,7 @@ public class ThreadBinaryTree<T> {
      * @param p         结点
      * @return          前驱结点
      */
-    public ThreadNode<T> inPrev(ThreadNode<T> p){
-
+    public ThreadNode<T> inPrev(ThreadNode<T> p) {
         return null;
     }
 
@@ -125,13 +117,12 @@ public class ThreadBinaryTree<T> {
      * @param p         结点
      * @return          后继结点
      */
-    public ThreadNode<T> preNext(ThreadNode<T> p){
-
-        if(!p.lTag){  //若p有左孩子,则p的左孩子是p的后继
+    public ThreadNode<T> preNext(ThreadNode<T> p) {
+        if (!p.lTag) {  //若p有左孩子,则p的左孩子是p的后继
             return p.left;
         }
 
-        while(p.rTag && p.right != null){  //否则,p后继是最远中序祖先的右孩子
+        while (p.rTag && p.right != null) {  //否则,p后继是最远中序祖先的右孩子
             p = p.right;  //沿着右线索向上,寻找到最远中序祖先
         }
 
@@ -141,7 +132,7 @@ public class ThreadBinaryTree<T> {
     /**
      * 先根次序遍历中序线索二叉树
      */
-    public void preOrder(){
+    public void preOrder() {
 
     }
 
@@ -150,15 +141,14 @@ public class ThreadBinaryTree<T> {
      * @param p         结点
      * @return          前驱结点
      */
-    public ThreadNode<T> postPrev(ThreadNode<T> p){
-
+    public ThreadNode<T> postPrev(ThreadNode<T> p) {
         return null;
     }
 
     /**
      * 后根次序遍历
      */
-    public void postOrderPrevious(){
+    public void postOrderPrevious() {
 
     }
 

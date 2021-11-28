@@ -23,7 +23,6 @@ public class SwapSort {
      *   不必进行下一轮交换
      */
     public static void bubbleSort(int[] keys,boolean asc){
-
         String str = asc ? "升序" : "降序";
 
         System.out.println("冒泡排序: " + str);
@@ -75,7 +74,6 @@ public class SwapSort {
      *     快速排序,直到子序列长度为1
      */
     public static void quickSort(int[] keys, int begin, int end) {
-
         if (begin >= 0 && end >= 0 && end < keys.length && begin < end) {  //序列有效
             int i = begin, j = end;  //i,j下标分别从子序列的前后两端开始
 
@@ -103,8 +101,8 @@ public class SwapSort {
 
             System.out.println(begin + ".." + end + ", vot = " + vot + " " + Arrays.toString(keys));
 
-            quickSort(keys,begin, j-1);  //前端子序列再排序,递归调用
-            quickSort(keys,i+1, end);  //后端子序列再排序,递归调用
+            quickSort(keys, begin, j - 1);  //前端子序列再排序,递归调用
+            quickSort(keys, i + 1, end);  //后端子序列再排序,递归调用
         }
     }
 

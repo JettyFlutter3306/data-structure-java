@@ -13,8 +13,7 @@ public class GenListBuilder {
     /**
      * 返回以gStr字符串创建的广义表
      */
-    public static GenList<String> createByString(String gStr){
-
+    public static GenList<String> createByString(String gStr) {
         i = 0;
 
         return createSub(gStr);
@@ -25,15 +24,14 @@ public class GenListBuilder {
      * @param gStr          字符串
      * @return              GenList<String>
      */
-    private static GenList<String> createSub(String gStr){
-
+    private static GenList<String> createSub(String gStr) {
         i++;                //跳过 '('
 
         GenList<String> genList = new GenList<>();  //构造空广义表,只有头结点
 
         GenNode<String> p = genList.head;  //指向头结点
 
-        while(i < gStr.length()){
+        while (i < gStr.length()) {
             char ch = gStr.charAt(i);
 
             switch (ch){

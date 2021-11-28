@@ -13,13 +13,12 @@ public class MyArray {
      * @param size      范围
      * @return          数组
      */
-    public static Integer[] randomDifferent(int n,int size){
-
+    public static Integer[] randomDifferent(int n,int size) {
         Set<Integer> set = new HashSet<>();
 
         Random random = new Random();
 
-        while (set.size() < n){
+        while (set.size() < n) {
             int temp = random.nextInt(size);
 
             set.add(temp);
@@ -42,13 +41,12 @@ public class MyArray {
      * @param size      范围
      * @return          范围
      */
-    public static Integer[] randomSorted(int n,int size){
-
+    public static Integer[] randomSorted(int n,int size) {
         List<Integer> list = new ArrayList<>();
 
         Random random = new Random();
 
-        while (list.size() < n){
+        while (list.size() < n) {
             int temp = random.nextInt(size);
 
             list.add(temp);
@@ -71,8 +69,7 @@ public class MyArray {
      * @param size      范围
      * @return          数组
      */
-    public static Integer[] randomDifferentSorted(int n,int size){
-
+    public static Integer[] randomDifferentSorted(int n,int size) {
         Integer[] integers = randomDifferent(n, size);
 
         Arrays.sort(integers);

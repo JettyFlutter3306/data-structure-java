@@ -14,8 +14,7 @@ public class CirDoublyList<T> extends AbstractList<T> {
 
     public DoubleNode<T> head; //头结点的引用
 
-    public CirDoublyList(){
-
+    public CirDoublyList() {
         this.head = new DoubleNode<>(); //创建头结点,3个值均为null
         // 构造循环双链表
         this.head.prev = this.head;
@@ -24,8 +23,7 @@ public class CirDoublyList<T> extends AbstractList<T> {
 
     //判空
     @Override
-    public boolean isEmpty(){
-
+    public boolean isEmpty() {
         return this.head.next == this.head;
     }
 
@@ -34,21 +32,18 @@ public class CirDoublyList<T> extends AbstractList<T> {
      * 对i容错,若i < 0,则头插入
      * 若i > 插入n,则尾插入 O(n)
      */
-    public DoubleNode<T> insert(int i,T x){
-
-        if(x == null){
-
+    public DoubleNode<T> insert(int i,T x) {
+        if (x == null) {
             throw new NullPointerException("x == null!");
         }
 
         DoubleNode<T> front = this.head; //front指向头结点
 
-        for(int j=0;front.next != this.head && j < i;j++){ //寻找第i-1个或者最后一个结点
-
+        for (int j = 0; front.next != this.head && j < i; j++) { //寻找第i-1个或者最后一个结点
             front = front.next;
         }
 
-        DoubleNode<T> q = new DoubleNode<>(x,front,front.next); //在front之后插入x结点
+        DoubleNode<T> q = new DoubleNode<>(x, front, front.next); //在front之后插入x结点
 
         front.next.prev = q;
 
@@ -62,8 +57,7 @@ public class CirDoublyList<T> extends AbstractList<T> {
      * 算法在头结点之前插入 O(1)
      */
     public DoubleNode<T> insert(T x){
-
-        if(x == null){
+        if (x == null) {
             throw new NullPointerException("x == null!"); //抛出空指针异常
         }
 
@@ -78,13 +72,11 @@ public class CirDoublyList<T> extends AbstractList<T> {
 
     @Override
     public T get(int i) {
-
         return this.head.next.data;
     }
 
     @Override
     public int size() {
-
         DoubleNode<T> p = this.head.next;
 
         int count = 0;
@@ -105,7 +97,6 @@ public class CirDoublyList<T> extends AbstractList<T> {
      */
     @Override
     public T remove(int i) {
-
         return null;
     }
 
@@ -114,7 +105,6 @@ public class CirDoublyList<T> extends AbstractList<T> {
      * 算法删除头结点的前驱结点
      */
     public T removeLast(){
-
         return null;
     }
 
@@ -127,13 +117,11 @@ public class CirDoublyList<T> extends AbstractList<T> {
      * 返回所有元素的描述字符串(元素次序从后向前)
      */
     public String toPreviousString(){
-
         return null;
     }
 
     @Override
     public String toString() {
-
         StringBuilder sb = new StringBuilder(this.getClass().getSimpleName()+"(");
 
         DoubleNode<T> p = this.head;
@@ -155,7 +143,6 @@ public class CirDoublyList<T> extends AbstractList<T> {
 
     @Override
     public Iterator<T> iterator() {
-
         return new Iterator<T>() {
             @Override
             public boolean hasNext() {

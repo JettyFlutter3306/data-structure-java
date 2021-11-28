@@ -24,8 +24,7 @@ public class LinkedMatrix {
      * @param n     列数
      */
     public LinkedMatrix(int m, int n) {
-
-        if(m > 0 && n > 0){
+        if (m > 0 && n > 0) {
             this.rows = m;
             this.columns = n;
             this.rowList = new SeqList<>();  //构造顺序表,初值为null
@@ -33,7 +32,7 @@ public class LinkedMatrix {
             for (int i = 0; i < m; i++) {  //顺序表增加 m 个空单链表
                 this.rowList.insert(new PolySinglyList<>());  //顺序表尾插入,自动扩容
             }
-        }else{
+        } else {
             throw new IllegalArgumentException("矩阵行列数不能 <= 0, m = " + m + ", n = " + n);
         }
     }
@@ -43,7 +42,6 @@ public class LinkedMatrix {
      * @param m     行数
      */
     public LinkedMatrix(int m) {
-
         this(m,m);
     }
 
@@ -54,7 +52,6 @@ public class LinkedMatrix {
      * @param triples   三元组数组
      */
     public LinkedMatrix(int m,int n,Triple[] triples) {
-
         this(m,n);
 
         for (Triple triple : triples) {
@@ -74,7 +71,6 @@ public class LinkedMatrix {
      * 返回矩阵行数
      */
     public int getRows(){
-
         return this.rows;
     }
 
@@ -82,7 +78,6 @@ public class LinkedMatrix {
      * 返回矩阵列数
      */
     public int getColumns(){
-
         return this.columns;
     }
 
@@ -90,33 +85,31 @@ public class LinkedMatrix {
      * 设置矩阵第 i 行第 j 列元素为x
      */
     public void set(int i,int j,int x){
-
-        this.set(new Triple(i,j,x));
+        this.set(new Triple(i, j, x));
     }
 
     /**
      * 以三元组 triple 设置矩阵元素,若triple的行/列序号越界,抛出序号越界异常
      */
-    public void set(Triple triple){
-
+    public void set(Triple triple) {
         int i = triple.row;
         int j = triple.column;
 
-        if(i >= 0 && i < this.rows && j >= 0 && j < this.columns){
+        if (i >= 0 && i < this.rows && j >= 0 && j < this.columns) {
             SortedSinglyList<Triple> list = this.rowList.get(i);  //获得第 i 行排序单链表
 
-            if(triple.value == 0){
+            if (triple.value == 0) {
                 list.remove(triple);  //删除(i,j,?)结点 ( 顺序查找,如果有 )
-            }else{
+            } else {
                 Node<Triple> node = list.search(triple);  //顺序查找首次出现的元素
 
-                if(node != null){
+                if (node != null) {
                     node.data.value = triple.value;  //查找成功,修改矩阵元素值
-                }else{
+                } else {
                     list.insert(triple);  //查找不成功,按(i,j)次序插入triple
                 }
             }
-        }else{
+        } else {
             throw new IndexOutOfBoundsException("i = " + i + ", j = " + j);  //抛出序号越界异常
         }
     }
@@ -127,9 +120,8 @@ public class LinkedMatrix {
      * @param j         列数
      * @return          int
      */
-    public int get(int i,int j){
-
-        if(i >= 0 && i < this.rows && j >= 0 && j < this.columns){
+    public int get(int i,int j) {
+        if (i >= 0 && i < this.rows && j >= 0 && j < this.columns) {
             Node<Triple> tripleNode = this.rowList.get(i).search(new Triple(i, j, 0));  //第 i 行排序单链表顺序查找
 
             return (tripleNode != null) ? tripleNode.data.value : 0;
@@ -143,17 +135,16 @@ public class LinkedMatrix {
      * @param m         行
      * @param n         列
      */
-    public void setRowsColumn(int m,int n){
-
-        if(m > 0 && n > 0){
-            if(m > this.rows){  //若 m 参数指定行数较大
+    public void setRowsColumn(int m,int n) {
+        if (m > 0 && n > 0) {
+            if (m > this.rows) {  //若 m 参数指定行数较大
                 for (int i = this.rows; i < m; i++) {
                     this.rowList.insert(new PolySinglyList<>());  //顺序表尾插入,自动扩容
                 }
 
                 this.rows = m;
                 this.columns = n;
-            }else{
+            } else {
                 throw new IllegalArgumentException("矩阵行列数 <= 0, m = " + m + ", n = " + n);
             }
         }
@@ -167,12 +158,11 @@ public class LinkedMatrix {
      * @param matrix        待相加的矩阵
      */
     public void addAll(LinkedMatrix matrix){
-
-        if(this.rows == matrix.rows && this.columns == matrix.columns){
+        if (this.rows == matrix.rows && this.columns == matrix.columns) {
             for (int i = 0; i < this.rows; i++) {
                 this.rowList.get(i).addAll(matrix.rowList.get(i));
             }
-        }else{
+        } else {
             throw new IllegalArgumentException("两矩阵阶数不同,不能相加");
         }
     }
@@ -181,18 +171,17 @@ public class LinkedMatrix {
      * 输出矩阵
      */
     public void printMatrix(){
-
         System.out.println("矩阵" + this.getClass().getSimpleName() + "(" + rows + "*" + columns + "): ");
 
         for (int i = 0; i < this.rowList.size(); i++) {
             Node<Triple> p = this.rowList.get(i).head.next;  //遍历第 i 行排序单链表
 
             for (int j = 0; j < this.columns; j++) {
-                if(p != null && j == p.data.column){  //有 i == p.data.row
+                if (p != null && j == p.data.column) {  //有 i == p.data.row
                     System.out.printf("%4d",p.data.value);
 
                     p = p.next;
-                }else{
+                } else {
                     System.out.printf("%4d",0);
                 }
             }
@@ -206,7 +195,7 @@ public class LinkedMatrix {
      * @param matrix            待相加矩阵
      * @return                  新的矩阵
      */
-    public LinkedMatrix union(LinkedMatrix matrix){
+    public LinkedMatrix union(LinkedMatrix matrix) {
 
 
         return null;
@@ -214,12 +203,11 @@ public class LinkedMatrix {
 
     @Override
     public boolean equals(Object obj) {
-
-        if(this == obj){
+        if (this == obj) {
             return true;
         }
 
-        if(obj instanceof LinkedMatrix){
+        if (obj instanceof LinkedMatrix) {
             LinkedMatrix matrix = (LinkedMatrix) obj;
 
             return this.rows == matrix.rows && this.columns == matrix.columns && this.rowList.equals(matrix.rowList);
@@ -233,7 +221,6 @@ public class LinkedMatrix {
      */
     @Override
     public String toString() {
-
         StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < this.rowList.size(); i++) {

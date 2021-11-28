@@ -15,14 +15,12 @@ public class GenNode<T> extends AbstractBaseEntity {
     public GenNode<T> next;  //地址域.指向后继结点
 
     public GenNode(T data, GenList<T> child, GenNode<T> next) {
-
         this.data = data;
         this.child = child;
         this.next = next;
     }
 
     public GenNode(T data) {
-
         this.data = data;
     }
 
@@ -32,7 +30,6 @@ public class GenNode<T> extends AbstractBaseEntity {
 
     @Override
     public String toString() {
-
         return super.toString();
     }
 }

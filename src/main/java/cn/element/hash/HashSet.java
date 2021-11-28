@@ -1,4 +1,4 @@
-package cn.element.search;
+package cn.element.hash;
 
 import cn.element.list.SinglyList;
 import cn.element.list.node.Node;
@@ -21,8 +21,7 @@ public class HashSet<T> {
      * @param length        容量
      */
     public HashSet(int length) {
-
-        if(length < 10){
+        if (length < 10) {
             length = 10;  //设置最小容量
         }
 
@@ -37,7 +36,6 @@ public class HashSet<T> {
      * 构造空散列表,默认容量
      */
     public HashSet() {
-
         this(16);
     }
 
@@ -46,7 +44,6 @@ public class HashSet<T> {
      * @param values        数组
      */
     public HashSet(T[] values) {
-
         this(values.length);
 
         for (T value : values) {
@@ -62,7 +59,6 @@ public class HashSet<T> {
      * @return          HashCode
      */
     private int hash(T x){
-
         int key = Math.abs(x.hashCode());  //每个对象的hashCode()方法返回int
 
         return key % this.table.length;  //除留余数法,除数是散列表容量
@@ -74,7 +70,6 @@ public class HashSet<T> {
      * @return              T
      */
     public T search(T key){
-
         Node<T> find = this.table[this.hash(key)].search(key);  //在单链表中查找关键字为key的元素
 
         return find == null ? null : find.data;
@@ -84,7 +79,6 @@ public class HashSet<T> {
      * 插入 x 元素
      */
     public boolean add(T x){
-
         if(this.count >= this.table.length*LOAD_FACTOR){  //若散列表满了,则扩充容量
             SinglyList<T>[] temp = this.table;  //散列表,暂时保存同义词单链表对象数组
 
@@ -118,10 +112,9 @@ public class HashSet<T> {
      * @return              T
      */
     public T remove(T key){
-
         T x = this.table[this.hash(key)].remove(key);  //同义词单链表删除key元素结点
 
-        if(x != null){
+        if (x != null) {
             this.count--;
         }
 
@@ -134,7 +127,6 @@ public class HashSet<T> {
      * @return          boolean
      */
     public boolean contains(T key){
-
         Node<T> node = this.table[this.hash(key)].search(key);
 
         return node != null;
@@ -144,7 +136,6 @@ public class HashSet<T> {
      * 返回元素的个数
      */
     public int size(){
-
         return this.count;
     }
 
@@ -152,7 +143,6 @@ public class HashSet<T> {
      * 判断是否为空
      */
     public boolean isEmpty(){
-
         return this.count == 0;
     }
 
@@ -160,7 +150,6 @@ public class HashSet<T> {
      * 插入values数组的所有元素
      */
     public void addAll(T[] values){
-
         for (T value : values) {
             this.add(value);
         }
@@ -172,18 +161,15 @@ public class HashSet<T> {
      * 自动垃圾回收
      */
     public void clear(){
-
         this.table = new SinglyList[this.table.length];
     }
 
     public SinglyList<T>[] getTable() {
-
         return this.table;
     }
 
     @Override
     public String toString() {
-
         StringBuilder sb = new StringBuilder();
 
         sb.append("[");

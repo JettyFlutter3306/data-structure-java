@@ -12,7 +12,6 @@ public class MergeSort {
      *   时间复杂度为 O(n × log n)  空间复杂度为 O(n)
      */
     public static void mergeSort(int[] x){
-
         int[] y = new int[x.length];  //y数组长度同x数组
 
         int n = 1;  //排序子序列长度,初始值为1
@@ -34,8 +33,7 @@ public class MergeSort {
      * 将x中分别以begin1,begin2开始的两个相邻子序列归并(升序)到y中,子序列长度为n
      */
     private static void merge(int[] x,int[] y,int begin1,int begin2,int n){
-
-        int i = begin1,j = begin2,k = begin1;
+        int i = begin1, j = begin2, k = begin1;
 
         while(i < begin1 + n && j < begin2 + n && j < x.length){  //将x中的两个相邻子序列归并到y中
             if(x[i] < x[j]){
@@ -58,11 +56,10 @@ public class MergeSort {
      * 实现一趟归并,将x中若干相邻子序列两两归并到y中,子序列长度为n
      */
     private static void mergePass(int[] x,int[] y,int n){
-
         System.out.println("子序列长度 n = " + n + " ");
 
         for (int i = 0; i < x.length; i += 2 * n) {  //将x中若干相邻子序列归并到y中切
-            merge(x,y,i,i+n,n);  //一次归并
+            merge(x, y, i, i + n, n);  //一次归并
         }
     }
 

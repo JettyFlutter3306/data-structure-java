@@ -14,7 +14,6 @@ public class HuffmanTree {
      * @param weights       权值集合
      */
     public HuffmanTree(int[] weights) {
-
         this.charset = "";
 
         for (int i = 0; i < weights.length; i++) {  //默认字符集合是从'A'开始的weights.length个字符
@@ -36,14 +35,14 @@ public class HuffmanTree {
             int x1 = -1,x2 = -1;  //最小和次小权值结点下标
 
             for (int j = 0; j < i; j++) {               //寻找两个无父母的最小权值结点下标
-                if(this.hufTree[j].parent == -1){       //第 j 个结点无父母
-                    if(this.hufTree[j].data < min1){    //第 j 个结点权值最小
+                if (this.hufTree[j].parent == -1) {       //第 j 个结点无父母
+                    if (this.hufTree[j].data < min1) {    //第 j 个结点权值最小
                         min2 = min1;                    //min2记得次小权值
                         x2 = x1;                        //x2记得次小权值结点下标
 
                         min1 = this.hufTree[j].data;        //min1记得最小权值
                         x1 = j;                         //x1记得最小权值结点下标
-                    }else if(this.hufTree[j].data < min2){      //第 j 个结点权值次小
+                    } else if (this.hufTree[j].data < min2) {      //第 j 个结点权值次小
                         min2 = hufTree[j].data;
 
                         x2 = j;
@@ -62,8 +61,7 @@ public class HuffmanTree {
      * @param i         序列
      * @return          String
      */
-    private String getCode(int i){
-
+    private String getCode(int i) {
         int n = 8;
 
         char[] hufCode = new char[n];       //声明字符数组暂存 Huffman 编码
@@ -87,8 +85,7 @@ public class HuffmanTree {
      * @param text          文本
      * @return              压缩字符串
      */
-    public String encode(String text){
-
+    public String encode(String text) {
         StringBuilder compressed = new StringBuilder();  //被压缩的数据,以字符串显示
 
         for (int i = 0; i < text.length(); i++) {
@@ -103,20 +100,19 @@ public class HuffmanTree {
      * @param compressed            压缩字符串
      * @return                      Huffman编码
      */
-    public String decode(String compressed){
-
+    public String decode(String compressed) {
         StringBuilder text = new StringBuilder();
 
         int node = this.hufTree.length - 1;  //node搜索一条从根到达叶子的路径
 
         for (int i = 0; i < compressed.length(); i++) {  //根据0,1分别向左或右孩子走
-            if(compressed.charAt(i) == '0'){
+            if (compressed.charAt(i) == '0') {
                 node = hufTree[node].left;
-            }else{
+            } else {
                 node = hufTree[node].right;
             }
 
-            if(hufTree[node].isLeaf()){  //到达叶子结点
+            if (hufTree[node].isLeaf()) {  //到达叶子结点
                 text.append(this.charset.charAt(node));  //获得一个字符
 
                 node = this.hufTree.length - 1;  //node再从根结点开始
@@ -131,7 +127,6 @@ public class HuffmanTree {
      */
     @Override
     public String toString() {
-
         StringBuilder str = new StringBuilder("Huffman树的结点数组: \n");
 
         for (TriElement triElement : this.hufTree) {

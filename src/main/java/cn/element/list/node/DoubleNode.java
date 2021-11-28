@@ -12,14 +12,12 @@ public class DoubleNode<T> extends AbstractBaseEntity {
     public DoubleNode<T> prev,next; //地址域,prev指向前驱元素,next指向后继元素
 
     public DoubleNode(T data,DoubleNode<T> prev,DoubleNode<T> next){
-
         this.data = data;
         this.prev = prev;
         this.next = next;
     }
 
     public DoubleNode(T data){
-
         this(data,null,null);
     }
 

@@ -6,57 +6,63 @@ import java.io.Serializable;
  * 变量字符换类,最终类,实现序列化接口
  */
 public final class IStringBuffer implements Serializable {
-
     private char[] value;  //字符数组,私有成员变量
 
     private int n;      //串长度
 
-    //构造方法
-    public IStringBuffer(int capacity){
-
+    /**
+     * 构造方法
+     */
+    public IStringBuffer(int capacity) {
         this.value = new char[capacity];
         this.n = 0;
     }
 
-    //以默认容量构造空串
-    public IStringBuffer(){
-
+    /**
+     * 以默认容量构造空串
+     */
+    public IStringBuffer() {
         this(16);
     }
 
-    //以字符串常量构造串
-    public IStringBuffer(String str){
-
+    /**
+     * 以字符串常量构造串
+     */
+    public IStringBuffer(String str) {
         this(str.length() + 16);
         this.n = str.length();
 
         //复制str串所有字符
-        for(int i = 0;i < this.n;i++){
+        for (int i = 0; i < this.n; i++) {
             this.value[i] = str.charAt(i);
         }
     }
 
-    //返回字符串长度
-    public int length(){
-
+    /**
+     * 返回字符串长度
+     */
+    public int length() {
         return this.n;
     }
 
-    //返回字符数组容量
-    public int capacity(){
-
+    /**
+     * 返回字符数组容量
+     */
+    public int capacity() {
         return this.value.length;
     }
 
-    //返回第i个字符
-    public synchronized char charAt(int i){
-
+    /**
+     * 返回第i个字符
+     */
+    public synchronized char charAt(int i) {
         return this.value[i];
     }
 
-    //设置第i个字符为ch
-    public void setCharAt(int i,char ch){
-
+    /**
+     * 设置第i个字符为ch
+     */
+    public void setCharAt(int i, char ch) {
         this.value[i] = ch;
     }
 
@@ -66,37 +72,36 @@ public final class IStringBuffer implements Serializable {
      * @param str           待插入串
      * @return              返回新串
      */
-    public synchronized IStringBuffer insert(int i, String str){
-
-        if(this.n == 0 && i == 0 || this.n > 0 && i >= 0 && i <= this.n){
-            if(str == null){
+    public synchronized IStringBuffer insert(int i, String str) {
+        if (this.n == 0 && i == 0 || this.n > 0 && i >= 0 && i <= this.n) {
+            if (str == null) {
                 str = "null";
             }
 
             char[] temp = this.value;
 
-            if(this.value.length < this.n + str.length()){ //若数组空间不足则扩容
+            if (this.value.length < this.n + str.length()) { //若数组空间不足则扩容
                 this.value = new char[(this.value.length + str.length()) * 2]; //重新申请字符数组空间
 
-                for (int j = 0; j < i; j++){ //复制当前串前i-1个字符
+                for (int j = 0; j < i; j++) { //复制当前串前i-1个字符
                     this.value[j] = temp[j];
                 }
             }
 
             //从i开始至串尾的子串向后移动,次序从后向前
-            for (int j = this.n - 1; j >= i; j--){
+            for (int j = this.n - 1; j >= i; j--) {
                 this.value[j + str.length()] = temp[j];
             }
 
             //插入str串
-            for(int j = 0;j < str.length();j++){
+            for (int j = 0;j < str.length();j++) {
                 this.value[i + j] = str.charAt(j);
             }
 
             this.n += str.length();
 
             return this;
-        }else {
+        } else {
             throw new StringIndexOutOfBoundsException("i="+i);
         }
     }
@@ -107,14 +112,14 @@ public final class IStringBuffer implements Serializable {
      * @param b     布尔
      * @return      返回新的buffer
      */
-    public synchronized IStringBuffer insert(int i, boolean b){
-
+    public synchronized IStringBuffer insert(int i, boolean b) {
         return this.insert(i,b ? "true" : "false");
     }
 
-    //添加str串
-    public synchronized IStringBuffer append(String str){
-
+    /**
+     * 添加str串
+     */
+    public synchronized IStringBuffer append(String str) {
         return this.insert(this.n,str);
     }
 
@@ -124,39 +129,35 @@ public final class IStringBuffer implements Serializable {
      * 若end >= length(),删除到串尾
      * 若begin越界,或者begin>end抛出字符串序号越界异常
      */
-    public synchronized IStringBuffer delete(int begin, int end){
-
-        if(begin >= 0 && begin < this.n && end >= 0 && begin <= end){
-            if(end > this.n){ //end超长容错
+    public synchronized IStringBuffer delete(int begin, int end) {
+        if (begin >= 0 && begin < this.n && end >= 0 && begin <= end) {
+            if (end > this.n) { //end超长容错
                 end = this.n;
             }
 
             //从end开始至串尾的子串向前移动
-            for(int i = 0;i < this.n - end;i++){
-                this.value[begin+i] = this.value[end+i];
+            if (this.n - end >= 0) {
+                System.arraycopy(this.value, end, this.value, begin, this.n - end);
             }
 
             this.n -= end - begin;
 
             return this;
-        }else{
+        } else {
             throw new StringIndexOutOfBoundsException("begin="+begin+", end="+end+", end-begin="+(end-begin));
         }
     }
 
     //将从begin到end-1子串全都替换为s串
-    public IStringBuffer replace(int begin, int end, String s){
-
-
+    public IStringBuffer replace(int begin, int end, String s) {
         return null;
     }
 
     @Override
     public String toString() {
-
         StringBuilder sb = new StringBuilder("");
 
-        if(this.value != null && this.n != 0){
+        if (this.value != null && this.n != 0) {
             for (int i = 0; i < this.n; i++) {
                 sb.append(this.value[i]);
             }

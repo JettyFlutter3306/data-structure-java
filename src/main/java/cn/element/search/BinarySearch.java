@@ -17,18 +17,17 @@ public class BinarySearch {
      * @param <T>               泛型
      * @return                  下标
      */
-    public static <T extends Comparable<? super T>> int binarySearch(T[] values,int begin,int end,T key){
-
-        while(begin <= end){  //边界有效
+    public static <T extends Comparable<? super T>> int binarySearch(T[] values, int begin, int end, T key) {
+        while (begin <= end) {  //边界有效
             int mid = (begin + end) / 2;  //取中间位置,当前比较元素位置
 
-            if(key.compareTo(values[mid]) == 0){  //两对象相等
+            if (key.compareTo(values[mid]) == 0) {  //两对象相等
                 return mid;
             }
 
-            if(key.compareTo(values[mid]) < 0){  //key对象较小
+            if (key.compareTo(values[mid]) < 0) {  //key对象较小
                 end = mid - 1;  //查找范围缩小到前半段
-            }else{
+            } else {
                 begin = mid + 1;  //查找范文缩小到后半段
             }
         }
@@ -36,8 +35,7 @@ public class BinarySearch {
         return -1;  //查找不成功返回-1
     }
 
-    public static <T extends Comparable<? super T>> int binarySearch(T[] value,T key){
-
+    public static <T extends Comparable<? super T>> int binarySearch(T[] value,T key) {
         return binarySearch(value,0,value.length - 1,key);
     }
 

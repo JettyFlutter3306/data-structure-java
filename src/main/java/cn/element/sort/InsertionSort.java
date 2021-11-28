@@ -17,7 +17,6 @@ public class InsertionSort {
      * 2.重复执行步骤1,n个元素共需要n-1趟,每趟将一个元素ai插入到它前面的子序列中
      */
     public static void straightInsertionSort(int[] keys) {
-
         for (int i = 1; i < keys.length; i++) {
             int temp = keys[i];
 
@@ -37,7 +36,6 @@ public class InsertionSort {
      * 泛型的插入排序,只需要让泛型类实现Comparable接口,重写compare(Object o)方法即可
      */
     public static<T extends Comparable<? super T>> void straightInsertSort(T[] values) {
-
         for (int i = 1; i < values.length; i++) {
             T temp = values[i];
 
@@ -76,7 +74,6 @@ public class InsertionSort {
      *   3.最内层循环for语句进行一组直接插入排序,将一个元素keys[i]插入到其所在组前面的排序子序列中去
      */
     public static void shellSort(int[] keys) {
-
         for (int delta = keys.length / 2; delta > 0; delta /= 2) {  //若干趟,控制增量没趟减半
             for (int i = delta; i < keys.length; i++) {  //一趟分为若干组,每组直接插入排序
                 int temp = keys[i];  //keys[i]是当前待插入的元素

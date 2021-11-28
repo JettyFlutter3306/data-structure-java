@@ -11,13 +11,11 @@ public class DoublyList<T> extends AbstractList<T> {
 
     @Override
     public int size() {
-
         return 0;
     }
 
     @Override
     public T get(int i) {
-
         return null;
     }
 
@@ -28,19 +26,16 @@ public class DoublyList<T> extends AbstractList<T> {
 
     @Override
     public T remove(int i) {
-
         return null;
     }
 
     @Override
     public boolean isEmpty() {
-
         return false;
     }
 
     @Override
     public Iterator<T> iterator() {
-
         return null;
     }
 }

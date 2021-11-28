@@ -26,21 +26,18 @@ public class ThreadNode<T> extends AbstractBaseEntity {
     }
 
     public ThreadNode(T data) {
-
         this(data,null,null,false,false);
     }
 
     /**
      * 判断是否是叶子结点
      */
-    public boolean isLeaf(){
-
+    public boolean isLeaf() {
         return this.left == null && this.right == null;
     }
 
     @Override
     public String toString() {
-
         return this.data.toString();
     }
 }

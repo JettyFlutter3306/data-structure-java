@@ -13,16 +13,16 @@ public final class LinkedStack<T> extends AbstractStack<T> {
     //使用单链表存储栈元素
     private final SinglyList<T> list;
 
-    //构造空栈
+    /**
+     * 构造空栈
+     */
     public LinkedStack() {
-
         //构造单链表
         this.list = new SinglyList<>();
     }
 
     @Override
     public boolean isEmpty() {
-
         return this.list.isEmpty();
     }
 
@@ -31,7 +31,6 @@ public final class LinkedStack<T> extends AbstractStack<T> {
      */
     @Override
     public void push(T x) {
-
         this.list.insert(0,x);
     }
 
@@ -41,7 +40,6 @@ public final class LinkedStack<T> extends AbstractStack<T> {
      */
     @Override
     public T peek() {
-
         return this.list.get(0);
     }
 
@@ -51,13 +49,11 @@ public final class LinkedStack<T> extends AbstractStack<T> {
      */
     @Override
     public T pop() {
-
         return this.list.remove(0);
     }
 
     @Override
     public Iterator<T> iterator() {
-
         return null;
     }
 }

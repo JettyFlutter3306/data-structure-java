@@ -8,8 +8,7 @@ import java.util.List;
  */
 public class GetSubset {
 
-    public List<List<Integer>> getSubSet(int[] nums){
-
+    public List<List<Integer>> getSubSet(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
 
         List<Integer> path = new ArrayList<>();
@@ -23,7 +22,6 @@ public class GetSubset {
      * 构造回溯递归辅助函数
      */
     private void dfs(int[] nums, int begin, int n, List<Integer> path, List<List<Integer>> res) {
-
         res.add(new ArrayList<>(path));
 
         for (int i = begin; i < n; i++) {
@@ -36,7 +34,6 @@ public class GetSubset {
     }
 
     public static void main(String[] args) {
-
         GetSubset getSubset = new GetSubset();
 
         int[] arr = {1,3,5,7};

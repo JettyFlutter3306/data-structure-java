@@ -13,15 +13,15 @@ public final class SeqStack<T> extends AbstractStack<T> {
     //使用顺序表存储栈元素
     private final SeqList<T> list;
 
-    //构造容量为length的空栈
+    /**
+     * 构造容量为length的空栈
+     */
     public SeqStack(int length) {
-
         //执行顺序表的构造方法
         this.list = new SeqList<>(length);
     }
 
     public SeqStack() {
-
         this(64);
     }
 
@@ -31,7 +31,6 @@ public final class SeqStack<T> extends AbstractStack<T> {
      */
     @Override
     public boolean isEmpty() {
-
         return this.list.isEmpty();
     }
 
@@ -41,7 +40,6 @@ public final class SeqStack<T> extends AbstractStack<T> {
      */
     @Override
     public void push(T x) {
-
         this.list.insert(x);
     }
 
@@ -52,8 +50,7 @@ public final class SeqStack<T> extends AbstractStack<T> {
      */
     @Override
     public T peek() {
-
-        return this.list.get(list.size()-1);
+        return this.list.get(list.size() - 1);
     }
 
     /**
@@ -63,13 +60,11 @@ public final class SeqStack<T> extends AbstractStack<T> {
      */
     @Override
     public T pop() {
-
         return this.list.remove(list.size()-1);
     }
 
     @Override
     public Iterator<T> iterator() {
-
         return null;
     }
 }

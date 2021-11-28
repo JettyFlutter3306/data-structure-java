@@ -1,4 +1,4 @@
-package cn.element.search;
+package cn.element.hash;
 
 import cn.element.common.Map;
 import cn.element.search.sort_tree.BinarySortTree;
@@ -8,7 +8,6 @@ public class TreeMap<K extends Comparable<? super K>,V> implements Map<K,V> {
     BinarySortTree<SortedKeyValue<K,V>> set;  //二叉排序树表示互异的排序集合
 
     public TreeMap() {  //构造空树映射
-
         this.set = new BinarySortTree<>();  //构造空二叉树
     }
 
@@ -27,7 +26,6 @@ public class TreeMap<K extends Comparable<? super K>,V> implements Map<K,V> {
      */
     @Override
     public V get(K key) {
-
         SortedKeyValue<K,V> keyValue = new SortedKeyValue<>(key,null);
 
         SortedKeyValue<K,V> node = this.set.search(keyValue);  //查找
@@ -40,7 +38,6 @@ public class TreeMap<K extends Comparable<? super K>,V> implements Map<K,V> {
      */
     @Override
     public V put(K key, V value) {
-
         SortedKeyValue<K,V> keyValue = new SortedKeyValue<>(key,value);
 
         if(!this.set.add(keyValue)){  //插入不成功,表示关键字重复
@@ -70,8 +67,7 @@ public class TreeMap<K extends Comparable<? super K>,V> implements Map<K,V> {
         return new Object[0];
     }
 
-    public BinarySortTree<K> keySet(){
-
+    public BinarySortTree<K> keySet() {
 
         return null;
     }

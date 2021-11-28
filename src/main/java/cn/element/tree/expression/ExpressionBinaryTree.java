@@ -15,7 +15,6 @@ public class ExpressionBinaryTree extends BinaryTree<ExpData> {
      * 构造空二叉树
      */
     public ExpressionBinaryTree() {
-
         super();
     }
 
@@ -24,7 +23,6 @@ public class ExpressionBinaryTree extends BinaryTree<ExpData> {
      * @param prefix            前缀表达式
      */
     public ExpressionBinaryTree(String prefix) {
-
         this.root = this.createPrefix(prefix);
     }
 
@@ -35,22 +33,21 @@ public class ExpressionBinaryTree extends BinaryTree<ExpData> {
      * @param prefix        前缀表达式
      * @return              BinaryNode
      */
-    private BinaryNode<ExpData> createPrefix(String prefix){
-
+    private BinaryNode<ExpData> createPrefix(String prefix) {
         BinaryNode<ExpData> p = null;
 
-        if(i < prefix.length()){
+        if (i < prefix.length()) {
             char ch = prefix.charAt(i);
 
-            if(ch >= '0' && ch <= '9'){  //遇到数字字符
+            if (ch >= '0' && ch <= '9') {  //遇到数字字符
                 int value = 0;
 
-                while(i < prefix.length() && ch != ' '){  //将整数字符串转换为整数值
+                while (i < prefix.length() && ch != ' ') {  //将整数字符串转换为整数值
                     value = value * 10 + ch - '0';
 
                     i++;
 
-                    if(i < prefix.length()){
+                    if (i < prefix.length()) {
                         ch = prefix.charAt(i);
                     }
                 }
@@ -58,7 +55,7 @@ public class ExpressionBinaryTree extends BinaryTree<ExpData> {
                 p = new BinaryNode<>(new ExpData(value,' '));  //创建数值结点,叶子结点
 
                 i++;  //跳过整数后的一个空格
-            }else{
+            } else {
                 p = new BinaryNode<>(new ExpData(0,prefix.charAt(i)));
 
                 i++;
@@ -75,21 +72,19 @@ public class ExpressionBinaryTree extends BinaryTree<ExpData> {
     /**
      * 计算算术表达式,返回整数值
      */
-    public int toValue(){
-
+    public int toValue() {
         return this.toValue(this.root);
     }
 
     /**
      * 后根次序遍历并计算以 p 结点为根的子树, p 结点的 value 存储运算结果,递归算法
      */
-    private int toValue(BinaryNode<ExpData> p){
-
-        if(p == null){
+    private int toValue(BinaryNode<ExpData> p) {
+        if (p == null) {
             return 0;
         }
 
-        if(!p.isLeaf()){
+        if (!p.isLeaf()) {
             switch (p.data.operator){  //非叶子结点,根据运算符分别计算
                 case '+': p.data.value = toValue(p.left) + toValue(p.right);break;
                 case '-': p.data.value = toValue(p.left) - toValue(p.right);break;

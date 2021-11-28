@@ -1,4 +1,4 @@
-package cn.element.search;
+package cn.element.hash;
 
 /**
  * 声明KeyValue<K,V>映射元素类如下
@@ -29,7 +29,6 @@ public class KeyValue<K,V> {
      */
     @Override
     public final int hashCode() {
-
         return this.key.hashCode();
     }
 
@@ -38,13 +37,11 @@ public class KeyValue<K,V> {
      */
     @Override
     public boolean equals(Object obj) {
-
         return obj == this || obj instanceof KeyValue<?,?> && this.key.equals(((KeyValue<K,V>)obj).key);
     }
 
     @Override
     public String toString() {
-
         return "(" + this.key + "," + this.value + ")";
     }
 

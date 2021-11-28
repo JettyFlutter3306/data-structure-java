@@ -1,6 +1,6 @@
 package test_search;
 
-import cn.element.search.HashMap;
+import cn.element.hash.HashMap;
 import cn.element.common.Map;
 import org.junit.Test;
 

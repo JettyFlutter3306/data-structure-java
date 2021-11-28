@@ -14,14 +14,15 @@ public final class PriorityQueue<T extends Comparable<? super T>> extends Abstra
 
     private final boolean asc;                //使用asc指定升序 (true) 降序 (false)
 
-    public PriorityQueue(boolean asc) { //构造空队列.asc指定升序或降序
-
+    /**
+     * 构造空队列.asc指定升序或降序
+     */
+    public PriorityQueue(boolean asc) {
         this.list = new SortedCirDoublyList<>();
         this.asc = asc;
     }
 
     public PriorityQueue() {
-
         this(true);
     }
 
@@ -31,7 +32,6 @@ public final class PriorityQueue<T extends Comparable<? super T>> extends Abstra
      */
     @Override
     public boolean isEmpty() {
-
         return this.list.isEmpty();
     }
 
@@ -42,7 +42,6 @@ public final class PriorityQueue<T extends Comparable<? super T>> extends Abstra
      */
     @Override
     public boolean add(T x) {
-
         return this.list.insert(x) != null;     //排序循环双链表按值插入
     }
 
@@ -52,7 +51,6 @@ public final class PriorityQueue<T extends Comparable<? super T>> extends Abstra
      */
     @Override
     public T peek() {
-
         return this.asc ? this.list.get(0) : this.list.head.prev.data;
     }
 
@@ -62,20 +60,17 @@ public final class PriorityQueue<T extends Comparable<? super T>> extends Abstra
      */
     @Override
     public T poll() {
-
         //升序时,返回队头元素,删除队头结点,降序时,返回队尾元素,删除队尾结点
         return this.asc ? this.list.remove(0) : this.list.removeLast();
     }
 
     @Override
     public String toString() {
-
         return this.getClass().getSimpleName() + "" + (this.asc ? this.list : this.list.toPreviousString());
     }
 
     @Override
     public Iterator<T> iterator() {
-
         return null;
     }
 }

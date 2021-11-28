@@ -9,8 +9,10 @@ public class GenList<T> implements IGenList<T>{
 
     public GenNode<T> head;  //头指针,指向(引用)头结点
 
-    public GenList() {  //构造空广义表
-
+    /**
+     * 构造空广义表
+     */
+    public GenList() {
         this.head = new GenNode<>();  //创建头结点,3个域值均为 null
     }
 
@@ -19,7 +21,6 @@ public class GenList<T> implements IGenList<T>{
      * @param atoms         原子项数组
      */
     public GenList(T[] atoms) {
-
         this();
 
         GenNode<T> p = this.head;
@@ -33,7 +34,6 @@ public class GenList<T> implements IGenList<T>{
 
     @Override
     public boolean isEmpty() {
-
         return this.head.next == null;
     }
 
@@ -42,12 +42,11 @@ public class GenList<T> implements IGenList<T>{
      */
     @Override
     public int size() {
-
         GenNode<T> p = this.head.next;
 
         int count = 0;
 
-        while(p != null){
+        while (p != null) {
             count++;
 
             p = p.next;
@@ -61,11 +60,10 @@ public class GenList<T> implements IGenList<T>{
      */
     @Override
     public int depth() {
-
         int temp = 0;
 
         for (GenNode<T> p = this.head.next; p != null ; p = p.next) {
-            if(p.child != null){
+            if (p.child != null) {
                 temp = Math.max(p.child.depth(),temp);
             }
         }
@@ -81,12 +79,11 @@ public class GenList<T> implements IGenList<T>{
      */
     @Override
     public GenNode<T> insert(int i, T x) {
-
         int n = this.size();
 
-        if(i < 0){  //对 i 容错
+        if (i < 0) {  //对 i 容错
             i = 0;
-        }else if(i > n){
+        } else if (i > n) {
             i = n;
         }
 
@@ -107,7 +104,6 @@ public class GenList<T> implements IGenList<T>{
      * @return          结点
      */
     public GenNode<T> insert(T x){
-
         return this.insert(this.size(),x);
     }
 
@@ -119,12 +115,11 @@ public class GenList<T> implements IGenList<T>{
      */
     @Override
     public GenNode<T> insert(int i, GenList<T> genList) {
-
         int n = this.size();
 
-        if(i < 0){  //对 i 容错
+        if (i < 0) {  //对 i 容错
             i = 0;
-        }else if(i > n){
+        } else if (i > n) {
             i = n;
         }
 
@@ -142,14 +137,12 @@ public class GenList<T> implements IGenList<T>{
     /**
      * 尾插入子表,方法重载
      */
-    public GenNode<T> insert(GenList<T> genList){
-
+    public GenNode<T> insert(GenList<T> genList) {
         return this.insert(this.size(),genList);
     }
 
     @Override
     public void remove(int i) {
-
         GenNode<T> p = this.head;
 
         for (int j = 0; j < i; j++) {
@@ -164,17 +157,16 @@ public class GenList<T> implements IGenList<T>{
      * @param sb           字符串
      */
     public String toString(StringBuilder sb){
-
         sb.append("(");
 
         for (GenNode<T> p = this.head.next; p != null ; p = p.next) {
-            if(p.child == null){
+            if (p.child == null) {
                 sb.append(p.data);
-            }else{
+            } else {
                 sb.append(p.child);  //递归调用,遍历子表添加子表描述字符串
             }
 
-            if(p.next != null){
+            if (p.next != null) {
                 sb.append(",");
             }
         }
@@ -189,7 +181,6 @@ public class GenList<T> implements IGenList<T>{
      */
     @Override
     public String toString() {
-
         return this.toString(new StringBuilder());
     }
 }

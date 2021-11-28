@@ -14,7 +14,6 @@ public final class LinkedQueue<T> extends AbstractQueue<T> {
     private Node<T> front,rear;  //front和rear分别指向队列头和队列尾结点
 
     public LinkedQueue() {  //构造空队列
-
         this.front = this.rear = null;
     }
 
@@ -23,7 +22,6 @@ public final class LinkedQueue<T> extends AbstractQueue<T> {
      */
     @Override
     public boolean isEmpty() {
-
         return this.front == null && this.rear == null;
     }
 
@@ -34,16 +32,15 @@ public final class LinkedQueue<T> extends AbstractQueue<T> {
      */
     @Override
     public boolean add(T x) {
-
-        if(x == null){
+        if (x == null) {
             return false;
         }
 
         Node<T> q = new Node<>(x,null);
 
-        if(this.front == null){
+        if (this.front == null) {
             this.front = q;
-        }else{
+        } else {
             this.rear.next = q; //空队列插入
         }
 
@@ -57,7 +54,6 @@ public final class LinkedQueue<T> extends AbstractQueue<T> {
      */
     @Override
     public T peek() {
-
         return this.isEmpty() ? null : this.front.data;
     }
 
@@ -66,7 +62,7 @@ public final class LinkedQueue<T> extends AbstractQueue<T> {
      */
     @Override
     public T poll() {
-        if(this.isEmpty()){
+        if (this.isEmpty()) {
             return null;
         }
 
@@ -74,7 +70,7 @@ public final class LinkedQueue<T> extends AbstractQueue<T> {
 
         this.front = this.front.next; //删除队头结点
 
-        if(this.front == null){
+        if (this.front == null) {
             this.rear = null;
         }
 
@@ -83,7 +79,6 @@ public final class LinkedQueue<T> extends AbstractQueue<T> {
 
     @Override
     public Iterator<T> iterator() {
-
         return null;
     }
 }

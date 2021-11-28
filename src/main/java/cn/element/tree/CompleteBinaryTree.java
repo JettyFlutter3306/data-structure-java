@@ -9,7 +9,6 @@ public class CompleteBinaryTree<T> extends BinaryTree<T> {
      * 构造空二叉树
      */
     public CompleteBinaryTree() {
-
         super();
     }
 
@@ -18,7 +17,6 @@ public class CompleteBinaryTree<T> extends BinaryTree<T> {
      * @param levelList         层次遍历序列
      */
     public CompleteBinaryTree(T[] levelList) {
-
 
     }
 
@@ -29,7 +27,6 @@ public class CompleteBinaryTree<T> extends BinaryTree<T> {
      */
     @Override
     public BinaryNode<T> insert(T x) {
-
         return null;
     }
 

@@ -19,7 +19,6 @@ public class ExpData extends AbstractBaseEntity {
 
     @Override
     public String toString() {
-
         return this.operator == ' ' ? this.value + "" : this.operator + "";
     }
 }

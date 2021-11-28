@@ -17,8 +17,7 @@ import java.util.Stack;
  */
 public class FullPermutation {
 
-    public List<List<String>> getFullPermutation(String[] arr){
-
+    public List<List<String>> getFullPermutation(String[] arr) {
         List<List<String>> lists = new ArrayList<>();
 
         Stack<String> stack = new Stack<>();
@@ -28,11 +27,10 @@ public class FullPermutation {
         return lists;
     }
 
-    private void dfs(String[] arr,Stack<String> stack,List<List<String>> lists,int index){
-
-        if(arr.length <= 0){
+    private void dfs(String[] arr,Stack<String> stack,List<List<String>> lists,int index) {
+        if (arr.length <= 0) {
             lists.add(new ArrayList<>(stack));
-        }else{
+        } else {
             for (int i = 0; i < arr.length; i++) {
                 String[] temp = new String[arr.length - 1];
 
@@ -50,7 +48,6 @@ public class FullPermutation {
     }
 
     public static void main(String[] args) {
-
         String[] arr = {"1","2","3"};
 
         FullPermutation a = new FullPermutation();

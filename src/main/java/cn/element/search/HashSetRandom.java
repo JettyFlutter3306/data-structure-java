@@ -1,5 +1,7 @@
 package cn.element.search;
 
+import cn.element.hash.HashSet;
+
 import java.util.Arrays;
 
 public class HashSetRandom {
@@ -10,20 +12,19 @@ public class HashSetRandom {
      * @param size          范围
      * @return              Integer[]
      */
-    public static Integer[] randomDifferent(int n,int size){
-
+    public static Integer[] randomDifferent(int n, int size) {
         Integer[] values = new Integer[n];
 
         HashSet<Integer> set = new HashSet<>();  //构造空散列表
 
         int i = 0;
 
-        while(i < n){
+        while (i < n) {
             int key = (int)(Math.random() * size);  //生成 0 ~ size-1 的随机数
 
-            if(set.add(key)){  //添加一个随机数到散列表成功
+            if (set.add(key)) {  //添加一个随机数到散列表成功
                 values[i++] = key;
-            }else{
+            } else {
                 System.out.println(key + "重复,插入失败!");
             }
         }
@@ -32,7 +33,6 @@ public class HashSetRandom {
     }
 
     public static void main(String[] args) {
-
         int n = 10;
         int size = 100;
 

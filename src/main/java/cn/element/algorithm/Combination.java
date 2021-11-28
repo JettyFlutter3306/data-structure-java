@@ -10,8 +10,7 @@ import java.util.Stack;
  */
 public class Combination {
 
-    public List<List<Integer>> getCombination(int[] arr,int k){
-
+    public List<List<Integer>> getCombination(int[] arr,int k) {
         int n = arr.length;
 
         List<List<Integer>> lists = new ArrayList<>();
@@ -30,13 +29,12 @@ public class Combination {
      * 当遍历到 4 的时候就可以停止了,没有继续下去的必要了,因为一个组合元素个数才是4个,就算遍历到5底下也不满足条件了,
      * 把 5 入栈底下得到的组合里面的元素只能有3个即 {5,6,7},不满足条件!
      */
-    public void backTrack(List<List<Integer>> lists,Stack<Integer> stack,int k,int index,int[] arr){
-
-        if(stack.size() == k){
+    public void backTrack(List<List<Integer>> lists,Stack<Integer> stack,int k,int index,int[] arr) {
+        if (stack.size() == k) {
             lists.add(new ArrayList<>(stack));
-        }else{
+        } else {
             for (int i = index; i <= arr.length - (k - stack.size()); i++) {  //i <= n - (k - stack.size()) 重要!!!
-                if(!stack.empty() && stack.peek() >= arr[i]){
+                if (!stack.empty() && stack.peek() >= arr[i]) {
                     continue;
                 }
 
@@ -51,7 +49,6 @@ public class Combination {
     }
 
     public static void main(String[] args) {
-
         Combination combination = new Combination();
 
         int[] arr = {1,3,5,7,8,9};  //假定给的数组是升序的,方便计算,不是排序的数组那么就要对它进行一波快速排序

@@ -11,13 +11,17 @@ public final class IString implements Comparable<IString>, Serializable {
 
     private final char[] value;  //字符数组,私有最终变量,只能赋值一次
 
-    public IString() {  //构造空串"",串长度为0
-
+    /**
+     * 构造空串"",串长度为0
+     */
+    public IString() {
         this.value = new char[0];
     }
 
-    public IString(String str) { //由字符串常量构造串
-
+    /**
+     * 由字符串常量构造串
+     */
+    public IString(String str) {
         this.value = new char[str.length()]; //申请字符数组并复制str串的所有字符串
 
         for (int i = 0; i < this.value.length; i++) {
@@ -30,7 +34,6 @@ public final class IString implements Comparable<IString>, Serializable {
      * 若i与n指定序号越界,则抛出字符串序号越界异常
      */
     public IString(char[] value,int i,int n) {
-
         if (i >= 0 && n >= 0 && i + n <= value.length) {
             this.value = new char[n]; //申请字符数组并复制所有的字符
 
@@ -40,16 +43,17 @@ public final class IString implements Comparable<IString>, Serializable {
         }
     }
 
-
-    //以字符数组构造串
+    /**
+     * 以字符数组构造串
+     */
     public IString(char[] value) {
-
         this(value, 0, value.length);
     }
 
-    //拷贝构造方法,深度拷贝,复制字符
+    /**
+     * 拷贝构造方法,深度拷贝,复制字符
+     */
     public IString(IString str) {
-
         this(str.value);
     }
 
@@ -58,7 +62,6 @@ public final class IString implements Comparable<IString>, Serializable {
      * @param stringBuffer      StringBuffer对象
      */
     public IString(IStringBuffer stringBuffer) {
-
         this.value = new char[stringBuffer.capacity()]; //初始化
 
         for (int i = 0; i < stringBuffer.length(); i++) {
@@ -72,21 +75,20 @@ public final class IString implements Comparable<IString>, Serializable {
      * @return      长度
      */
     public int length() {
-
         return this.value.length;
     }
 
     //返回第i个字符,0<=i<length(),若i越界,则抛出字符串序号越界异常
     public char charAt(int i) {
-
-        if(i >= 0 && i < this.value.length){
+        if (i >= 0 && i < this.value.length) {
             return this.value[i];
         }
 
         throw new StringIndexOutOfBoundsException(i);
     }
 
-    /**字符串截取,即求子串 区间[begin,end)
+    /**
+     * 字符串截取,即求子串 区间[begin,end)
      * 返回序号从begin至end-1的子串,
      * 0 <= begin < length(),0 <= end < length(),begin < end
      * 否则抛出字符串序号越界异常
@@ -95,12 +97,11 @@ public final class IString implements Comparable<IString>, Serializable {
      * @return          子串
      */
     public IString subString(int begin,int end) {
-
-        if(begin >= end){
+        if (begin >= end) {
             throw new StringIndexOutOfBoundsException("begin >= end");
         }
 
-        if(begin == 0 && end == this.value.length){
+        if (begin == 0 && end == this.value.length) {
             return this;
         }
 
@@ -113,15 +114,13 @@ public final class IString implements Comparable<IString>, Serializable {
      * @return          当前串
      */
     public IString deleteString(int i) {
-
-        if(i < 0 || i >= this.value.length){
+        if (i < 0 || i >= this.value.length) {
             throw new IndexOutOfBoundsException("i < 0");
         }
 
         char[] temp = new char[this.value.length - 1];
 
         System.arraycopy(this.value, 0, temp, 0, i);
-
         System.arraycopy(this.value, i + 1, temp, i, this.value.length - i);
 
         return new IString(temp);
@@ -133,13 +132,12 @@ public final class IString implements Comparable<IString>, Serializable {
      * @param end       结束的索引
      * @return          原来的串
      */
-    public IString deleteString(int begin, int end){
-
-        if(begin >= end){
+    public IString deleteString(int begin, int end) {
+        if (begin >= end) {
             throw new StringIndexOutOfBoundsException("begin >= end");
         }
 
-        if(begin == 0 && end == this.length()){
+        if (begin == 0 && end == this.length()) {
             return new IString();
         }
 
@@ -158,16 +156,18 @@ public final class IString implements Comparable<IString>, Serializable {
         return new IString(temp);
     }
 
-    //返回序号从begin至串尾的子串
-    public IString subString(int begin){
-
+    /**
+     * 返回序号从begin至串尾的子串
+     */
+    public IString subString(int begin) {
         return subString(begin,this.value.length);
     }
 
-    //返回this与str串连接生成的串,若str == null,则插入"null"
-    public IString concat(IString str){
-
-        if(str == null){
+    /**
+     * 返回this与str串连接生成的串,若str == null,则插入"null"
+     */
+    public IString concat(IString str) {
+        if (str == null) {
             str = new IString("null");
         }
 
@@ -176,7 +176,7 @@ public final class IString implements Comparable<IString>, Serializable {
         int i;
 
         //复制当前串
-        for(i = 0;i < this.value.length;i++){
+        for (i = 0; i < this.value.length; i++) {
             buffer[i] = this.value[i];
         }
 
@@ -189,9 +189,10 @@ public final class IString implements Comparable<IString>, Serializable {
         return new IString(buffer);
     }
 
-    //返回当前串删除所有空格的字符串
-    public IString trim(){
-
+    /**
+     * 返回当前串删除所有空格的字符串
+     */
+    public IString trim() {
         int i = 0;
 
         char[] buffer = new char[this.value.length];
@@ -214,9 +215,10 @@ public final class IString implements Comparable<IString>, Serializable {
         return new IString(temp);
     }
 
-    //返回将所有小写字母转成大写的串
-    public IString toUpperCase(){
-
+    /**
+     * 返回将所有小写字母转成大写的串
+     */
+    public IString toUpperCase() {
         for (int i = 0; i < this.value.length; i++) {
             if(this.value[i] >= 'a' && this.value[i] <= 'z'){//是小写字母
                 this.value[i] -= 32;
@@ -228,7 +230,6 @@ public final class IString implements Comparable<IString>, Serializable {
 
     //返回将所有大写字母转成小写字母
     public IString toLowerCase(){
-
         for (int i = 0; i < this.value.length; i++) {
             if(this.value[i] >= 'A' && this.value[i] <= 'Z'){//是大写字母
                 this.value[i] += 32;
@@ -238,28 +239,29 @@ public final class IString implements Comparable<IString>, Serializable {
         return this;
     }
 
-    //比较串与s是否相等,忽略大小写
-    public boolean equalsIgnoreCase(IString s){
-
-        if(s == null){
+    /**
+     * 比较串与s是否相等,忽略大小写
+     */
+    public boolean equalsIgnoreCase(IString s) {
+        if (s == null) {
             throw new NullPointerException("s == null");
         }
 
-        if(s == this){
+        if (s == this) {
             return true;
         }
 
-        if(s.length() == this.length()){
-            for(int i = 0;i < this.length();i++){
-                if(this.value[i] >= 'a' && this.value[i] <= 'z' && s.charAt(i) >= 'A' && s.charAt(i) <= 'Z'){
+        if (s.length() == this.length()) {
+            for (int i = 0; i < this.length(); i++) {
+                if (this.value[i] >= 'a' && this.value[i] <= 'z' && s.charAt(i) >= 'A' && s.charAt(i) <= 'Z') {
                     if(this.value[i] - s.charAt(i) != 32){
                         return false;
                     }
-                }else if(this.value[i] >= 'A' && this.value[i] <= 'Z' && s.charAt(i) >= 'a' && s.charAt(i) <= 'z'){
-                   if(s.charAt(i) - this.value[i] != 32){
+                } else if (this.value[i] >= 'A' && this.value[i] <= 'Z' && s.charAt(i) >= 'a' && s.charAt(i) <= 'z') {
+                   if (s.charAt(i) - this.value[i] != 32) {
                        return false;
                    }
-                }else if(this.value[i] != s.charAt(i)){
+                }else if (this.value[i] != s.charAt(i)) {
                     return false;
                 }
             }
@@ -270,19 +272,20 @@ public final class IString implements Comparable<IString>, Serializable {
         return false;
     }
 
-    //比较两串大小忽略字母大小写
-    public int compareToIgnoreCase(IString s){
-
-        for(int i = 0;i < this.value.length && i < s.value.length;i++){
-            if(this.value[i] >= 'a' && this.value[i] <= 'z' && s.charAt(i) >= 'A' && s.charAt(i) <= 'Z'){
-                if(this.value[i] - s.charAt(i) != 32){
+    /**
+     * 比较两串大小忽略字母大小写
+     */
+    public int compareToIgnoreCase(IString s) {
+        for (int i = 0;i < this.value.length && i < s.value.length;i++) {
+            if (this.value[i] >= 'a' && this.value[i] <= 'z' && s.charAt(i) >= 'A' && s.charAt(i) <= 'Z') {
+                if (this.value[i] - s.charAt(i) != 32) {
                     return this.value[i] - s.value[i]; //返回两串第一个不同字符的差值
                 }
-            }else if(this.value[i] >= 'A' && this.value[i] <= 'Z' && s.charAt(i) >= 'a' && s.charAt(i) <= 'z'){
-                if(s.charAt(i) - this.value[i] != 32){
+            } else if (this.value[i] >= 'A' && this.value[i] <= 'Z' && s.charAt(i) >= 'a' && s.charAt(i) <= 'z') {
+                if (s.charAt(i) - this.value[i] != 32) {
                     return this.value[i] - s.value[i]; //返回两串第一个不同字符的差值
                 }
-            }else if(this.value[i] != s.charAt(i)){
+            } else if (this.value[i] != s.charAt(i)) {
                 return this.value[i] - s.value[i]; //返回两串第一个不同字符的差值
             }
         }
@@ -290,18 +293,19 @@ public final class IString implements Comparable<IString>, Serializable {
         return this.value.length - s.value.length; //前缀子串,返回两串长度的差值
     }
 
-    //分割字符串,以ch为分隔符
+    /**
+     * 分割字符串,以ch为分隔符
+     */
     public IString[] split(char ch){
-
         List<IString> stringList = new ArrayList<>();
 
         int start = 0;
 
-        for(int i = 0;i < this.length();i++){
+        for (int i = 0; i < this.length(); i++) {
             char sc = this.charAt(i);
 
-            if(ch == sc){
-                if(start < i){
+            if (ch == sc) {
+                if (start < i) {
                     stringList.add(this.subString(start,i));
                 }
 
@@ -310,16 +314,17 @@ public final class IString implements Comparable<IString>, Serializable {
         }
 
         //start是根据c计数,不是以c结尾的str在这里加个判断
-        if(start < this.length()){
+        if (start < this.length()) {
             stringList.add(this.subString(start,this.length()));
         }
 
         return stringList.toArray(new IString[0]);
     }
 
-    //返回将串s中各单词改为大写字母的串,单词以空格分隔
-    public static IString upperFirst(IString s){
-
+    /**
+     * 返回将串s中各单词改为大写字母的串,单词以空格分隔
+     */
+    public static IString upperFirst(IString s) {
         IString[] s1 = s.split(' ');
 
         for (IString IString : s1) {
@@ -337,17 +342,19 @@ public final class IString implements Comparable<IString>, Serializable {
         return new IString(tmp.toString());
     }
 
-    //将串s反序输出,从后向前
-    public static void printPrevious(IString s){
-
+    /**
+     * 将串s反序输出,从后向前
+     */
+    public static void printPrevious(IString s) {
         for (int i = s.value.length - 1; i >= 0; i--) {
             System.out.print(s.value[i]);
         }
     }
 
-    //返回两串中所有相同字符(不重复)
-    public static IString getSameChars(IString sa,IString sb){
-
+    /**
+     * 返回两串中所有相同字符(不重复)
+     */
+    public static IString getSameChars(IString sa, IString sb){
         Set<Character> set1 = new HashSet<>();
 
         for (char c : sa.value) {
@@ -373,31 +380,31 @@ public final class IString implements Comparable<IString>, Serializable {
         return new IString(ch);
     }
 
-    //返回将串s逆转的串
-    public static IString reverse(IString s){
-
+    /**
+     * 返回将串s逆转的串
+     */
+    public static IString reverse(IString s) {
         for (int i = 0; i < s.value.length / 2; i++) {
             char temp = s.value[i];
-
             s.value[i] = s.value[s.length() - 1- i];
-
             s.value[s.length() -1 - i] = temp;
         }
 
         return s;
     }
 
-    //判断字符串str是否为标识符
-    public static boolean isIdentifier(IString str){
-
-        if(str == null || str.length() == 0){
+    /**
+     * 判断字符串str是否为标识符
+     */
+    public static boolean isIdentifier(IString str) {
+        if (str == null || str.length() == 0) {
             return false;
         }
 
         char[] ch = str.value;
 
         //是数字
-        if(ch[0] >= '0' && ch[0] <= '9'){
+        if (ch[0] >= '0' && ch[0] <= '9') {
             return false;
         }
 
@@ -410,25 +417,28 @@ public final class IString implements Comparable<IString>, Serializable {
         return true;
     }
 
-    //判断是否是大写字母
+    /**
+     * 判断是否是大写字母
+     */
     public static boolean isUpperLetter(char ch){
-
         return ch >= 'A' && ch <= 'Z';
     }
 
-    //判断是否是小写字母
+    /**
+     * 判断是否是小写字母
+     */
     public static boolean isLowerLetter(char ch){
-
         return ch >= 'a' && ch <= 'z';
     }
 
-    //判断是否是回文字符串 正序和反序一样
+    /**
+     * 判断是否是回文字符串 正序和反序一样
+     */
     public static boolean isBackFrontSame(IString s){
-
         int n = s.length();  //拿到长度
 
         for (int i = 0; i < n / 2; i++) {
-            if(s.charAt(i) != s.charAt(n-i)){
+            if (s.charAt(i) != s.charAt(n-i)) {
                 return false;
             }
         }
@@ -442,7 +452,6 @@ public final class IString implements Comparable<IString>, Serializable {
      * @return              序号
      */
     public int indexOf(IString pattern){
-
         return this.indexOf(pattern,0);
     }
 
@@ -455,15 +464,14 @@ public final class IString implements Comparable<IString>, Serializable {
      * @return          序号
      */
     public int indexOf(IString pattern,int begin){
-
         int n = this.length();
         int m = pattern.length();
 
-        if(begin < 0){ //对begin容错,若begin < 0,那么从0开始
+        if (begin < 0) { //对begin容错,若begin < 0,那么从0开始
             begin = 0;
         }
 
-        if(n == 0 || n < m || begin >= n){ //若目标串为空,较短或begin越界,不需比较
+        if (n == 0 || n < m || begin >= n) { //若目标串为空,较短或begin越界,不需比较
             return -1;
         }
 
@@ -471,13 +479,13 @@ public final class IString implements Comparable<IString>, Serializable {
         int j = 0;
         int count = 0;  //记录比较次数
 
-        while (i < n && j < m){
+        while (i < n && j < m) {
             count++;
 
-            if(this.charAt(i) == pattern.charAt(j)){//若当前两个字符相等,则继续比较后续字符
+            if (this.charAt(i) == pattern.charAt(j)) {//若当前两个字符相等,则继续比较后续字符
                 i++;
                 j++;
-            }else{ //否则i,j回溯,进行下次比较
+            } else { //否则i,j回溯,进行下次比较
                 i = i - j + 1;  //目标串下标i,返回到下个匹配子串序号
 
                 j = 0;  //模式串下标j,退回到0
@@ -488,7 +496,7 @@ public final class IString implements Comparable<IString>, Serializable {
             }
         }
 
-        if(j == m){ //匹配成功
+        if (j == m) { //匹配成功
             return i - j;  //返回匹配的子串序号
         }
 
@@ -501,8 +509,7 @@ public final class IString implements Comparable<IString>, Serializable {
      * @param pattern       模式串
      * @return              索引
      */
-    public static int indexOf(String target,String pattern){
-
+    public static int indexOf(String target,String pattern) {
         return indexOf(target,pattern,0);
     }
 
@@ -515,14 +522,13 @@ public final class IString implements Comparable<IString>, Serializable {
      * @return              索引
      */
     public static int indexOf(String target, String pattern, int begin){
-
         int n = target.length(), m = pattern.length();
 
-        if(begin < 0){ //对begin容错,若begin < 0,那么从0开始
+        if (begin < 0) { //对begin容错,若begin < 0,那么从0开始
             begin = 0;
         }
 
-        if(n == 0 || n < m || begin >= n){//若目标串空,较短或begin越界,不需要比较
+        if (n == 0 || n < m || begin >= n) {//若目标串空,较短或begin越界,不需要比较
             return -1;
         }
 
@@ -530,7 +536,7 @@ public final class IString implements Comparable<IString>, Serializable {
 
         int i = begin,j = 0;  //i,j分别为目标串,模式串比较字符下标
 
-        while(i < n && j < m){
+        while (i < n && j < m) {
             if (j == -1 || target.charAt(i) == pattern.charAt(j)) { //若当前两字符相等,则继续比较后续字符
                 i++;
                 j++;
@@ -543,7 +549,7 @@ public final class IString implements Comparable<IString>, Serializable {
             }
         }
 
-        if(j == m){             //匹配成功
+        if (j == m) {             //匹配成功
             return i - j;       //返回匹配的子串序号
         }
 
@@ -555,8 +561,7 @@ public final class IString implements Comparable<IString>, Serializable {
      * @param pattern       模式串
      * @return              next数组
      */
-    private static int[] getNext(String pattern){
-
+    private static int[] getNext(String pattern) {
         int j = 0, k = -1;
         int[] next = new int[pattern.length()];
 
@@ -576,12 +581,13 @@ public final class IString implements Comparable<IString>, Serializable {
         return next;
     }
 
-    //比较this与str串的大小,返回两者差值
+    /**
+     * 比较this与str串的大小,返回两者差值
+     */
     @Override
     public int compareTo(IString str) {
-
-        for(int i = 0;i < this.value.length && i < str.value.length;i++){
-            if(this.value[i] != str.value[i]){
+        for (int i = 0; i < this.value.length && i < str.value.length; i++) {
+            if (this.value[i] != str.value[i]) {
                 return this.value[i] - str.value[i]; //返回两串第一个不同字符的差值
             }
         }
@@ -591,20 +597,19 @@ public final class IString implements Comparable<IString>, Serializable {
 
     @Override
     public boolean equals(Object obj) {
-
-        if(obj == this){
+        if (obj == this) {
             return true;
         }
 
-        if(obj instanceof IString){
+        if (obj instanceof IString) {
             IString str = (IString) obj;
 
-            if(str.length() != this.length()){
+            if (str.length() != this.length()) {
                 return false;
             }
 
-            for(int i = 0;i < this.value.length;i++){
-                if(this.value[i] != str.value[i]){
+            for (int i = 0; i < this.value.length; i++) {
+                if (this.value[i] != str.value[i]) {
                     return false;
                 }
             }
@@ -617,7 +622,6 @@ public final class IString implements Comparable<IString>, Serializable {
 
     @Override
     public String toString() {
-
         return new String(this.value);
     }
 }

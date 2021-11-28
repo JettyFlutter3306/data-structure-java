@@ -20,7 +20,6 @@ public class BinaryNode<T> extends AbstractBaseEntity {
      * @param right             右子树
      */
     public BinaryNode(T data, BinaryNode<T> left, BinaryNode<T> right) {
-
         this.data = data;
         this.left = left;
         this.right = right;
@@ -31,21 +30,18 @@ public class BinaryNode<T> extends AbstractBaseEntity {
      * @param data          数据
      */
     public BinaryNode(T data) {
-
         this(data,null,null);
     }
 
     /**
      * 判断是否是叶子结点
      */
-    public boolean isLeaf(){
-
+    public boolean isLeaf() {
         return this.left == null && this.right == null;
     }
 
     @Override
     public String toString() {
-
         return this.data.toString();
     }
 }

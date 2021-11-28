@@ -20,7 +20,6 @@ public class MatrixGraph<T> extends AbstractGraph<T> {
      * @param length        指定顶点顺序表容量和邻接矩阵容量
      */
     public MatrixGraph(int length) {
-
         super(length);  //构造容量为length的空顺序表
 
         this.matrix = new Matrix(length);  //构造length * length 矩阵,初值为0
@@ -31,7 +30,6 @@ public class MatrixGraph<T> extends AbstractGraph<T> {
      * 顶点顺序表和邻接矩阵的默认容量是10
      */
     public MatrixGraph() {
-
         this(10);
     }
 
@@ -40,7 +38,6 @@ public class MatrixGraph<T> extends AbstractGraph<T> {
      * @param vertices      顶点集合
      */
     public MatrixGraph(T[] vertices) {
-
         this(vertices.length);  //构造指定容量的空图
 
         for (T vertex : vertices) {
@@ -49,7 +46,6 @@ public class MatrixGraph<T> extends AbstractGraph<T> {
     }
 
     public MatrixGraph(T[] vertices, Triple[] edges) {
-
         this(vertices);
 
         for (Triple edge : edges) {
@@ -68,7 +64,6 @@ public class MatrixGraph<T> extends AbstractGraph<T> {
      */
     @Override
     public int insertVertex(T x) {
-
         int i = this.vertexList.insert(x);  //顶点顺序表尾插入 x ,返回 x 序号,自动扩容
 
         if(i >= this.matrix.getRows()){  //若邻接矩阵容量不够
@@ -88,15 +83,14 @@ public class MatrixGraph<T> extends AbstractGraph<T> {
      */
     @Override
     public void removeVertex(int i) {
-
         int n = this.vertexCount();  //原顶点数
 
-        if(i >= 0 && i < n){
+        if (i >= 0 && i < n) {
             this.vertexList.remove(i);  //删除顶点顺序表第i个元素,顶点数减1
 
             for (int j = i + 1; j < n; j++) {  //第i+1 ~ n-1行元素上移一行
                 for (int k = 0; k < n; k++) {
-                    this.matrix.set(j - 1,k,this.matrix.get(j,k));
+                    this.matrix.set(j - 1, k, this.matrix.get(j,k));
                 }
             }
 
@@ -107,7 +101,7 @@ public class MatrixGraph<T> extends AbstractGraph<T> {
             }
 
             this.matrix.setRowsColumns(n - 1,n- 1);  //邻接矩阵少一行,少一列
-        }else{
+        } else {
             throw new IndexOutOfBoundsException("i = " + i);  //抛出序号越界异常
         }
     }
@@ -118,7 +112,6 @@ public class MatrixGraph<T> extends AbstractGraph<T> {
      */
     @Override
     public int next(int i, int j) {
-
         int n = this.vertexCount();
 
         if(i >= 0 && i < n && j >= -1 && j < n && i != j){
@@ -137,14 +130,13 @@ public class MatrixGraph<T> extends AbstractGraph<T> {
      */
     @Override
     public void insertEdge(int i, int j, int weight) {
-
-        if(i != j){  //不能表示自身环
-            if(weight <= 0 || weight > AbstractGraph.MAX_WEIGHT){  //边的权值容错,视为无边,取值为 ∞
+        if (i != j) {  //不能表示自身环
+            if (weight <= 0 || weight > AbstractGraph.MAX_WEIGHT) {  //边的权值容错,视为无边,取值为 ∞
                 weight = MAX_WEIGHT;
             }
 
             this.matrix.set(i,j,weight);  //设置矩阵元素[i,j]为weight,若i,j越界,抛出序号越界异常
-        }else{
+        } else {
             throw new IllegalArgumentException("不能插入自身环, i = " + i + ", j = " + j);
         }
     }
@@ -154,7 +146,6 @@ public class MatrixGraph<T> extends AbstractGraph<T> {
      * @param edge      Triple
      */
     public void insertEdge(Triple edge){
-
         this.insertEdge(edge.row,edge.column,edge.value);
     }
 
@@ -163,8 +154,7 @@ public class MatrixGraph<T> extends AbstractGraph<T> {
      */
     @Override
     public void removeEdge(int i, int j) {
-
-        if(i != j){
+        if (i != j) {
             this.matrix.set(i,j,MAX_WEIGHT);  //设置边的权值为 +∞ ,若i,j越界,抛出序号越界异常
         }
     }
@@ -173,7 +163,6 @@ public class MatrixGraph<T> extends AbstractGraph<T> {
      * 删除一条边,忽略权值
      */
     public void removeEdge(Triple edge){
-
        this.removeEdge(edge.row,edge.column);
     }
 
@@ -182,22 +171,20 @@ public class MatrixGraph<T> extends AbstractGraph<T> {
      */
     @Override
     public int weight(int i, int j) {
-
         return this.matrix.get(i,j);  //返回矩阵元素[i,j]值,若i,j越界,抛出序号越界异常
     }
 
     @Override
     public String toString() {
-
         StringBuilder sb = new StringBuilder(super.toString()+"邻接矩阵: \n");
 
         int n = this.vertexCount();  //顶点数
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                if(this.matrix.get(i,j) == AbstractGraph.MAX_WEIGHT){
+                if (this.matrix.get(i,j) == AbstractGraph.MAX_WEIGHT) {
                     sb.append("∞").append("\t");
-                }else{
+                } else {
                     sb.append(this.matrix.get(i,j)).append("\t");
                 }
             }
@@ -210,7 +197,6 @@ public class MatrixGraph<T> extends AbstractGraph<T> {
 
     @Override
     public Iterator<T> iterator() {
-
         return null;
     }
 }

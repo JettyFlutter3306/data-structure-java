@@ -14,14 +14,13 @@ public class Josephus {
      * @param start         起始位置
      * @param distance      间隔
      */
-    public static void josephus1(int number,int start,int distance){
-
+    public static void josephus1(int number,int start,int distance) {
         System.out.println("Josephus(" + number + "," + start + "," + distance + "),");
 
         //创建顺序表实例,元素类型是字符串,构造方法参数指定顺序表容量
         SeqList<String> seqList = new SeqList<>(number);
 
-        for(int i = 0;i < number;i++){
+        for (int i = 0; i < number; i++) {
             seqList.insert((char)('A'+i) + "");         //顺序表尾插入
         }
 
@@ -29,8 +28,7 @@ public class Josephus {
 
         int index = start;                                  //计数起始位置
 
-        while (seqList.size() > 1){                         //多于一个元素的循环时 O(1)
-
+        while (seqList.size() > 1) {                         //多于一个元素的循环时 O(1)
             index = (index + distance - 1) % seqList.size();    //按循环方式对顺序表进行遍历  被处决的人的索引位置
 
             System.out.print("删除" + seqList.remove(index) + ",");
@@ -50,8 +48,7 @@ public class Josephus {
      * @param start         起始位置
      * @param distance      间隔
      */
-    public static void josephus2(int number,int start,int distance){
-
+    public static void josephus2(int number,int start,int distance) {
         System.out.println("Josephus(" + number + "," + start + "," + distance + "),");
 
         String[] arr = new String[number];
@@ -67,8 +64,7 @@ public class Josephus {
 
         int index = start; //起始位置
 
-        while (singlyList.n > 1){
-
+        while (singlyList.n > 1) {
             index = (index + distance - 1) % singlyList.n;
 
             System.out.print("删除" + singlyList.remove(index) + ",");
