@@ -1,6 +1,6 @@
 package test_list;
 
-import cn.element.algorithm.MyArray;
+import cn.element.datastructure.algorithm.MyArray;
 import org.junit.Test;
 
 import java.util.Arrays;

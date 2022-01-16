@@ -1,9 +1,9 @@
 package test_sort;
 
-import cn.element.sort.InsertionSort;
-import cn.element.sort.MergeSort;
-import cn.element.sort.SelectSort;
-import cn.element.sort.SwapSort;
+import cn.element.datastructure.sort.InsertionSort;
+import cn.element.datastructure.sort.MergeSort;
+import cn.element.datastructure.sort.SelectSort;
+import cn.element.datastructure.sort.SwapSort;
 import org.junit.Test;
 
 import java.util.Arrays;

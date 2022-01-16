@@ -1,7 +1,7 @@
 package test_string;
 
 import org.junit.Test;
-import cn.element.string.MyInteger;
+import cn.element.datastructure.string.MyInteger;
 
 public class TestMyInteger {
 
@@ -9,8 +9,7 @@ public class TestMyInteger {
      * 测试parseInt()方法
      */
     @Test
-    public void test01(){
-
+    public void testParseInt(){
         System.out.println(MyInteger.parseInt("587943"));
     }
 
@@ -18,8 +17,7 @@ public class TestMyInteger {
      * 测试i十进制转十六进制方法
      */
     @Test
-    public void test02(){
-
+    public void testDecimalToHex(){
         //整数十六进制的原码
         String[] str = {"-289","-1","+7f","3e56"};
 
@@ -33,22 +31,15 @@ public class TestMyInteger {
         String[] str1 = {"123","8","762","999","1000"};
 
         for (String s : str1) {
-
             int value = MyInteger.parseInt(s);
 
             System.out.println(value+", "+MyInteger.toBinaryString(value));
         }
 
         for (String s : str1) {
-
             int value = MyInteger.parseInt(s);
 
             System.out.println(value+", 0"+MyInteger.toOctalString(value));
         }
-    }
-
-    @Test
-    public void test03(){
-
     }
 }

@@ -16,9 +16,7 @@ public class TestCompetition2 {
 
 //        question6(new String[]{"鸡蛋","面包","汉堡","披萨"},new Stack<>());
 
-        question8(1444,3);
-
-
+        question8(1444, 3);
     }
 
     /**

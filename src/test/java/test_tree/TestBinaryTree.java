@@ -1,7 +1,7 @@
 package test_tree;
 
-import cn.element.tree.BinaryTree;
-import cn.element.tree.BinaryTrees;
+import cn.element.datastructure.tree.BinaryTree;
+import cn.element.datastructure.tree.BinaryTrees;
 import org.junit.Test;
 
 public class TestBinaryTree {
@@ -10,8 +10,7 @@ public class TestBinaryTree {
      * 测试创建二叉树
      */
     @Test
-    public void test01(){
-
+    public void testBinaryTree(){
         String[] preList = {"A","B","D",null,"G",null,null,null,"C","E",null,null,"F","H"};  //先根遍历序列
 
         BinaryTree<String> tree = new BinaryTree<>(preList);
@@ -41,8 +40,7 @@ public class TestBinaryTree {
      * 测试使用广义表字符串创建二叉树
      */
     @Test
-    public void test02(){
-
+    public void testGenList(){
         String genList = "AA(BB(DD(^,G),^),C(E,F(H,^)))";  //二叉树广义表表示
 
         BinaryTree<String> tree = BinaryTrees.createByGenList(genList);  //创建二叉树
@@ -54,8 +52,7 @@ public class TestBinaryTree {
      * 测试遍历二叉树非递归算法
      */
     @Test
-    public void test03(){
-
+    public void testBinaryTreeTraverse(){
         String[] preList = {"A","B","D",null,"G",null,null,null,"C","E",null,null,"F","H"};  //先根遍历序列
 
         BinaryTree<String> tree = new BinaryTree<>(preList);
@@ -67,21 +64,19 @@ public class TestBinaryTree {
      * 测试二叉树的层次遍历
      */
     @Test
-    public void test04(){
-
+    public void testLevelTraverse(){
         String[] preList = {"A","B","D",null,"G",null,null,null,"C","E",null,null,"F","H"};  //先根遍历序列
 
         BinaryTree<String> tree = new BinaryTree<>(preList);
 
         tree.printLevelOrder();
     }
-/**
- * 测试打印二叉树的层次结构
- */
 
+    /**
+     * 测试打印二叉树的层次结构
+     */
     @Test
-    public void test05() {
-
+    public void testBinaryStructure() {
         String[] preList = {"A","B","D",null,"G",null,null,null,"C","E",null,null,"F","H"};  //先根遍历序列
 
         BinaryTree<String> tree = new BinaryTree<>(preList);

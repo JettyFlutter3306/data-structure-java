@@ -1,7 +1,7 @@
 package test_matrix;
 
-import cn.element.matrix.LinkedMatrix;
-import cn.element.matrix.Triple;
+import cn.element.datastructure.matrix.LinkedMatrix;
+import cn.element.datastructure.matrix.Triple;
 import org.junit.Test;
 
 public class TestLinkedMatrix {

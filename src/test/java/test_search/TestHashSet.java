@@ -1,6 +1,6 @@
 package test_search;
 
-import cn.element.hash.HashSet;
+import cn.element.datastructure.hash.HashSet;
 import org.junit.Test;
 
 public class TestHashSet {

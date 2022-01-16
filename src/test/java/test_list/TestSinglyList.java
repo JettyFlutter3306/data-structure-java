@@ -1,7 +1,7 @@
 package test_list;
 
-import cn.element.list.node.Node;
-import cn.element.list.SinglyList;
+import cn.element.datastructure.list.node.Node;
+import cn.element.datastructure.list.SinglyList;
 import org.junit.Before;
 import org.junit.Test;
 

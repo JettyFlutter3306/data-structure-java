@@ -1,6 +1,6 @@
 package test_tree;
 
-import cn.element.tree.expression.ExpressionBinaryTree;
+import cn.element.datastructure.tree.expression.ExpressionBinaryTree;
 import org.junit.Test;
 
 public class TestExpressionBinaryTree {
@@ -9,8 +9,7 @@ public class TestExpressionBinaryTree {
      * 测试创建表达式二叉树
      */
     @Test
-    public void test01(){
-
+    public void testSuffixExpression(){
         String prefix = "-+45 *-10 15 /+25 35 -60 40 11";  //前缀表达式
 
         ExpressionBinaryTree tree = new ExpressionBinaryTree(prefix);

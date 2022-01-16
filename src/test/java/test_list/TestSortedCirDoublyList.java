@@ -1,6 +1,6 @@
 package test_list;
 
-import cn.element.list.SortedCirDoublyList;
+import cn.element.datastructure.list.SortedCirDoublyList;
 import org.junit.Test;
 
 /**

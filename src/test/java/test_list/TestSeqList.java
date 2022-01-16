@@ -1,7 +1,7 @@
 package test_list;
 
-import cn.element.algorithm.Josephus;
-import cn.element.list.SeqList;
+import cn.element.datastructure.algorithm.Josephus;
+import cn.element.datastructure.list.SeqList;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -15,12 +15,9 @@ public class TestSeqList {
      * 测试创建SeqList
      */
     @Test
-    public void test01(){
-
+    public void testNewSeqList() {
         SeqList<String> seqList = new SeqList<>(arr);
-
         System.out.println(seqList);
-
         System.out.println(seqList.toPreviousString());
     }
 
@@ -28,12 +25,8 @@ public class TestSeqList {
      * 测试使用SeqList实现约瑟夫环算法
      */
     @Test
-    public void test02(){
-
-//        System.out.println((char)('A' + 1));
-
+    public void testJosephus() {
         Josephus.josephus1(5,0,2);
-
         Josephus.josephus2(5,0,2);
     }
 
@@ -41,20 +34,16 @@ public class TestSeqList {
      * 测试SeqList的CRUD
      */
     @Test
-    public void test03(){
-
+    public void testSeqListCRUD() {
         SeqList<String> seqList = new SeqList<>(arr);
 
         System.out.println(seqList.search("a"));
-
         System.out.println(seqList.contains("C"));
 
         seqList.insert("E");
-
         System.out.println(seqList);
 
         seqList.remove("A");
-
         System.out.println(seqList);
     }
 
@@ -62,8 +51,7 @@ public class TestSeqList {
      * 测试深拷贝
      */
     @Test
-    public void test04() throws IOException, ClassNotFoundException {
-
+    public void testDeepClone() throws IOException, ClassNotFoundException {
         SeqList<String> seqList = new SeqList<>(arr);
 
         System.out.println("seqList = " + seqList);
@@ -81,8 +69,7 @@ public class TestSeqList {
      * 测试集合并运算
      */
     @Test
-    public void test05(){
-
+    public void testCollectionUnion() {
         SeqList<String> seqList = new SeqList<>(arr);
 
         System.out.println("seqList = " + seqList);
@@ -102,8 +89,7 @@ public class TestSeqList {
      * 测试SeqList实现Iterable接口,并使用forEach遍历
      */
     @Test
-    public void test06(){
-
+    public void testCustomizedIterator() {
         SeqList<Integer> list = new SeqList<>();
 
         for (int i = 0; i < 10; i++) {
@@ -111,7 +97,7 @@ public class TestSeqList {
         }
 
         list.forEach(v -> {  //使用JDK8的函数式编程forEach(Consumer consumer)遍历列表
-            if(v != null){
+            if (v != null) {
                 System.out.print(v + "\t");
             }
         });
@@ -120,10 +106,9 @@ public class TestSeqList {
 
         Iterator<Integer> iterator = list.iterator();  //获取SeqList的迭代器
 
-        while(iterator.hasNext()){  //使用迭代器遍历列表
+        while (iterator.hasNext()) {  //使用迭代器遍历列表
             System.out.print(iterator.next() + "\t");
         }
-
     }
 
 

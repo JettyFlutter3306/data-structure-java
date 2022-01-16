@@ -1,7 +1,7 @@
 package test_list;
 
-import cn.element.list.SeqList;
-import cn.element.list.SortedSeqList;
+import cn.element.datastructure.list.SeqList;
+import cn.element.datastructure.list.SortedSeqList;
 import org.junit.Before;
 import org.junit.Test;
 

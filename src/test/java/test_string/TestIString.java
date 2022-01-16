@@ -1,8 +1,8 @@
 package test_string;
 
 import org.junit.Test;
-import cn.element.string.IString;
-import cn.element.string.IStringBuffer;
+import cn.element.datastructure.string.IString;
+import cn.element.datastructure.string.IStringBuffer;
 
 import java.util.Arrays;
 
@@ -12,8 +12,7 @@ public class TestIString {
      * 测试IString(IStringBuffer msb)方法
      */
     @Test
-    public void test01(){
-
+    public void testConstructor(){
         IStringBuffer msba = new IStringBuffer("abcdf");
 
         System.out.println("msba = " + msba);
@@ -27,8 +26,7 @@ public class TestIString {
      * 测试大小写转换
      */
     @Test
-    public void test02(){
-
+    public void testUpperCase(){
         IString str = new IString("ACSDFabefwed234DFGDG");
 
         IString str1 = str.toUpperCase();
@@ -42,12 +40,10 @@ public class TestIString {
         IString str2 = str1.toLowerCase();
 
         System.out.println("str2 = " + str2);
-
     }
 
     @Test
     public void test03(){
-
         char[] value = {'a','s','v','w','Q','o'};
 
         for (char c : value) {
@@ -70,8 +66,7 @@ public class TestIString {
      * 测试忽略大小写比较相等
      */
     @Test
-    public void test04(){
-
+    public void testEqualsIgnoreCase(){
         IString str = new IString("abcdEFqq");
 
         IString str1 = new IString("ABCDefed");
@@ -87,8 +82,7 @@ public class TestIString {
      * 测试字符串倒序输出
      */
     @Test
-    public void test05(){
-
+    public void testReverseStringPrint(){
         IString s = new IString("sdsd dfd effg ergs qwe sf  ");
 
         IString string = IString.upperFirst(s);
@@ -102,8 +96,7 @@ public class TestIString {
      * 测试判断标识符
      */
     @Test
-    public void test06(){
-
+    public void testIdentifier(){
         IString s = new IString("$sfs");
 
         System.out.println(IString.isIdentifier(s)); //true
@@ -113,8 +106,7 @@ public class TestIString {
      * 测试两串求交集
      */
     @Test
-    public void test07(){
-
+    public void testIntersection(){
         IString s1 = new IString("abcdefretdgdg");
         IString s2 = new IString("sfgsdgabcdferg");
 
@@ -125,8 +117,7 @@ public class TestIString {
      * 测试串逆转
      */
     @Test
-    public void test08(){
-
+    public void testReverseString(){
         IString s = new IString("abcdefg");
 
         System.out.println(IString.reverse(s));
@@ -136,8 +127,7 @@ public class TestIString {
      * 测试BF算法
      */
     @Test
-    public void test09(){
-
+    public void testBF(){
         IString s = new IString("abcsdwfabcdf");
 
         IString pattern = new IString("abcd");
@@ -150,8 +140,7 @@ public class TestIString {
      * 测试根据索引删除字符
      */
     @Test
-    public void test10(){
-
+    public void testDeleteIndex(){
         IString s = new IString("asfasffasv");
 
         System.out.println("s = " + s);
@@ -165,8 +154,7 @@ public class TestIString {
      * 测试删除子串
      */
     @Test
-    public void test11(){
-
+    public void testDeleteSubString(){
         IString s = new IString("asdfascascv");
 
         IString str = s.deleteString(2, 5);
@@ -178,8 +166,7 @@ public class TestIString {
      * 测试KMP算法
      */
     @Test
-    public void test12(){
-
+    public void testKMP(){
         String target = "abcosvjsdjvabcjsaklaslabcd";
 
         String pattern = "abcd";

@@ -1,12 +1,12 @@
 package test_list;
 
-import cn.element.list.SinglyList;
-import cn.element.list.SortedSinglyList;
+import cn.element.datastructure.list.SinglyList;
+import cn.element.datastructure.list.SortedSinglyList;
 import org.junit.Test;
 
 public class TestSortedSinglyList {
 
-    private String[] arr = new String[]{"132","sdf","ad","08","ok","pl"};
+    private final String[] arr = new String[]{"132","sdf","ad","08","ok","pl"};
 
     /**
      * 测试 Node<T> search(T x) 方法

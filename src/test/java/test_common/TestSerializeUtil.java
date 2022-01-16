@@ -1,6 +1,6 @@
 package test_common;
 
-import cn.element.util.SerializeUtil;
+import cn.element.datastructure.util.SerializeUtil;
 import org.junit.Test;
 
 import java.io.IOException;
