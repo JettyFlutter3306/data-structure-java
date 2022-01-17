@@ -15,20 +15,20 @@ public class InsertionSort {
      * 将元素ai插入到子序列{a0,a1,...,ai-1}适当位置,使得插入后的子序列仍然是排序的,ai的插入位置由关键字
      * 比较大小确定
      * 2.重复执行步骤1,n个元素共需要n-1趟,每趟将一个元素ai插入到它前面的子序列中
+     *
+     * 简单说来就是每次做到让 0 ~ i 范围内的数据有序
      */
     public static void straightInsertionSort(int[] keys) {
+        if (keys == null || keys.length < 2) {
+            return;
+        }
+
         for (int i = 1; i < keys.length; i++) {
-            int temp = keys[i];
-
-            int j;
-
-            for (j = i - 1; j >= 0 && temp < keys[j]; j--) {
-                keys[j + 1] = keys[j];
+            for (int j = i - 1; j >= 0 && keys[j + 1] < keys[j]; j--) {
+                IArrays.swap(keys, j, j + 1);
             }
 
-            keys[j + 1] = temp;
-
-            System.out.println("第" + i + "趟 temp = " + temp + "\t" + Arrays.toString(keys));
+            System.out.println("第" + i + "趟: \t" + Arrays.toString(keys));
         }
     }
 

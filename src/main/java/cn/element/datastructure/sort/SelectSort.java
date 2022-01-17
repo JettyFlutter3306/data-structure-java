@@ -18,7 +18,11 @@ public class SelectSort {
      *   算法总比较次数 C = ∑(n - i) (from i = 1 to i = n- 1) = n(n-1)/2 ~ n^2 / 2
      *   时间复杂度O(n²)  空间复杂度O(1)  直接选择排序算法不稳定
      */
-    public static void straightSelectSort(int[] keys){
+    public static void straightSelectSort(int[] keys) {
+        if (keys == null || keys.length < 2) {
+            return;
+        }
+
         for (int i = 0; i < keys.length - 1; i++) {  //n-1趟排序
             int min = i;
 
@@ -26,16 +30,16 @@ public class SelectSort {
                 min = keys[j] < keys[min] ? j : min;  //min记住本趟最小元素下标
             }
 
-            if(min != i){  //将本趟最小元素交换到前边
-                IArrays.swap(keys,i,min);
+            if (min != i) {  //将本趟最小元素交换到前边
+                IArrays.swap(keys, i, min);
             }
 
             System.out.println("第" + (i + 1) + "趟: " + Arrays.toString(keys));
         }
     }
 
-    public static void heapSort(int[] keys){
-        heapSort(keys,true);
+    public static void heapSort(int[] keys) {
+        heapSort(keys, true);
     }
 
     /**
@@ -44,7 +48,7 @@ public class SelectSort {
      *   时间复杂度 O(n × log n)  空间复杂度 O(1)
      *   堆排序算法不稳定
      */
-    public static void heapSort(int[] keys,boolean minHeap){
+    public static void heapSort(int[] keys,boolean minHeap) {
         for (int i = keys.length / 2; i >= 0 ; i--) {  //创建最小/大堆,根结点值最小/大
             sift(keys,i,keys.length - 1,minHeap);
         }
@@ -60,39 +64,36 @@ public class SelectSort {
      * 将 keys 数组中以parent为根的子树调整为最小/大堆,子序列范围为 parent ~ end
      * 私有方法,只被堆排序方法调用,确保 parent, end 在范围内
      */
-    private static void sift(int[] keys,int parent,int end,boolean miniHeap){
+    private static void sift(int[] keys,int parent,int end,boolean miniHeap) {
         System.out.println("sift " + parent + ".." + end + " ");
 
         int child = 2 * parent + 1;  //child是parent的左孩子
-
         int value = keys[parent];
 
-        while(child <= end){  //沿着较小/大值孩子结点向下筛选
-            if(child < end && (miniHeap ? keys[child] > keys[child + 1] : keys[child] < keys[child + 1])){
+        while (child <= end) {  //沿着较小/大值孩子结点向下筛选
+            if (child < end && (miniHeap ? keys[child] > keys[child + 1] : keys[child] < keys[child + 1])) {
                 child++;  //child记住孩子值较小/大者
             }
 
-            if(miniHeap ? value > keys[child] : value < keys[child]){  //若父母结点值较小/大
+            if (miniHeap ? value > keys[child] : value < keys[child]) {  //若父母结点值较小/大
                 keys[parent] = keys[child];  //将较小/大孩子结点值上移
 
                 parent = child;  //parent child 两者都向下一层
 
                 child = 2 * parent + 1;
-            }else{
+            } else {
                 break;
             }
         }
 
         keys[parent] = value;  //当前子树的原根值调整后的位置
-
         System.out.println(Arrays.toString(keys));
     }
 
     /**
-     * 判断value指定数据序列是否为堆
+     * 判断values指定数据序列是否为堆
      */
-    public static boolean isHeap(int[] value,boolean miniHeap){
-
+    public static boolean isHeap(int[] values, boolean miniHeap) {
 
         return false;
     }

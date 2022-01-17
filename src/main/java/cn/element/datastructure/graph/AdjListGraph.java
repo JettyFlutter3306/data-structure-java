@@ -100,7 +100,6 @@ public class AdjListGraph<T> extends AbstractGraph<T> implements Graph<T> {
             n--;  //顶点数减 1
 
             this.adjList.rowList.remove(i);  //删除行指针顺序表的第 i 条边单链表,其后单链表上移
-
             this.adjList.setRowsColumn(n,n);  //设置矩阵行列数,少一行
 
             for (int j = 0; j < n; j++) {  //遍历每条单链表,将大于 i 的顶点序号减 1

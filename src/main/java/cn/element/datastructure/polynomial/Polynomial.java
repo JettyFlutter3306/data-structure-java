@@ -6,7 +6,7 @@ public class Polynomial {
 
     private PolySinglyList<TermX> list; //多项式排序单链表
 
-    public Polynomial(){
+    public Polynomial() {
 
     }
 

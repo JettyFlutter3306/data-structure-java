@@ -17,12 +17,11 @@ public class TestSort {
      * 测试直接插入排序
      */
     @Test
-    public void test01(){
-
+    public void testInsertSort() {
         int[] arr = {32,26,87,72,26,17};
 
+        System.out.println(Arrays.toString(arr));
         InsertionSort.straightInsertionSort(arr);
-
         System.out.println(Arrays.toString(arr));
     }
 
@@ -30,9 +29,8 @@ public class TestSort {
      * 测试泛型类直接插入排序
      */
     @Test
-    public void test02(){
-
-        class Student implements Comparable<Student>{
+    public void testGenericInsertSort() {
+        class Student implements Comparable<Student> {
             final String name;
             final int age;
 
@@ -43,7 +41,6 @@ public class TestSort {
 
             @Override
             public int compareTo(Student o) {
-
                 return this.age - o.age;
             }
 
@@ -56,7 +53,7 @@ public class TestSort {
             }
         }
 
-        Student[] students = new Student[]{
+        Student[] students = new Student[] {
                 new Student("张三",12),
                 new Student("洛必达",100),
                 new Student("特朗普",62),
@@ -78,8 +75,7 @@ public class TestSort {
      * 测试希尔排序算法
      */
     @Test
-    public void test03(){
-
+    public void testShellSort() {
         int[] array = {38,55,65,97,27,76,27,13,19};
 
         InsertionSort.shellSort(array);
@@ -91,8 +87,7 @@ public class TestSort {
      * 测试冒泡排序
      */
     @Test
-    public void test04(){
-
+    public void testBubbleSort() {
         int[] arr = {32,26,97,72,26,17};
 
         SwapSort.bubbleSort(arr);
@@ -104,14 +99,11 @@ public class TestSort {
      * 测试快速排序
      */
     @Test
-    public void test05(){
-
+    public void testQuickSort() {
         int[] arr = {38,38,97,75,61,19,26,49};
 
         System.out.println("快速排序: ");
-
         SwapSort.quickSort(arr);
-
         System.out.println(Arrays.toString(arr));  //[19, 26, 38, 38, 49, 61, 75, 97]
     }
 
@@ -119,12 +111,11 @@ public class TestSort {
      * 测试直接选择排序
      */
     @Test
-    public void test06(){
-
+    public void testSelectSort() {
         int[] arr = {38,97,26,19,38,15};
 
+        System.out.println("选择排序: \n" + Arrays.toString(arr));
         SelectSort.straightSelectSort(arr);
-
         System.out.println(Arrays.toString(arr));  //[15, 19, 26, 38, 38, 97]
     }
 
@@ -132,8 +123,7 @@ public class TestSort {
      * 测试堆排序
      */
     @Test
-    public void test07(){
-
+    public void testHeapSort() {
         int[] arr = {19,38,19,49,97,76,81,13};
 
         SelectSort.heapSort(arr);
@@ -143,8 +133,7 @@ public class TestSort {
      * 测试归并排序
      */
     @Test
-    public void test08(){
-
+    public void testMergeSort() {
         int[] arr = {97,82,75,53,17,61,70,12,61,58,26};
 
         MergeSort.mergeSort(arr);
