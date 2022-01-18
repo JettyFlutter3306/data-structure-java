@@ -1,14 +1,14 @@
 package cn.element.datastructure.hash;
 
 import cn.element.datastructure.common.Map;
-import cn.element.datastructure.search.sort_tree.BinarySortTree;
+import cn.element.datastructure.search.sort_tree.BinarySortedTree;
 
 public class TreeMap<K extends Comparable<? super K>,V> implements Map<K,V> {
 
-    BinarySortTree<SortedKeyValue<K,V>> set;  //二叉排序树表示互异的排序集合
+    BinarySortedTree<SortedKeyValue<K,V>> set;  //二叉排序树表示互异的排序集合
 
     public TreeMap() {  //构造空树映射
-        this.set = new BinarySortTree<>();  //构造空二叉树
+        this.set = new BinarySortedTree<>();  //构造空二叉树
     }
 
     @Override
@@ -67,7 +67,7 @@ public class TreeMap<K extends Comparable<? super K>,V> implements Map<K,V> {
         return new Object[0];
     }
 
-    public BinarySortTree<K> keySet() {
+    public BinarySortedTree<K> keySet() {
 
         return null;
     }

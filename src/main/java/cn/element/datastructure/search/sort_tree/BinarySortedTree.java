@@ -3,21 +3,21 @@ package cn.element.datastructure.search.sort_tree;
 /**
  * 二叉排序树类,三叉链表存储,T或T的超类实现Comparable<T>接口
  */
-public class BinarySortTree<T extends Comparable<? super T>> {
+public class BinarySortedTree<T extends Comparable<? super T>> {
 
     public TriNode<T> root;  //根结点
 
     /**
      * 构造空二叉排序树
      */
-    public BinarySortTree() {
+    public BinarySortedTree() {
         this.root = null;
     }
 
     /**
      * 构造二叉排序树,values数组提供元素
      */
-    public BinarySortTree(T[] values) {
+    public BinarySortedTree(T[] values) {
         this();
 
         for (T value : values) {

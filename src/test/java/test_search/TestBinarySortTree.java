@@ -1,6 +1,6 @@
 package test_search;
 
-import cn.element.datastructure.search.sort_tree.BinarySortTree;
+import cn.element.datastructure.search.sort_tree.BinarySortedTree;
 import org.junit.Test;
 
 /**
@@ -14,7 +14,7 @@ public class TestBinarySortTree {
     @Test
     public void test01(){
 
-        BinarySortTree<Integer> tree = new BinarySortTree<>();
+        BinarySortedTree<Integer> tree = new BinarySortedTree<>();
 
         System.out.println("关键字序列: ");
 
