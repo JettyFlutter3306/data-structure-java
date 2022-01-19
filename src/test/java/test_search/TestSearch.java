@@ -32,6 +32,9 @@ public class TestSearch {
         System.out.println("i = " + i);
     }
 
+    /**
+     * 找到数组中第一个局部最小值
+     */
     @Test
     public void testFindRegionSmallest() {
         int[] arr = {15, 5, 10, 15, 18, 5, 17, 2, 99};

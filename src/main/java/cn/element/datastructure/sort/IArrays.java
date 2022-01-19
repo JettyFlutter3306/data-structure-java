@@ -7,10 +7,11 @@ public class IArrays {
 
     /**
      * 交换数组对应下标的数值
+     * 前提条件是: i != j
      */
-    public static void swap(int[] keys,int i,int j){
-        int temp = keys[i];
-        keys[i] = keys[j];
-        keys[j] = temp;
+    public static void swap(int[] keys, int i, int j) {
+        keys[i] = keys[i] ^ keys[j];
+        keys[j] = keys[i] ^ keys[j];
+        keys[i] = keys[i] ^ keys[j];
     }
 }
