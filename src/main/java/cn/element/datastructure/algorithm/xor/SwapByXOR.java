@@ -44,6 +44,36 @@ public class SwapByXOR {
     }
 
     /**
+     * 在一个数组中找到那两个出现次数为奇数的数,其他的数出现次数都是偶数次
+     */
+    public static void findTheTwoNumbersOddTimes() {
+        int[] arr = {2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 6};
+        int eor = 0;
+
+        for (int k : arr) {
+            eor ^= k;
+        }
+
+        // a和b是两种数
+        // eor != 0
+        // eor最右侧的1,提取出来
+        // eor:      00110010110111000
+        // rightOne: 00000000000001000
+        int rightOne = eor & (-eor);  // 提取出最右侧的1
+        int onlyOne = 0;  // eor'
+
+        for (int j : arr) {
+            // j        = 111100011110000
+            // rightOne = 000000000010000
+            if ((j & rightOne) != 0) {  // 表示在那个位置上一定有 1 存在
+                onlyOne ^= j;
+            }
+        }
+
+        System.out.println(onlyOne + " " + (eor ^ onlyOne));
+    }
+
+    /**
      * 提取一串二进制数最右侧的1位置
      * a = a & (~a + 1)
      *
@@ -61,8 +91,7 @@ public class SwapByXOR {
     }
 
     public static void main(String[] args) {
-//        findTheOddTimesNumber();
-        extractRightestOne();
+        findTheTwoNumbersOddTimes();
     }
 
 }
