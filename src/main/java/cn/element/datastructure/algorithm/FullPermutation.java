@@ -6,10 +6,10 @@ import java.util.Stack;
 
 /**
  * 实现全排列
- *
+ * <p>
  * 例如: 数据序列{1,2,3}的全排列如下
  * 123 132 213 231 312 321
- *
+ * <p>
  * 思路:
  * 要求1 2 3的全排列,
  * 那么先求1 和 2 3的全排列,再求2 3的全排列记为perm(1,perm(2,3))
@@ -22,12 +22,12 @@ public class FullPermutation {
 
         Stack<String> stack = new Stack<>();
 
-        dfs(arr,stack,lists,0);
+        dfs(arr, stack, lists, 0);
 
         return lists;
     }
 
-    private void dfs(String[] arr,Stack<String> stack,List<List<String>> lists,int index) {
+    private void dfs(String[] arr, Stack<String> stack, List<List<String>> lists, int index) {
         if (arr.length <= 0) {
             lists.add(new ArrayList<>(stack));
         } else {
@@ -35,20 +35,18 @@ public class FullPermutation {
                 String[] temp = new String[arr.length - 1];
 
                 //拷贝arr数组中除了第 i 个之外的元素
-                System.arraycopy(arr,0,temp,0,i);
-                System.arraycopy(arr,i+1,temp,i,arr.length-i-1);
+                System.arraycopy(arr, 0, temp, 0, i);
+                System.arraycopy(arr, i + 1, temp, i, arr.length - i - 1);
 
                 stack.push(arr[i]);  //元素入栈
-
-                dfs(temp,stack,lists,i);  //递归
-
+                dfs(temp, stack, lists, i);  //递归
                 stack.pop();  //状态重置,回溯
             }
         }
     }
 
     public static void main(String[] args) {
-        String[] arr = {"1","2","3"};
+        String[] arr = {"1", "2", "3"};
 
         FullPermutation a = new FullPermutation();
 

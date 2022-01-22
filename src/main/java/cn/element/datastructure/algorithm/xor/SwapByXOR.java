@@ -34,10 +34,10 @@ public class SwapByXOR {
      */
     public static void findTheOddTimesNumber() {
         int[] arr = {2, 2, 3, 3, 3, 4, 4, 4, 4, 3, 5};
-        int eor = arr[0];
+        int eor = 0;
 
-        for (int i = 1; i < arr.length; i++) {
-            eor ^= arr[i];
+        for (int j : arr) {
+            eor ^= j;
         }
 
         System.out.println(eor);
@@ -90,8 +90,39 @@ public class SwapByXOR {
         System.out.println(Integer.toBinaryString(a));
     }
 
+    /**
+     * 在一个数组中找到出现了K次的数,假设其他的数都出现了M次
+     * 要求: 时间复杂度 O(N)
+     *       空间复杂度 O(1)
+     */
+    public static void findKTimes(int k, int m) {
+        int[] arr = {2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5};
+        int[] t = new int[32];
+
+        // t[0]代表0位置的1出现了几次
+        // t[1]代表i位置的1出现了几次
+        for (int num : arr) {
+            for (int i = 0; i < 31; i++) {
+                // 表示在i位置上不是0
+                if (((num >> i) & 1) != 0) {
+                    t[i]++;
+                }
+            }
+        }
+
+        int ans = 0;
+
+        for (int i = 0; i < 31; i++) {
+            if (t[i] % m != 0) {  // 在第i位置上有1
+                ans |= (1 << i);
+            }
+        }
+
+        System.out.println(ans);
+    }
+
     public static void main(String[] args) {
-        findTheTwoNumbersOddTimes();
+        findKTimes(1, 4);
     }
 
 }

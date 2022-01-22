@@ -10,10 +10,6 @@ import cn.element.datastructure.queue.SeqQueue;
  */
 public class PrimeRing {
 
-    public PrimeRing() {
-
-    }
-
     public PrimeRing(int max) { //求1~max的素数环
         SortedSeqList<Integer> primeList = this.createPrime(max);  //排序顺序表存储
 
@@ -36,24 +32,25 @@ public class PrimeRing {
         while (!queue.isEmpty()) {
             int key = queue.poll();     //出队
 
-            if(primeList.contains(ring.get(i) + key)){  //判断素数,排序顺序表包含(查找)
+            if (primeList.contains(ring.get(i) + key)) {  //判断素数,排序顺序表包含(查找)
                 i++;
 
                 ring.insert(key);       //素数环添加Integer(key)
-            }else{
+            } else {
                 queue.add(key);     //key再次入队
             }
         }
 
-        System.out.println("1 ~ " + max +"素数环: " + ring);
+        System.out.println("1 ~ " + max + "素数环: " + ring);
     }
 
     /**
      * 返回包含2~max中所有素数的排序顺序表,也可以返回循环双链表
-     * @param max         最大值
-     * @return            排序顺序表
+     *
+     * @param max 最大值
+     * @return 排序顺序表
      */
-    public SortedSeqList<Integer> createPrime(int max) {
+    private SortedSeqList<Integer> createPrime(int max) {
         if (max <= 0) {
             return null;
         }
@@ -69,7 +66,7 @@ public class PrimeRing {
                 j++;
             }
 
-            if(j == primeList.size()){  //i是素数
+            if (j == primeList.size()) {  //i是素数
                 primeList.insert(i);        //排序顺序表尾插入最大值
             }
         }

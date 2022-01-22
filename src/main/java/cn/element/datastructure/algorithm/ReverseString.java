@@ -8,7 +8,7 @@ public class ReverseString {
     public static String reverseStr(String str) {
         char[] chars = str.toCharArray();
 
-        recurse(chars,0,chars.length - 1);
+        recurse(chars, 0, chars.length - 1);
 
         return new String(chars);
     }
@@ -22,7 +22,7 @@ public class ReverseString {
         chars[i] = chars[j];
         chars[j] = temp;
 
-        recurse(chars,i+1,j-1);
+        recurse(chars, i + 1, j - 1);
     }
 
     public static void main(String[] args) {

@@ -10,18 +10,18 @@ public class Josephus {
      *
      * 创建约瑟夫环并求解,参数指定环长度,起始位置,计数
      *
-     * @param number        人数
-     * @param start         起始位置
-     * @param distance      间隔
+     * @param number   人数
+     * @param start    起始位置
+     * @param distance 间隔
      */
-    public static void josephus1(int number,int start,int distance) {
+    public static void josephus1(int number, int start, int distance) {
         System.out.println("Josephus(" + number + "," + start + "," + distance + "),");
 
         //创建顺序表实例,元素类型是字符串,构造方法参数指定顺序表容量
         SeqList<String> seqList = new SeqList<>(number);
 
         for (int i = 0; i < number; i++) {
-            seqList.insert((char)('A'+i) + "");         //顺序表尾插入
+            seqList.insert((char) ('A' + i) + "");         //顺序表尾插入
         }
 
         System.out.println(seqList);
@@ -44,17 +44,17 @@ public class Josephus {
      *
      * 创建约瑟夫环并求解,参数指定环长度,起始位置,计数
      *
-     * @param number        人数
-     * @param start         起始位置
-     * @param distance      间隔
+     * @param number   人数
+     * @param start    起始位置
+     * @param distance 间隔
      */
-    public static void josephus2(int number,int start,int distance) {
+    public static void josephus2(int number, int start, int distance) {
         System.out.println("Josephus(" + number + "," + start + "," + distance + "),");
 
         String[] arr = new String[number];
 
         for (int i = 0; i < number; i++) {
-            arr[i] = (char)('A'+i) + "";
+            arr[i] = (char) ('A' + i) + "";
         }
 
         //创建单链表实例
@@ -72,7 +72,7 @@ public class Josephus {
             System.out.println(singlyList);
         }
 
-        System.out.println("被赦免者是: "+singlyList.get(0));
+        System.out.println("被赦免者是: " + singlyList.get(0));
     }
 
 }

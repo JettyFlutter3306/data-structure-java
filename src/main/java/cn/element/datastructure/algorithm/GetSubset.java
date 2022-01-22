@@ -34,7 +34,7 @@ public class GetSubset {
     public static void main(String[] args) {
         GetSubset getSubset = new GetSubset();
 
-        int[] arr = {1,3,5,7};
+        int[] arr = {1, 3, 5, 7};
 
         List<List<Integer>> lists = getSubset.getSubSet(arr);
 
