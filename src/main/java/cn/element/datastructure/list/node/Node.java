@@ -16,6 +16,10 @@ public class Node<T> extends AbstractBaseEntity {
         this.next = next;   //Node<T> 对象引用赋值
     }
 
+    public Node(T data) {
+        this.data = data;
+    }
+
     public Node(){
         this(null,null);
     }

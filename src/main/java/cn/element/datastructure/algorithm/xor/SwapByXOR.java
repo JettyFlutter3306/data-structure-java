@@ -78,7 +78,6 @@ public class SwapByXOR {
      * a = a & (~a + 1)
      *
      * 其实也就是 a = a & -a
-     *
      */
     public static void extractRightestOne() {
         int a = 10;
