@@ -4,7 +4,7 @@ import cn.element.datastructure.util.DoubleNode;
 import cn.element.datastructure.util.ListNode;
 import cn.element.datastructure.util.ListNodes;
 
-public class ReverseList {
+public class C01ReverseList {
 
     /**
      * 反转单链表

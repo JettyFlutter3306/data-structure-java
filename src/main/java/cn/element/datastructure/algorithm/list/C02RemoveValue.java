@@ -3,7 +3,7 @@ package cn.element.datastructure.algorithm.list;
 import cn.element.datastructure.util.ListNode;
 import cn.element.datastructure.util.ListNodes;
 
-public class RemoveValue {
+public class C02RemoveValue {
 
     /**
      * 删除链表内指定的所有值
