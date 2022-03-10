@@ -5,8 +5,8 @@ package cn.element.datastructure.algorithm;
  */
 public class CommonFactor {
 
-    public int getGreatestCommonFactor(int a,int b){
-
+    public int getGreatestCommonFactor(int a, int b) {
+        
         return 0;
     }
 

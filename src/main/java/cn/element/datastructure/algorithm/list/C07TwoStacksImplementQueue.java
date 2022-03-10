@@ -1,15 +1,17 @@
 package cn.element.datastructure.algorithm.list;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
-/**
- * 使用双栈实现队列
- */
 public class C07TwoStacksImplementQueue {
-    
+
+    /**
+     * 使用双栈实现队列
+     */
     public static class TwoStacksQueue {
-        public Stack<Integer> pushStack;
-        public Stack<Integer> popStack;
+        public final Stack<Integer> pushStack;
+        public final Stack<Integer> popStack;
 
         public TwoStacksQueue() {
             pushStack = new Stack<>();
@@ -50,9 +52,51 @@ public class C07TwoStacksImplementQueue {
             return popStack.peek();
         }
     }
-    
-    public static class TowQueueStack {
+
+    /**
+     * 双队列实现栈
+     */
+    public static class TwoQueueStack {
+        private Queue<Integer> queue;
+        private Queue<Integer> helper;
+
+        public TwoQueueStack() {
+            queue = new LinkedList<>();
+            helper = new LinkedList<>();
+        }
         
+        public void push(int i) {
+            queue.offer(i);
+        }
+        
+        public int pop() {
+            while (queue.size() > 1) {
+                helper.offer(queue.poll());
+            }
+
+            int ans = queue.poll();
+            Queue<Integer> tmp = queue;
+            queue = helper;
+            helper = tmp;
+            return ans;
+        }
+        
+        public int peek() {
+            while (queue.size() > 1) {
+                helper.offer(queue.poll());
+            }
+            
+            int ans = queue.poll();
+            helper.offer(ans);
+            Queue<Integer> tmp = queue;
+            queue = helper;
+            helper = tmp;
+            return ans;
+        }
+        
+        public boolean isEmpty() {
+            return queue.isEmpty();
+        }
     }
     
     public static void main(String[] args) {
@@ -64,6 +108,17 @@ public class C07TwoStacksImplementQueue {
         System.out.println(queue.poll());
         System.out.println(queue.poll());
         System.out.println(queue.poll());
+
+        System.out.println("==========================");
+        
+        TwoQueueStack stack = new TwoQueueStack();
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+
+        System.out.println(stack.pop());
+        System.out.println(stack.pop());
+        System.out.println(stack.pop());
     }
 
 }
