@@ -18,7 +18,7 @@ public class TestSort {
      */
     @Test
     public void testInsertSort() {
-        int[] arr = {32,26,87,72,26,17};
+        int[] arr = {32, 26, 87, 72, 26, 17};
 
         System.out.println(Arrays.toString(arr));
         InsertionSort.straightInsertionSort(arr);
@@ -53,15 +53,15 @@ public class TestSort {
             }
         }
 
-        Student[] students = new Student[] {
-                new Student("张三",12),
-                new Student("洛必达",100),
-                new Student("特朗普",62),
-                new Student("李四",19),
-                new Student("宋江",8),
-                new Student("雷军",42),
-                new Student("马化腾",15),
-                new Student("马云",73),
+        Student[] students = new Student[]{
+                new Student("张三", 12),
+                new Student("洛必达", 100),
+                new Student("特朗普", 62),
+                new Student("李四", 19),
+                new Student("宋江", 8),
+                new Student("雷军", 42),
+                new Student("马化腾", 15),
+                new Student("马云", 73),
         };
 
         InsertionSort.straightInsertSort(students);
@@ -76,7 +76,7 @@ public class TestSort {
      */
     @Test
     public void testShellSort() {
-        int[] array = {38,55,65,97,27,76,27,13,19};
+        int[] array = {38, 55, 65, 97, 27, 76, 27, 13, 19};
 
         InsertionSort.shellSort(array);
 
@@ -88,7 +88,7 @@ public class TestSort {
      */
     @Test
     public void testBubbleSort() {
-        int[] arr = {32,26,97,72,26,17};
+        int[] arr = {32, 26, 97, 72, 26, 17};
 
         SwapSort.bubbleSort(arr);
 
@@ -100,7 +100,7 @@ public class TestSort {
      */
     @Test
     public void testQuickSort() {
-        int[] arr = {38,38,97,75,61,19,26,49};
+        int[] arr = {38, 38, 97, 75, 61, 19, 26, 49};
 
         System.out.println("快速排序: ");
         SwapSort.quickSort(arr);
@@ -112,7 +112,7 @@ public class TestSort {
      */
     @Test
     public void testSelectSort() {
-        int[] arr = {38,97,26,19,38,15};
+        int[] arr = {38, 97, 26, 19, 38, 15};
 
         System.out.println("选择排序: \n" + Arrays.toString(arr));
         SelectSort.straightSelectSort(arr);
@@ -124,7 +124,7 @@ public class TestSort {
      */
     @Test
     public void testHeapSort() {
-        int[] arr = {19,38,19,49,97,76,81,13};
+        int[] arr = {19, 38, 19, 49, 97, 76, 81, 13};
 
         SelectSort.heapSort(arr);
     }
@@ -134,7 +134,7 @@ public class TestSort {
      */
     @Test
     public void testMergeSort() {
-        int[] arr = {97,82,75,53,17,61,70,12,61,58,26};
+        int[] arr = {97, 82, 75, 53, 17, 61, 70, 12, 61, 58, 26};
 
         MergeSort.mergeSort(arr);
 
