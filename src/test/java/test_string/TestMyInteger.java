@@ -25,7 +25,7 @@ public class TestMyInteger {
 
             int value = MyInteger.parseInt(s,16);
 
-            System.out.println(value+", 0x"+MyInteger.toHexString(value));
+            System.out.println(value+", 0x"+ MyInteger.toHexString(value));
         }
 
         String[] str1 = {"123","8","762","999","1000"};
@@ -33,13 +33,13 @@ public class TestMyInteger {
         for (String s : str1) {
             int value = MyInteger.parseInt(s);
 
-            System.out.println(value+", "+MyInteger.toBinaryString(value));
+            System.out.println(value+", "+ MyInteger.toBinaryString(value));
         }
 
         for (String s : str1) {
             int value = MyInteger.parseInt(s);
 
-            System.out.println(value+", 0"+MyInteger.toOctalString(value));
+            System.out.println(value+", 0"+ MyInteger.toOctalString(value));
         }
     }
 }

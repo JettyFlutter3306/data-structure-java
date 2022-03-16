@@ -31,13 +31,13 @@ public class TriNode<T> {
 
     @Override
     public String toString() {
-        return "("+this.data+")";
+        return "(" + this.data + ")";
     }
 
     /**
      * 判断是否是叶子结点
      */
-    public boolean isLeaf(){
+    public boolean isLeaf() {
         return this.left == null && this.right == null;
     }
 

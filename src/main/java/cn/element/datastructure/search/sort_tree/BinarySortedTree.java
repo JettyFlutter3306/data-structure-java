@@ -28,7 +28,7 @@ public class BinarySortedTree<T extends Comparable<? super T>> {
     /**
      * 判空
      */
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return this.root == null;
     }
 
@@ -78,15 +78,15 @@ public class BinarySortedTree<T extends Comparable<? super T>> {
 
                 if (x.compareTo(p.data) < 0) {  //关键字x比p小,那么p进入左子树
                     p = p.left;
-                }else{  //否则进入右子树
+                } else {  //否则进入右子树
                     p = p.right;
                 }
             }
 
             if (x.compareTo(parent.data) < 0) {  //插入x叶子结点作为parent的左/右孩子
-                parent.left = new TriNode<>(x,parent,null,null);
+                parent.left = new TriNode<>(x, parent, null, null);
             } else {
-                parent.right = new TriNode<>(x,parent,null,null);
+                parent.right = new TriNode<>(x, parent, null, null);
             }
         }
 
@@ -252,14 +252,14 @@ public class BinarySortedTree<T extends Comparable<? super T>> {
     /**
      * 返回元素个数;
      */
-    public int size(){
+    public int size() {
         return 0;
     }
 
     /**
      * 清空元素
      */
-    public void clear(){
+    public void clear() {
         this.root = null;
     }
 

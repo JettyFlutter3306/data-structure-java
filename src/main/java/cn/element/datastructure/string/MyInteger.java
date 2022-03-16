@@ -36,20 +36,20 @@ public final class MyInteger implements Comparable<MyInteger> {
      * 将串s按十进制转换为整数
      */
     public static int parseInt(String s) throws NumberFormatException {
-        return MyInteger.parseInt(s,10);
+        return MyInteger.parseInt(s, 10);
     }
 
     /**
      * 将串s按radix进制转换为十进制整数,s指定整数的radix进制原码字符串,包含正负号
      * 2<=radix<=16,默认十进制,若不能将s转换成整数,则抛出数值格式异常
      */
-    public static int parseInt(String s,int radix) throws NumberFormatException {
+    public static int parseInt(String s, int radix) throws NumberFormatException {
         if (s == null) {
             throw new NumberFormatException("null");
         }
 
         if (radix < 2 || radix > 16) {
-            throw new NumberFormatException("radix="+radix+",进制超出2~16范围.");
+            throw new NumberFormatException("radix=" + radix + ",进制超出2~16范围.");
         }
 
         int value = 0, i = 0;
@@ -58,7 +58,7 @@ public final class MyInteger implements Comparable<MyInteger> {
 
         if (s.charAt(0) == '+' || s.charAt(0) == '-') { //跳过符号位
             if (s.length() == 1) {  //只有"+","-"
-                throw new NumberFormatException("\""+s+"\"");
+                throw new NumberFormatException("\"" + s + "\"");
             } else {
                 i++;  //i记住当前符号
             }
@@ -76,7 +76,7 @@ public final class MyInteger implements Comparable<MyInteger> {
                     if (radix > 10 && ch >= 'A' && ch - 'A' < radix - 10) {
                         value = value * radix + ch - 'A' + 10;
                     } else {
-                        throw new NumberFormatException(radix+"进制不能识别"+ch);
+                        throw new NumberFormatException(radix + "进制不能识别" + ch);
                     }
                 }
             }
@@ -87,13 +87,14 @@ public final class MyInteger implements Comparable<MyInteger> {
 
     /**
      * 返回整数value的十六进制补码字符串,正数高位补0
-     * @param value     传进来的值
-     * @return          十六进制补码
+     *
+     * @param value 传进来的值
+     * @return 十六进制补码
      */
     public static String toHexString(int value) {
         char[] buffer = new char[8];        //一个int有8个十六进制位
 
-        for (int i = buffer.length-1; i >= 0; i--) { //循环执行8次,高位补0
+        for (int i = buffer.length - 1; i >= 0; i--) { //循环执行8次,高位补0
             int bit = value & 15;       //获得十六进制的个位
 
             buffer[i] = (char) (bit <= 9 ? bit + '0' : bit - 10 + 'a'); //获得十六进制的个位
@@ -106,13 +107,14 @@ public final class MyInteger implements Comparable<MyInteger> {
 
     /**
      * 返回value的二进制补码字符串,正数高位补0
-     * @param value         十进制数
-     * @return              二进制补码字符串
+     *
+     * @param value 十进制数
+     * @return 二进制补码字符串
      */
     public static String toBinaryString(int value) {
         char[] buffer = new char[32];
 
-        for(int i = buffer.length-1; i >= 0; i--) {
+        for (int i = buffer.length - 1; i >= 0; i--) {
             int bit = value & 1;
 
             buffer[i] = (char) (bit + '0');
@@ -125,16 +127,17 @@ public final class MyInteger implements Comparable<MyInteger> {
 
     /**
      * 返回value的八进制补码字符串,正数高位补0
-     * @param value         十进制数
-     * @return              八进制补码字符串
+     *
+     * @param value 十进制数
+     * @return 八进制补码字符串
      */
     public static String toOctalString(int value) {
         char[] buffer = new char[11];
 
-        for(int i = buffer.length-1; i >= 0; i--) {
+        for (int i = buffer.length - 1; i >= 0; i--) {
             int bit = value & 7;
 
-            buffer[i] = (char)(bit + '0');
+            buffer[i] = (char) (bit + '0');
 
             value >>>= 3;
         }

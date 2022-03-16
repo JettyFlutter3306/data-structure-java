@@ -10,16 +10,15 @@ public class BinarySearch {
     /**
      * 已知value数组元素按升序排序,在begin~end范围内,二分查找关键字为key元素,若查找成功,则返回下标
      * 否则返回-1,若begin,end越界,返回-1,若key == null,抛出空对象异常
-     *
      * 为什么不用 mid = (begin + end) / 2 ??
      * 因为有溢出的风险,而begin + (end - begin) >> 1 不会出现溢出的情况,而且速度更快!
      *
-     * @param values            排序数组
-     * @param begin             开始位置
-     * @param end               结束位置
-     * @param key               关键字
-     * @param <T>               泛型
-     * @return                  下标
+     * @param values 排序数组
+     * @param begin  开始位置
+     * @param end    结束位置
+     * @param key    关键字
+     * @param <T>    泛型
+     * @return 下标
      */
     public static <T extends Comparable<? super T>> int binarySearch(T[] values, int begin, int end, T key) {
         if (values == null || values.length == 0) {
@@ -41,8 +40,8 @@ public class BinarySearch {
         return -1;  //查找不成功返回-1
     }
 
-    public static <T extends Comparable<? super T>> int binarySearch(T[] value,T key) {
-        return binarySearch(value,0,value.length - 1,key);
+    public static <T extends Comparable<? super T>> int binarySearch(T[] value, T key) {
+        return binarySearch(value, 0, value.length - 1, key);
     }
 
     /**

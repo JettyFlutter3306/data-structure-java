@@ -11,7 +11,8 @@ public class HuffmanTree {
 
     /**
      * 构造Huffman树,weights指定权值集合,数组长度为叶子结点数,默认字符集合从A开始
-     * @param weights       权值集合
+     *
+     * @param weights 权值集合
      */
     public HuffmanTree(int[] weights) {
         this.charset = "";
@@ -22,7 +23,7 @@ public class HuffmanTree {
 
         int n = weights.length;  //叶子结点数
 
-        this.hufTree = new TriElement[2*n - 1];  //n个叶子的Huffman树有 2n-1 个结点
+        this.hufTree = new TriElement[2 * n - 1];  //n个叶子的Huffman树有 2n-1 个结点
 
         for (int i = 0; i < n; i++) {
             this.hufTree[i] = new TriElement(weights[i]);  //构造无父母的叶子结点
@@ -32,7 +33,7 @@ public class HuffmanTree {
             int min1 = Integer.MAX_VALUE;  //最小权值,初始值为最大整数
             int min2 = min1;                //次小权值
 
-            int x1 = -1,x2 = -1;  //最小和次小权值结点下标
+            int x1 = -1, x2 = -1;  //最小和次小权值结点下标
 
             for (int j = 0; j < i; j++) {               //寻找两个无父母的最小权值结点下标
                 if (this.hufTree[j].parent == -1) {       //第 j 个结点无父母
@@ -52,14 +53,15 @@ public class HuffmanTree {
 
             this.hufTree[x1].parent = i;                //合并两棵权值最小的子树,左孩子最小
             this.hufTree[x2].parent = i;
-            this.hufTree[i] = new TriElement(min1+min2,-1,x1,x2);  //构造结点
+            this.hufTree[i] = new TriElement(min1 + min2, -1, x1, x2);  //构造结点
         }
     }
 
     /**
      * 返回charset第 i 个字符的Huffman编码字符串
-     * @param i         序列
-     * @return          String
+     *
+     * @param i 序列
+     * @return String
      */
     private String getCode(int i) {
         int n = 8;
@@ -69,7 +71,7 @@ public class HuffmanTree {
         int child = i;
         int parent = this.hufTree[child].parent;
 
-        for (i = n - 1; parent != -1 ; i--) {  //由叶结点向上直到根结点,反序列储存编码
+        for (i = n - 1; parent != -1; i--) {  //由叶结点向上直到根结点,反序列储存编码
             hufCode[i] = (hufTree[parent].left == child) ? '0' : '1';  //左,右孩子编码0,1
 
             child = parent;
@@ -77,13 +79,14 @@ public class HuffmanTree {
             parent = hufTree[child].parent;
         }
 
-        return new String(hufCode,i+1,n-1-i);  //由hufCode数组从i+1开始的n-i-1个字符构造串
+        return new String(hufCode, i + 1, n - 1 - i);  //由hufCode数组从i+1开始的n-i-1个字符构造串
     }
 
     /**
      * 数据压缩,将text个字符转换成Huffman编码存储,返回压缩字符串
-     * @param text          文本
-     * @return              压缩字符串
+     *
+     * @param text 文本
+     * @return 压缩字符串
      */
     public String encode(String text) {
         StringBuilder compressed = new StringBuilder();  //被压缩的数据,以字符串显示
@@ -97,8 +100,9 @@ public class HuffmanTree {
 
     /**
      * 数据解压缩,将压缩compressed中的0/1序列进行Huffman编码,返回译码字符串
-     * @param compressed            压缩字符串
-     * @return                      Huffman编码
+     *
+     * @param compressed 压缩字符串
+     * @return Huffman编码
      */
     public String decode(String compressed) {
         StringBuilder text = new StringBuilder();

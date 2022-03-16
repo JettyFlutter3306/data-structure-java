@@ -26,7 +26,7 @@ public class ThreadNode<T> extends AbstractBaseEntity {
     }
 
     public ThreadNode(T data) {
-        this(data,null,null,false,false);
+        this(data, null, null, false, false);
     }
 
     /**

@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class SwapSort {
 
     public static void bubbleSort(int[] keys) {
-        bubbleSort(keys,true);
+        bubbleSort(keys, true);
     }
 
     /**
