@@ -22,7 +22,7 @@ public class AdjListGraph<T> extends AbstractGraph<T> implements Graph<T> {
     public AdjListGraph(int length) {
         super(length);
 
-        this.adjList = new LinkedMatrix(length,length);  //构造length * length的矩阵
+        this.adjList = new LinkedMatrix(length, length);  //构造length * length的矩阵
     }
 
     /**
@@ -34,7 +34,8 @@ public class AdjListGraph<T> extends AbstractGraph<T> implements Graph<T> {
 
     /**
      * 以vertices顶点集合构造图,边数为0
-     * @param vertices      顶点集合
+     *
+     * @param vertices 顶点集合
      */
     public AdjListGraph(T[] vertices) {
         this();
@@ -46,8 +47,9 @@ public class AdjListGraph<T> extends AbstractGraph<T> implements Graph<T> {
 
     /**
      * 以vertices顶点集合和edges边集合构造图
-     * @param vertices      顶点集合
-     * @param edges         边集合
+     *
+     * @param vertices 顶点集合
+     * @param edges    边集合
      */
     public AdjListGraph(T[] vertices, Triple[] edges) {
         this(vertices);
@@ -69,8 +71,8 @@ public class AdjListGraph<T> extends AbstractGraph<T> implements Graph<T> {
     public int insertVertex(T x) {
         int i = this.vertexList.insert(x);  //顶点顺序表尾插入 x ,返回 x 的序号,自动扩容
 
-        if(i >= this.adjList.getRows()){  //若邻接表容量不够
-            this.adjList.setRowsColumn(i + 1,i + 1);  //则扩容,保持邻接表行数同图的顶点数
+        if (i >= this.adjList.getRows()) {  //若邻接表容量不够
+            this.adjList.setRowsColumn(i + 1, i + 1);  //则扩容,保持邻接表行数同图的顶点数
         }
 
         return i;  //返回插入顶点序号
@@ -81,9 +83,9 @@ public class AdjListGraph<T> extends AbstractGraph<T> implements Graph<T> {
      * 在邻接表表示的图中,删除顶点vi,需要进行一下两部操作
      * 1.在顶点顺序表中删除第 i 个元素,图的顶点数减 1,vi之后的顶点序号减 1
      * 2.在邻接表中删除所有与顶点vi相关的边,包括一下操作:
-     *   (1) 在第 i 条以外的边单链表中,删除所有以顶点 i 为终点的边结点
-     *   (2) 在行指针顺序表中,删除第 i 个元素,即删除第 i 条边单链表
-     *   (3) 在所有边单链表中,将边结点中大于 i 的顶点序号减 1
+     * (1) 在第 i 条以外的边单链表中,删除所有以顶点 i 为终点的边结点
+     * (2) 在行指针顺序表中,删除第 i 个元素,即删除第 i 条边单链表
+     * (3) 在所有边单链表中,将边结点中大于 i 的顶点序号减 1
      */
     @Override
     public void removeVertex(int i) {
@@ -100,12 +102,12 @@ public class AdjListGraph<T> extends AbstractGraph<T> implements Graph<T> {
             n--;  //顶点数减 1
 
             this.adjList.rowList.remove(i);  //删除行指针顺序表的第 i 条边单链表,其后单链表上移
-            this.adjList.setRowsColumn(n,n);  //设置矩阵行列数,少一行
+            this.adjList.setRowsColumn(n, n);  //设置矩阵行列数,少一行
 
             for (int j = 0; j < n; j++) {  //遍历每条单链表,将大于 i 的顶点序号减 1
                 list = this.adjList.rowList.get(j);
 
-                for (Node<Triple> p = list.head.next; p != null ; p = p.next) {  //遍历第 j 条边单链表
+                for (Node<Triple> p = list.head.next; p != null; p = p.next) {  //遍历第 j 条边单链表
                     if (p.data.row > i) {
                         p.data.row--;
                     }
@@ -158,7 +160,7 @@ public class AdjListGraph<T> extends AbstractGraph<T> implements Graph<T> {
      * 在邻接表表示的图中,插入权值为weight的边[vi,vj],操作如下:
      * ⑴ weight范围: 0 < weight < ∞,对 weight 容错,若越界,视为无边,取值为 0
      * ⑵ 若 i , j 满足: 0 <= i,j < 图的顶点数, i != j,则在邻接表的第 i 条边单链表中查找表示[vi,vj]边的结点,根据查找结果和
-     *    weight权值,分别执行插入,替换或删除的操作
+     * weight权值,分别执行插入,替换或删除的操作
      * ⑶ 若 i , j 越界,抛出序号越界异常,若 i == j,表示自身环,抛出无效参数异常
      */
     @Override
@@ -172,7 +174,7 @@ public class AdjListGraph<T> extends AbstractGraph<T> implements Graph<T> {
              * 设置第i条边单链表中[vi,vj]边的权值为weight,若0<weight<∞,插入边或替换边的权
              * 值,若weight == 0,删除该边,若i,j越界,抛出序号越界异常
              */
-            this.adjList.set(i,j,weight);
+            this.adjList.set(i, j, weight);
         } else {
             throw new IllegalArgumentException("不能插入自身环, i = " + i + ", j = " + j);
         }
@@ -180,16 +182,17 @@ public class AdjListGraph<T> extends AbstractGraph<T> implements Graph<T> {
 
     /**
      * 算法实现说明:
-     *      1.由于图的邻接表adjList的结构同矩阵行的单链表,adjList中只存储了非零元素的三元组,对于图而言,只存储了
-     *        权值 weight > 0 的边,LinkedMatrix 类的set(i,j,weight) 方法实现了上述说明的操作,根据 weight 取值,或插入
-     *        或替换,或删除结点
-     *      2.由于邻接表中的边表示排序单链表,在查找和排序时,均调用compareTo(Triple triple)方法,各边仅按其行列值比较相等与大小,
-     *        与边的权值无关
+     * 1.由于图的邻接表adjList的结构同矩阵行的单链表,adjList中只存储了非零元素的三元组,对于图而言,只存储了
+     * 权值 weight > 0 的边,LinkedMatrix 类的set(i,j,weight) 方法实现了上述说明的操作,根据 weight 取值,或插入
+     * 或替换,或删除结点
+     * 2.由于邻接表中的边表示排序单链表,在查找和排序时,均调用compareTo(Triple triple)方法,各边仅按其行列值比较相等与大小,
+     * 与边的权值无关
      * 插入一条边
-     * @param edge      边
+     *
+     * @param edge 边
      */
     public void insertEdge(Triple edge) {
-        this.adjList.set(edge.row,edge.column,edge.value);
+        this.adjList.set(edge.row, edge.column, edge.value);
     }
 
     /**
@@ -200,7 +203,7 @@ public class AdjListGraph<T> extends AbstractGraph<T> implements Graph<T> {
     @Override
     public void removeEdge(int i, int j) {
         if (i != j) {
-            this.adjList.set(new Triple(i,j,0));  //设置边的权值为0,即在第i条边单链表中删除边结点
+            this.adjList.set(new Triple(i, j, 0));  //设置边的权值为0,即在第i条边单链表中删除边结点
         }
     }
 
@@ -208,7 +211,7 @@ public class AdjListGraph<T> extends AbstractGraph<T> implements Graph<T> {
      * 删除一条边
      */
     public void removeEdge(Triple triple) {
-        this.removeEdge(triple.row,triple.column);
+        this.removeEdge(triple.row, triple.column);
     }
 
     /**

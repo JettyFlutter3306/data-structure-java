@@ -18,7 +18,8 @@ public class HashSet<T> {
 
     /**
      * 构造容量为length的散列表
-     * @param length        容量
+     *
+     * @param length 容量
      */
     public HashSet(int length) {
         if (length < 10) {
@@ -41,7 +42,8 @@ public class HashSet<T> {
 
     /**
      * 构造散列表,有values数组提供元素
-     * @param values        数组
+     *
+     * @param values 数组
      */
     public HashSet(T[] values) {
         this(values.length);
@@ -55,8 +57,9 @@ public class HashSet<T> {
 
     /**
      * 散列函数,计算关键字为x元素的散列地址,若 x == null 抛出空对象异常
-     * @param x         元素
-     * @return          HashCode
+     *
+     * @param x 元素
+     * @return HashCode
      */
     private int hash(T x) {
         int key = Math.abs(x.hashCode());  //每个对象的hashCode()方法返回int
@@ -66,8 +69,9 @@ public class HashSet<T> {
 
     /**
      * 返回查找到的关键字为 key 的元素,若查找失败则返回null
-     * @param key           关键字
-     * @return              T
+     *
+     * @param key 关键字
+     * @return T
      */
     public T search(T key) {
         Node<T> find = this.table[this.hash(key)].search(key);  //在单链表中查找关键字为key的元素
@@ -91,7 +95,7 @@ public class HashSet<T> {
             this.count = 0;
 
             for (int i = 0; i < temp.length; i++) {  //遍历原各同义词单链表,添加原所有元素
-                for (Node<T> p = temp[i].head.next; p != null ; p = p.next) {
+                for (Node<T> p = temp[i].head.next; p != null; p = p.next) {
                     this.add(p.data);  //添加元素,递归调用
                 }
             }
@@ -108,8 +112,9 @@ public class HashSet<T> {
 
     /**
      * 删除关键字为key的元素,返回被删除的元素,若查找不成功返回null
-     * @param key           关键字
-     * @return              T
+     *
+     * @param key 关键字
+     * @return T
      */
     public T remove(T key) {
         T x = this.table[this.hash(key)].remove(key);  //同义词单链表删除key元素结点
@@ -123,8 +128,9 @@ public class HashSet<T> {
 
     /**
      * 判断是否包含关关键字为key的元素
-     * @param key       关键字
-     * @return          boolean
+     *
+     * @param key 关键字
+     * @return boolean
      */
     public boolean contains(T key) {
         Node<T> node = this.table[this.hash(key)].search(key);

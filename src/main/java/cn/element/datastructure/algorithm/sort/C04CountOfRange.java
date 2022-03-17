@@ -1,4 +1,4 @@
-package cn.element.datastructure.algorithm.merge;
+package cn.element.datastructure.algorithm.sort;
 
 /**
  * 求一个数组中的前缀和子数组在一个给定范围内的个数

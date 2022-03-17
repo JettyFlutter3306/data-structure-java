@@ -1,4 +1,4 @@
-package cn.element.datastructure.algorithm.merge;
+package cn.element.datastructure.algorithm.sort;
 
 import java.util.Arrays;
 

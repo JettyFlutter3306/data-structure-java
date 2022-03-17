@@ -6,16 +6,18 @@ import cn.element.datastructure.list.node.Node;
 
 /**
  * 声明HashMap<K, V>散列映射如下,实现Map<K, V>接口使用散列表存储映射元素实现查找,插入,删除方法
- * @param <K>       键
- * @param <V>       值
+ *
+ * @param <K> 键
+ * @param <V> 值
  */
-public class HashMap<K,V> implements Map<K,V> {
+public class HashMap<K, V> implements Map<K, V> {
 
-    protected HashSet<KeyValue<K,V>> set;  //散列表,元素是 KeyValue<K,V>
+    protected HashSet<KeyValue<K, V>> set;  //散列表,元素是 KeyValue<K,V>
 
     /**
      * 构造容量为length的散列映射
-     * @param length        容量
+     *
+     * @param length 容量
      */
     public HashMap(int length) {
         this.set = new HashSet<>(length);
@@ -40,25 +42,27 @@ public class HashMap<K,V> implements Map<K,V> {
 
     /**
      * 返回关键字key的值
-     * @param key       关键字
-     * @return          V
+     *
+     * @param key 关键字
+     * @return V
      */
     @Override
     public V get(K key) {
-        KeyValue<K,V> find = this.set.search(new KeyValue<>(key,null));  //查找
+        KeyValue<K, V> find = this.set.search(new KeyValue<>(key, null));  //查找
 
         return find != null ? find.value : null;  //查找成功,返回值,否则返回null
     }
 
     /**
      * 添加映射元素,关键字相同时,替换值
-     * @param key           关键字
-     * @param value         值
-     * @return              V
+     *
+     * @param key   关键字
+     * @param value 值
+     * @return V
      */
     @Override
     public V put(K key, V value) {
-        KeyValue<K,V> keyValue = new KeyValue<>(key,value);
+        KeyValue<K, V> keyValue = new KeyValue<>(key, value);
 
         if (!this.set.add(keyValue)) {  //插入不成功,表示关键字重复
             this.set.search(keyValue).value = value;  //查找关键字重复元素,替换值
@@ -74,7 +78,7 @@ public class HashMap<K,V> implements Map<K,V> {
 
     @Override
     public boolean containsKey(K key) {
-        return this.set.contains(new KeyValue<>(key,null));
+        return this.set.contains(new KeyValue<>(key, null));
     }
 
     @Override
@@ -91,7 +95,7 @@ public class HashMap<K,V> implements Map<K,V> {
         int i = 0;
 
         for (SinglyList<KeyValue<K, V>> list : lists) {
-            for (Node<KeyValue<K,V>> p = list.head.next; p != null ; p = p.next) {
+            for (Node<KeyValue<K, V>> p = list.head.next; p != null; p = p.next) {
                 V value = p.data.getValue();
                 arr[i++] = value;
             }
@@ -109,7 +113,7 @@ public class HashMap<K,V> implements Map<K,V> {
         SinglyList<KeyValue<K, V>>[] lists = this.set.getTable();
 
         for (SinglyList<KeyValue<K, V>> list : lists) {
-            for (Node<KeyValue<K,V>> p = list.head.next; p != null ; p = p.next) {
+            for (Node<KeyValue<K, V>> p = list.head.next; p != null; p = p.next) {
                 K key = p.data.getKey();
                 set.add(key);
             }
