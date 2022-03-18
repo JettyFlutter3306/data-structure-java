@@ -21,20 +21,20 @@ public class SwapSort {
      *   其中布尔变量 exchange 用作本趟扫描是否交换的标记,如果一趟扫描没有数据交换,则排序完成
      *   不必进行下一轮交换
      */
-    public static void bubbleSort(int[] keys,boolean asc) {
+    public static void bubbleSort(int[] keys, boolean asc) {
         String str = asc ? "升序" : "降序";
 
         System.out.println("冒泡排序: " + str);
 
         boolean exchange = true;  //是否交换的标记
-
+        
         for (int i = 0; i < keys.length - 1 && exchange; i++) {  //比较的轮数  总共需要 keys.length - 1 轮
             exchange = false;
 
             for (int j = 0; j < keys.length - i - 1; j++) {  //每一轮比较的次数  keys.length - i - 1
                 if(asc ? keys[j] > keys[j+1] : keys[j] < keys[j+1]){
-                    IArrays.swap(keys,j,j+1);
-
+                    IArrays.swap(keys, j, j+1);
+                    
                     exchange = true;
                 }
             }

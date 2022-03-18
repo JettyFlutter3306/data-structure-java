@@ -10,8 +10,10 @@ public class IArrays {
      * 前提条件是: i != j
      */
     public static void swap(int[] keys, int i, int j) {
-        keys[i] = keys[i] ^ keys[j];
-        keys[j] = keys[i] ^ keys[j];
-        keys[i] = keys[i] ^ keys[j];
+        if (i != j) {
+            keys[i] = keys[i] ^ keys[j];
+            keys[j] = keys[i] ^ keys[j];
+            keys[i] = keys[i] ^ keys[j];
+        }
     }
 }
