@@ -48,15 +48,15 @@ public class SelectSort {
      *   时间复杂度 O(n × log n)  空间复杂度 O(1)
      *   堆排序算法不稳定
      */
-    public static void heapSort(int[] keys,boolean minHeap) {
-        for (int i = keys.length / 2; i >= 0 ; i--) {  //创建最小/大堆,根结点值最小/大
-            sift(keys,i,keys.length - 1,minHeap);
+    public static void heapSort(int[] keys, boolean minHeap) {
+        for (int i = keys.length / 2; i >= 0; i--) {  //创建最小/大堆,根结点值最小/大
+            sift(keys, i,keys.length - 1, minHeap);
         }
 
-        for (int i = keys.length - 1; i > 0 ; i--) {  //每趟将最小/大值交换到最后面,再调整成最小/大堆
-            IArrays.swap(keys,0,i);  //换值
+        for (int i = keys.length - 1; i > 0; i--) {  //每趟将最小/大值交换到最后面,再调整成最小/大堆
+            IArrays.swap(keys, 0, i);  //换值
 
-            sift(keys,0,i-1,minHeap);
+            sift(keys, 0, i - 1, minHeap);
         }
     }
 
@@ -64,7 +64,7 @@ public class SelectSort {
      * 将 keys 数组中以parent为根的子树调整为最小/大堆,子序列范围为 parent ~ end
      * 私有方法,只被堆排序方法调用,确保 parent, end 在范围内
      */
-    private static void sift(int[] keys,int parent,int end,boolean miniHeap) {
+    private static void sift(int[] keys, int parent, int end, boolean miniHeap) {
         System.out.println("sift " + parent + ".." + end + " ");
 
         int child = 2 * parent + 1;  //child是parent的左孩子
