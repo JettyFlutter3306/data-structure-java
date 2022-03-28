@@ -1,4 +1,4 @@
-package cn.element.datastructure.algorithm.sort;
+package cn.element.datastructure.algorithm.heap;
 
 import java.util.Arrays;
 import java.util.PriorityQueue;
@@ -6,13 +6,12 @@ import java.util.Queue;
 
 import static cn.element.datastructure.sort.IArrays.swap;
 
-public class C06Heap {
+public class C01Heap {
 
     /**
      * 堆排序:
      * 时间复杂度: O(N * log N)
      * 空间复杂度: O(1)
-     * <p>
      * 首先把整个数组变成大根堆
      */
     public static void heapSort(int[] arr) {
