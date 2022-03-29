@@ -11,7 +11,6 @@ public class SelectSort {
      * 直接选择排序(Straight Select Sort) 算法思想:
      * 第一趟从 n 个元素的数据序列中选出关键字最小/大的元素并放到最前/后位置,
      * 下一趟再从 n-1 个元素中选出最小/大的元素放到次前/后的位置,以此类推,经过 n-1 趟完成排序
-     * <p>
      * 算法分析:
      * 直接选择排序的比较次数与数据序列的初始排列无关,第 i 趟排序的比较次数是 n - i;移动次数与初始排列有关,排序序列移动 0 次
      * 反序排列的数据序列,每趟排序都要交换,移动 3(n-1) 次,
@@ -108,29 +107,19 @@ public class SelectSort {
      * 递归法判断是否是最小堆
      */
     public static boolean isHeap(int[] values, int index) {
-        int leftChild = (index * 2) + 1;
-
-        if (leftChild < values.length) {
-            if (values[leftChild] < values[index]) {
-                return false;
-            }
-
-            if (!isHeap(values, leftChild)) {
-                return false;
-            }
+        int left = index * 2 + 1;
+        int right = left + 1;
+        boolean flag = true;
+        
+        if (left * 2 + 1 > values.length - 1) {
+            return true;
         }
 
-        int rightChild = leftChild + 1;
-
-        if (rightChild < values.length) {
-            if (values[rightChild] < values[index]) {
-                return false;
-            }
-
-            return isHeap(values, rightChild);
+        if (values[left] < values[index] || values[right] < values[index]) {
+            flag = false;
         }
-
-        return true;
+        
+        return flag && isHeap(values, left) && isHeap(values, right);
     }
 
     public static void main(String[] args) {
