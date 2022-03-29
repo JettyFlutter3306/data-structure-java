@@ -11,12 +11,12 @@ public class SelectSort {
      * 直接选择排序(Straight Select Sort) 算法思想:
      * 第一趟从 n 个元素的数据序列中选出关键字最小/大的元素并放到最前/后位置,
      * 下一趟再从 n-1 个元素中选出最小/大的元素放到次前/后的位置,以此类推,经过 n-1 趟完成排序
-     *
+     * <p>
      * 算法分析:
-     *   直接选择排序的比较次数与数据序列的初始排列无关,第 i 趟排序的比较次数是 n - i;移动次数与初始排列有关,排序序列移动 0 次
-     *   反序排列的数据序列,每趟排序都要交换,移动 3(n-1) 次,
-     *   算法总比较次数 C = ∑(n - i) (from i = 1 to i = n- 1) = n(n-1)/2 ~ n^2 / 2
-     *   时间复杂度O(n²)  空间复杂度O(1)  直接选择排序算法不稳定
+     * 直接选择排序的比较次数与数据序列的初始排列无关,第 i 趟排序的比较次数是 n - i;移动次数与初始排列有关,排序序列移动 0 次
+     * 反序排列的数据序列,每趟排序都要交换,移动 3(n-1) 次,
+     * 算法总比较次数 C = ∑(n - i) (from i = 1 to i = n- 1) = n(n-1)/2 ~ n^2 / 2
+     * 时间复杂度O(n²)  空间复杂度O(1)  直接选择排序算法不稳定
      */
     public static void straightSelectSort(int[] keys) {
         if (keys == null || keys.length < 2) {
@@ -45,17 +45,16 @@ public class SelectSort {
     /**
      * 堆排序,当 minHeap 为true时,创建最小堆,降序排列,否则创建最大堆,升序排列
      * 算法分析:
-     *   时间复杂度 O(n × log n)  空间复杂度 O(1)
-     *   堆排序算法不稳定
+     * 时间复杂度 O(n × log n)  空间复杂度 O(1)
+     * 堆排序算法不稳定
      */
     public static void heapSort(int[] keys, boolean minHeap) {
         for (int i = keys.length / 2; i >= 0; i--) {  //创建最小/大堆,根结点值最小/大
-            sift(keys, i,keys.length - 1, minHeap);
+            sift(keys, i, keys.length - 1, minHeap);
         }
 
         for (int i = keys.length - 1; i > 0; i--) {  //每趟将最小/大值交换到最后面,再调整成最小/大堆
             IArrays.swap(keys, 0, i);  //换值
-
             sift(keys, 0, i - 1, minHeap);
         }
     }
@@ -90,11 +89,53 @@ public class SelectSort {
         System.out.println(Arrays.toString(keys));
     }
 
-    /**
-     * 判断values指定数据序列是否为堆
-     */
-    public static boolean isHeap(int[] values, boolean miniHeap) {
 
-        return false;
+    /**
+     * 判断是否是小根堆
+     */
+    public static boolean isHeap(int[] values) {
+        for (int i = values.length - 1; i >= 0; i--) {
+            int parent = (i - 1) / 2;
+            if (values[i] < values[parent]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * 递归法判断是否是最小堆
+     */
+    public static boolean isHeap(int[] values, int index) {
+        int leftChild = (index * 2) + 1;
+
+        if (leftChild < values.length) {
+            if (values[leftChild] < values[index]) {
+                return false;
+            }
+
+            if (!isHeap(values, leftChild)) {
+                return false;
+            }
+        }
+
+        int rightChild = leftChild + 1;
+
+        if (rightChild < values.length) {
+            if (values[rightChild] < values[index]) {
+                return false;
+            }
+
+            return isHeap(values, rightChild);
+        }
+
+        return true;
+    }
+
+    public static void main(String[] args) {
+        int[] values = {1, 2, 4, 8, 2, 5, 7};
+        System.out.println(isHeap(values));
+        System.out.println(isHeap(values, 0));
     }
 }
