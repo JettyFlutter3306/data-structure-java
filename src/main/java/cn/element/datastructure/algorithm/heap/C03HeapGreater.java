@@ -124,6 +124,10 @@ public class C03HeapGreater<T> {
         indexMap.put(o2, i);
         indexMap.put(o1, j);
     }
+
+    public static void main(String[] args) {
+        
+    }
     
     
     
