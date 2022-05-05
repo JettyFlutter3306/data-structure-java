@@ -6,7 +6,7 @@ public class C04RingArray {
      * 使用数组实现队列
      */
     private static class Queue {
-        private int[] arr;
+        private final int[] arr;
         private int pushI;
         private int pollI;
         private int size;

@@ -26,6 +26,7 @@ public class C05GetMinStack {
     }
 
     public static int getMin() {
+        assert !minStack.isEmpty();
         return minStack.peek();
     }
 
