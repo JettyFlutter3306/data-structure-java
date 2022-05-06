@@ -11,7 +11,7 @@ public class BinarySearch {
      * 已知value数组元素按升序排序,在begin~end范围内,二分查找关键字为key元素,若查找成功,则返回下标
      * 否则返回-1,若begin,end越界,返回-1,若key == null,抛出空对象异常
      * 为什么不用 mid = (begin + end) / 2 ??
-     * 因为有溢出的风险,而begin + (end - begin) >> 1 不会出现溢出的情况,而且速度更快!
+     * 因为有溢出的风险,而begin + ((end - begin) >> 1) 不会出现溢出的情况,而且速度更快!
      *
      * @param values 排序数组
      * @param begin  开始位置
@@ -45,24 +45,45 @@ public class BinarySearch {
     }
 
     /**
-     * 在数组中,找到满足 >= value 的最左的位置
+     * 找出一个数组中,小于或等于目标值的最大索引
+     * 
      */
-    public static int nearestIndex(int[] arr, int value) {
-        int left = 0;
-        int right = arr.length - 1;
-        int index = -1;  // 记录最左的对号
+    public static int searchTheBiggestIndex(int[] arr, int target) {
+        int start = 0;
+        int end = arr.length - 1;
+        int index = -1;
 
-        while (left <= right) {
-            int mid = left + ((right - left) >> 1);
-
-            if (arr[mid] >= value) {
+        while (start <= end) {
+            int mid = start + ((end - start) >> 1);
+            if (arr[mid] <= target) {
                 index = mid;
-                right = mid - 1;
+                start = mid + 1;
             } else {
-                left = mid + 1;
+                end = mid - 1;
             }
         }
+        
+        return index;
+    }
 
+    /**
+     * 在数组中,找到满足 >= value 的最左的位置
+     */
+    public static int searchTheSmallestIndex(int[] arr, int target) {
+        int start = 0;
+        int end = arr.length - 1;
+        int index = -1;
+
+        while (start <= end) {
+            int mid = start + ((end - start) >> 1);
+            if (arr[mid] >= target) {
+                index = mid;
+                end = mid - 1;
+            } else {
+                start = mid + 1;
+            }
+        }
+        
         return index;
     }
 

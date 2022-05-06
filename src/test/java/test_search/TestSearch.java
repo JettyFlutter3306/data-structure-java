@@ -14,21 +14,27 @@ public class TestSearch {
     @Test
     public void testBinarySearch() {
         Integer[] arr = {8, 17, 26, 32, 40, 72, 87, 99};
-
         int i = BinarySearch.binarySearch(arr, 72);
-
         System.out.println("i = " + i);  //i = 5
     }
 
     /**
-     * 二分查找大于某个数的最左的位置
+     * 找出小于或等于目标值的最大索引
      */
     @Test
     public void testSearchTheLeft() {
         int[] arr = {8, 17, 26, 32, 32, 40, 72, 87, 99};
+        int i = BinarySearch.searchTheBiggestIndex(arr, 30);
+        System.out.println("i = " + i);
+    }
 
-        int i = BinarySearch.nearestIndex(arr, 30);
-
+    /**
+     * 找出大于或等于目标值的最小索引
+     */
+    @Test
+    public void testSearchTheRight() {
+        int[] arr = {8, 17, 26, 32, 32, 40, 72, 87, 99};
+        int i = BinarySearch.searchTheSmallestIndex(arr, 30);
         System.out.println("i = " + i);
     }
 
@@ -38,9 +44,7 @@ public class TestSearch {
     @Test
     public void testFindRegionSmallest() {
         int[] arr = {15, 5, 10, 15, 18, 5, 17, 2, 99};
-
         int i = BinarySearch.getLessIndex(arr);
-
         System.out.println("i = " + i);
     }
 
