@@ -154,12 +154,12 @@ public class PriorityQueue<T extends Comparable<T>> {
     public static void main(String[] args) {
         Integer[] values = {2, 3, 4, 1, 0, 15, 10, 36, 28};
         // 构造小根堆
-        PriorityQueue<Integer> minHeap = new PriorityQueue<>(values, (o1, o2) -> o1.compareTo(o2));
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>(values, Integer::compareTo);
         // 返回最小值
         System.out.println(minHeap.peek());
         
         // 构造大根堆
-        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(values, (o1, o2) -> o2.compareTo(o1));
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(values, Comparator.reverseOrder());
         //返回最大值
         System.out.println(maxHeap.peek());
     }
