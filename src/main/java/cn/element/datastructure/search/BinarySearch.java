@@ -55,6 +55,7 @@ public class BinarySearch {
 
         while (start <= end) {
             int mid = start + ((end - start) >> 1);
+            
             if (arr[mid] <= target) {
                 index = mid;
                 start = mid + 1;
@@ -76,6 +77,7 @@ public class BinarySearch {
 
         while (start <= end) {
             int mid = start + ((end - start) >> 1);
+            
             if (arr[mid] >= target) {
                 index = mid;
                 end = mid - 1;
