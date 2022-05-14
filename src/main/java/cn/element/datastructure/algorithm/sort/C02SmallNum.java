@@ -2,6 +2,7 @@ package cn.element.datastructure.algorithm.sort;
 
 /**
  * 使用归并排序的方法解决小和问题
+ * 在一个数组中,每一个数左边比当前数小的数累加起来,叫做这个数组的小和.求一个数组的小和
  */
 public class C02SmallNum {
 

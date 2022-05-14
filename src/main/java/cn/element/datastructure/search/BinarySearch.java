@@ -90,7 +90,7 @@ public class BinarySearch {
     }
 
     /**
-     * 获取一个数组中的第一个局部最小值
+     * 获取一个无序无重复元素数组中的一个局部最小值(极小值)的位置
      */
     public static int getLessIndex(int[] arr) {
         if (arr == null || arr.length == 0) {

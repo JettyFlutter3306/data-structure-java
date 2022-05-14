@@ -39,11 +39,11 @@ public class TestSearch {
     }
 
     /**
-     * 找到数组中第一个局部最小值
+     * 找到数组中第一个最小值
      */
     @Test
     public void testFindRegionSmallest() {
-        int[] arr = {15, 5, 10, 15, 18, 5, 17, 2, 99};
+        int[] arr = {15, 5, 10, 12, 18, 4, 17, 80, 1};
         int i = BinarySearch.getLessIndex(arr);
         System.out.println("i = " + i);
     }
