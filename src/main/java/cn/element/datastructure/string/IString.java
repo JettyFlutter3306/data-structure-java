@@ -118,15 +118,14 @@ public final class IString implements Comparable<IString>, Serializable {
      * @return 当前串
      */
     public IString deleteString(int i) {
-        if (i < 0 || i >= this.value.length) {
+        if (i < 0 || i >= value.length) {
             throw new IndexOutOfBoundsException("i < 0");
         }
 
-        char[] temp = new char[this.value.length - 1];
-
-        System.arraycopy(this.value, 0, temp, 0, i);
-        System.arraycopy(this.value, i + 1, temp, i, this.value.length - i);
-
+        char[] temp = new char[value.length - 1];
+        System.arraycopy(value, 0, temp, 0, i);
+        System.arraycopy(value, i + 1, temp, i, value.length - i - 1);
+        
         return new IString(temp);
     }
 
