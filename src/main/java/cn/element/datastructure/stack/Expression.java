@@ -4,7 +4,7 @@ import cn.element.datastructure.common.Stack;
 
 public class Expression {
 
-    //返回将infix中缀表达式准换成的后缀表达式
+    // 返回将infix中缀表达式准换成的后缀表达式
     public static StringBuffer toPostfix(String infix) {
         Stack<String> stack = new SeqStack<>(infix.length());//运算符栈,顺序栈
 
