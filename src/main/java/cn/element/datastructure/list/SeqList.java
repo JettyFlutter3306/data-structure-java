@@ -120,9 +120,10 @@ public class SeqList<T> extends AbstractList<T> {
         if(this.element.length == this.n){      //如果数组已满,则扩充顺序表的容量
             this.element = new Object[this.n * 2];      //申请一个更大的数组
 
-            System.arraycopy(source, 0, this.element, 0, i);
+            System.arraycopy(source, 0, this.element, 0, this.n);  //复制元素赋值
         }
 
+        // 将原数组中的元素后移一位
         if (this.n - i >= 0) {
             System.arraycopy(this.element, i, this.element, i + 1, this.n - i);
         }
