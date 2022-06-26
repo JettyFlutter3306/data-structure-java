@@ -18,6 +18,8 @@ public class TestSortedSinglyList {
         SinglyList<String> list = new SortedSinglyList<>(arr);
 
         System.out.println(list.search("ok"));
+
+        System.out.println(list.size()); //6
     }
 
     /**
@@ -29,7 +31,16 @@ public class TestSortedSinglyList {
 
         SinglyList<String> list = new SortedSinglyList<>(arr);
 
-        System.out.println(list.insertDifferent("ok")); //null
+        System.out.println(list.size()); //6
+
+        System.out.println(list.insertDifferent("ok")); //null, 因为插入的元素已经存在了
+
+        System.out.println(list.size()); //6, 列表长度不变
+
+        System.out.println(list.insertDifferent("new")); //new, 插入的元素不存在
+
+        System.out.println(list.size()); //7, 列表长度加一
+
     }
 
     /**
@@ -41,9 +52,14 @@ public class TestSortedSinglyList {
 
         SinglyList<String> list = new SortedSinglyList<>(arr);
 
+
+        System.out.println(list.size()); //6
+
         System.out.println(list.remove("ok"));
 
         System.out.println(list);
+
+        System.out.println(list.size()); //5
     }
 
     /**

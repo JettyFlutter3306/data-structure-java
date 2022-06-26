@@ -81,6 +81,7 @@ public class SortedSinglyList<T extends Comparable<? super T>> extends SinglyLis
         }
 
         front.next = new Node<>(x,p);   //在front之后,p之前插入值为x的结点
+        this.n++;
 
         return front.next;  //返回插入结点
     }
@@ -137,7 +138,7 @@ public class SortedSinglyList<T extends Comparable<? super T>> extends SinglyLis
             while (p.next != null) {
                 if (p.next.data.compareTo(key) == 0) {
                     p.next = p.next.next;
-
+                    this.n--;
                     return key;
                 }
 
