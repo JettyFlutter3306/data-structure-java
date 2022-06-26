@@ -51,7 +51,13 @@ public class C03LinkedStackAndQueue {
             }
         }
     }
-    
-    
 
+    public static void main(String[] args) {
+        DoubleEndsQueue<Integer> queue = new DoubleEndsQueue<>();
+        queue.addFromHead(1);
+        queue.addFromHead(2);
+        queue.addFromHead(3);
+        queue.addFromHead(4);
+        queue.addFromHead(5);
+    }
 }

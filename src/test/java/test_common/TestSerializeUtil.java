@@ -12,11 +12,8 @@ public class TestSerializeUtil {
      */
     @Test
     public void test01() throws IOException, ClassNotFoundException {
-
         int[] array1 = new int[]{1,2,3,4,5,6};
-
-        int[] array2 = (int[]) SerializeUtil.deepClone(array1);
-
+        int[] array2 = SerializeUtil.deepClone(array1);
         System.out.println(array1 == array2);
     }
 }

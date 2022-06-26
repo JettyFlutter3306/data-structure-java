@@ -26,7 +26,7 @@ public class Polynomial {
     }
 
     //多项式相加 this += poly
-    public void addAll(Polynomial poly){
+    public void addAll(Polynomial poly) {
         this.list.addAll(poly.list);
     }
 

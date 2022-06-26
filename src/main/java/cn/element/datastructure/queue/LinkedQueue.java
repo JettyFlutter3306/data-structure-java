@@ -11,7 +11,7 @@ import java.util.Iterator;
  */
 public final class LinkedQueue<T> extends AbstractQueue<T> {
 
-    private Node<T> front,rear;  //front和rear分别指向队列头和队列尾结点
+    private Node<T> front, rear;  //front和rear分别指向队列头和队列尾结点
 
     public LinkedQueue() {  //构造空队列
         this.front = this.rear = null;

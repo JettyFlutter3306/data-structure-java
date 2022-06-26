@@ -6,6 +6,7 @@ import java.io.Serializable;
  * 变量字符换类,最终类,实现序列化接口
  */
 public final class IStringBuffer implements Serializable {
+    
     private char[] value;  //字符数组,私有成员变量
 
     private int n;      //串长度

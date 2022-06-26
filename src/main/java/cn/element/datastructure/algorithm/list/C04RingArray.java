@@ -50,4 +50,8 @@ public class C04RingArray {
         }
     }
 
+    public static void main(String[] args) {
+        
+    }
+
 }

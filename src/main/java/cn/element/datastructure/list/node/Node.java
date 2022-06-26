@@ -11,7 +11,7 @@ public class Node<T> extends AbstractBaseEntity {
 
     public Node<T> next;  //地址域,引用后继结点
 
-    public Node(T data,Node<T> next){   //构造结点,data指定数据元素,next指定后继结点
+    public Node(T data, Node<T> next) {   //构造结点,data指定数据元素,next指定后继结点
         this.data = data;   //T对象引用赋值
         this.next = next;   //Node<T> 对象引用赋值
     }
@@ -20,15 +20,14 @@ public class Node<T> extends AbstractBaseEntity {
         this.data = data;
     }
 
-    public Node(){
-        this(null,null);
+    public Node() {
+        this(null, null);
     }
 
     @Override
     public String toString() {
         return this.data.toString();
     }
-
 
 
 }

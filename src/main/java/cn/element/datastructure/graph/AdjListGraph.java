@@ -21,7 +21,6 @@ public class AdjListGraph<T> extends AbstractGraph<T> implements Graph<T> {
      */
     public AdjListGraph(int length) {
         super(length);
-
         this.adjList = new LinkedMatrix(length, length);  //构造length * length的矩阵
     }
 
@@ -39,7 +38,6 @@ public class AdjListGraph<T> extends AbstractGraph<T> implements Graph<T> {
      */
     public AdjListGraph(T[] vertices) {
         this();
-
         for (T vertex : vertices) {
             this.insertVertex(vertex);
         }

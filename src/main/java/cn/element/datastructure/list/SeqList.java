@@ -73,8 +73,7 @@ public class SeqList<T> extends AbstractList<T> {
     @Override
     public T get(int i) {
         //范围 [0,n)
-        if(i >= 0 && i < this.n){
-
+        if (i >= 0 && i < this.n) {
             return (T) this.element[i];
         }
 
@@ -85,7 +84,7 @@ public class SeqList<T> extends AbstractList<T> {
      * 设置第i个元素
      */
     @Override
-    public void set(int i,T x) {
+    public void set(int i, T x) {
         if (x == null) {
             throw new NullPointerException("x == null");
         }
@@ -99,10 +98,10 @@ public class SeqList<T> extends AbstractList<T> {
 
     /**
      * 插入x作为第i个元素方法  若i>n则插入到最后
-     *
+     * <p>
      * 插入删除效率低下的原因
      */
-    public int insert(int i,T x) {
+    public int insert(int i, T x) {
         if (x == null) {
             throw new NullPointerException("x == null");
         }
@@ -117,7 +116,7 @@ public class SeqList<T> extends AbstractList<T> {
 
         Object[] source = this.element;         //数组引用赋值,element也引用source
 
-        if(this.element.length == this.n){      //如果数组已满,则扩充顺序表的容量
+        if (this.element.length == this.n) {      //如果数组已满,则扩充顺序表的容量
             this.element = new Object[this.n * 2];      //申请一个更大的数组
 
             System.arraycopy(source, 0, this.element, 0, i);
@@ -138,7 +137,7 @@ public class SeqList<T> extends AbstractList<T> {
      * 尾部插入,方法重载
      */
     public int insert(T x) {
-        return this.insert(this.n,x);
+        return this.insert(this.n, x);
     }
 
     /**
@@ -154,7 +153,7 @@ public class SeqList<T> extends AbstractList<T> {
                 System.arraycopy(this.element, i + 1, this.element, i, this.n - 1 - i);
             }
 
-            this.element[this.n-1] = null;      //设置数组元素对象为空,释放原引用实例
+            this.element[this.n - 1] = null;      //设置数组元素对象为空,释放原引用实例
 
             this.n--;
 
@@ -176,7 +175,7 @@ public class SeqList<T> extends AbstractList<T> {
     /**
      * 查找方法,查找首次与Key相等的元素,返回元素索引,查找不成功返回-1,key==null,返回NullPointerException
      */
-    public int search(T key){
+    public int search(T key) {
         if (key == null) {
             throw new NullPointerException("key == null");
         }
@@ -213,10 +212,10 @@ public class SeqList<T> extends AbstractList<T> {
     /**
      * 删除首个出现的与key相等的元素,返回被删除的元素
      */
-    public T remove(T key){
+    public T remove(T key) {
         int i = this.search(key);
 
-        if(i == -1){
+        if (i == -1) {
             return null;
         }
 
@@ -226,7 +225,7 @@ public class SeqList<T> extends AbstractList<T> {
     /**
      * 实现集合并运算
      */
-    public void addAll(SeqList<? extends T> list){
+    public void addAll(SeqList<? extends T> list) {
         for (int i = 0; i < list.element.length; i++) {
             if (!this.contains(list.get(i))) {
                 this.insert(list.get(i));
@@ -246,9 +245,9 @@ public class SeqList<T> extends AbstractList<T> {
         if (obj instanceof SeqList<?>) {  //若obj引用顺序表实例,SeqList<?>是所有的SeqList<T>的父类
             SeqList<T> list = (SeqList<T>) obj;
 
-            if(this.n == list.n){
+            if (this.n == list.n) {
                 for (int i = 0; i < this.n; i++) {
-                    if(!(this.get(i).equals(list.get(i)))){
+                    if (!(this.get(i).equals(list.get(i)))) {
                         return false;
                     }
                 }
@@ -264,7 +263,7 @@ public class SeqList<T> extends AbstractList<T> {
      * 返回描述的字符串
      */
     @Override
-    public String toString(){
+    public String toString() {
         StringBuilder str = new StringBuilder(this.getClass().getSimpleName() + "(");       //返回类名
 
         if (this.n > 0) {
@@ -284,11 +283,11 @@ public class SeqList<T> extends AbstractList<T> {
     public String toPreviousString() {
         StringBuilder str = new StringBuilder(this.getClass().getName() + "(");       //返回类名
 
-        if(this.n > 0){
-            str.append(this.element[this.n-1].toString());
+        if (this.n > 0) {
+            str.append(this.element[this.n - 1].toString());
         }
 
-        for (int i = this.n-2; i > -1; i--) {
+        for (int i = this.n - 2; i > -1; i--) {
             str.append(",").append(this.element[i].toString());
         }
 
