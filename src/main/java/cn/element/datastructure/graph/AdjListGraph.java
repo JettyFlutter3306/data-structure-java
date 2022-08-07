@@ -21,7 +21,7 @@ public class AdjListGraph<T> extends AbstractGraph<T> implements Graph<T> {
      */
     public AdjListGraph(int length) {
         super(length);
-        this.adjList = new LinkedMatrix(length, length);  //构造length * length的矩阵
+        adjList = new LinkedMatrix(length, length);  //构造length * length的矩阵
     }
 
     /**
@@ -39,7 +39,7 @@ public class AdjListGraph<T> extends AbstractGraph<T> implements Graph<T> {
     public AdjListGraph(T[] vertices) {
         this();
         for (T vertex : vertices) {
-            this.insertVertex(vertex);
+            insertVertex(vertex);
         }
     }
 
@@ -53,7 +53,7 @@ public class AdjListGraph<T> extends AbstractGraph<T> implements Graph<T> {
         this(vertices);
 
         for (Triple edge : edges) {
-            this.insertEdge(edge);
+            insertEdge(edge);
         }
     }
 
@@ -67,10 +67,10 @@ public class AdjListGraph<T> extends AbstractGraph<T> implements Graph<T> {
      */
     @Override
     public int insertVertex(T x) {
-        int i = this.vertexList.insert(x);  //顶点顺序表尾插入 x ,返回 x 的序号,自动扩容
+        int i = vertexList.insert(x);  //顶点顺序表尾插入 x ,返回 x 的序号,自动扩容
 
-        if (i >= this.adjList.getRows()) {  //若邻接表容量不够
-            this.adjList.setRowsColumn(i + 1, i + 1);  //则扩容,保持邻接表行数同图的顶点数
+        if (i >= adjList.getRows()) {  //若邻接表容量不够
+            adjList.setRowsColumn(i + 1, i + 1);  //则扩容,保持邻接表行数同图的顶点数
         }
 
         return i;  //返回插入顶点序号
@@ -87,23 +87,23 @@ public class AdjListGraph<T> extends AbstractGraph<T> implements Graph<T> {
      */
     @Override
     public void removeVertex(int i) {
-        int n = this.vertexCount();  //删除之前的顶点数
+        int n = vertexCount();  //删除之前的顶点数
 
         if (i >= 0 && i < n) {
             //删除与第 i 条边单链表中所有结点对称的边
-            SortedSinglyList<Triple> list = this.adjList.rowList.get(i);
+            SortedSinglyList<Triple> list = adjList.rowList.get(i);
 
             for (Node<Triple> p = list.head.next; p != null; p = p.next) {  //遍历第 i 条边单链表
-                this.removeEdge(p.data.toSymmetry());  //删除与p结点对称的边
+                removeEdge(p.data.toSymmetry());  //删除与p结点对称的边
             }
 
             n--;  //顶点数减 1
 
-            this.adjList.rowList.remove(i);  //删除行指针顺序表的第 i 条边单链表,其后单链表上移
-            this.adjList.setRowsColumn(n, n);  //设置矩阵行列数,少一行
+            adjList.rowList.remove(i);  //删除行指针顺序表的第 i 条边单链表,其后单链表上移
+            adjList.setRowsColumn(n, n);  //设置矩阵行列数,少一行
 
             for (int j = 0; j < n; j++) {  //遍历每条单链表,将大于 i 的顶点序号减 1
-                list = this.adjList.rowList.get(j);
+                list = adjList.rowList.get(j);
 
                 for (Node<Triple> p = list.head.next; p != null; p = p.next) {  //遍历第 j 条边单链表
                     if (p.data.row > i) {
@@ -116,7 +116,7 @@ public class AdjListGraph<T> extends AbstractGraph<T> implements Graph<T> {
                 }
             }
 
-            this.vertexList.remove(i);  //删除顶点vi,i后顶点序号减 1,图顶点数减 1
+            vertexList.remove(i);  //删除顶点vi,i后顶点序号减 1,图顶点数减 1
         } else {
             throw new IndexOutOfBoundsException("i = " + i);  //抛出序号异常
         }
@@ -128,10 +128,10 @@ public class AdjListGraph<T> extends AbstractGraph<T> implements Graph<T> {
      */
     @Override
     public int next(int i, int j) {
-        int n = this.vertexCount();
+        int n = vertexCount();
 
         if (i >= 0 && i < n && j >= -1 && j < n && i != j) {
-            SortedSinglyList<Triple> list = this.adjList.rowList.get(i);  //第i条排序单链表
+            SortedSinglyList<Triple> list = adjList.rowList.get(i);  //第i条排序单链表
 
             Node<Triple> tripleNode = list.head.next;  //单链表第0个元素
 
@@ -172,7 +172,7 @@ public class AdjListGraph<T> extends AbstractGraph<T> implements Graph<T> {
              * 设置第i条边单链表中[vi,vj]边的权值为weight,若0<weight<∞,插入边或替换边的权
              * 值,若weight == 0,删除该边,若i,j越界,抛出序号越界异常
              */
-            this.adjList.set(i, j, weight);
+            adjList.set(i, j, weight);
         } else {
             throw new IllegalArgumentException("不能插入自身环, i = " + i + ", j = " + j);
         }
@@ -190,7 +190,7 @@ public class AdjListGraph<T> extends AbstractGraph<T> implements Graph<T> {
      * @param edge 边
      */
     public void insertEdge(Triple edge) {
-        this.adjList.set(edge.row, edge.column, edge.value);
+        adjList.set(edge.row, edge.column, edge.value);
     }
 
     /**
@@ -201,7 +201,7 @@ public class AdjListGraph<T> extends AbstractGraph<T> implements Graph<T> {
     @Override
     public void removeEdge(int i, int j) {
         if (i != j) {
-            this.adjList.set(new Triple(i, j, 0));  //设置边的权值为0,即在第i条边单链表中删除边结点
+            adjList.set(new Triple(i, j, 0));  //设置边的权值为0,即在第i条边单链表中删除边结点
         }
     }
 
@@ -209,7 +209,7 @@ public class AdjListGraph<T> extends AbstractGraph<T> implements Graph<T> {
      * 删除一条边
      */
     public void removeEdge(Triple triple) {
-        this.removeEdge(triple.row, triple.column);
+        removeEdge(triple.row, triple.column);
     }
 
     /**
@@ -221,7 +221,7 @@ public class AdjListGraph<T> extends AbstractGraph<T> implements Graph<T> {
             return 0;
         }
 
-        int weight = this.adjList.get(i, j);  //返回矩阵元素[i,j]值,若i, j越界,抛出序号越界异常
+        int weight = adjList.get(i, j);  //返回矩阵元素[i,j]值,若i, j越界,抛出序号越界异常
 
         return weight != 0 ? weight : MAX_WEIGHT;  //若返回0表示没有边,则边的权值返回∞
     }
@@ -231,7 +231,7 @@ public class AdjListGraph<T> extends AbstractGraph<T> implements Graph<T> {
      */
     @Override
     public String toString() {
-        return super.toString() + "出边表: \n" + this.adjList.toString();
+        return super.toString() + "出边表: \n" + adjList.toString();
     }
 
     @Override

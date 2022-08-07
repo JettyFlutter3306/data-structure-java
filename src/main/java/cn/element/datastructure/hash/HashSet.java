@@ -3,7 +3,7 @@ package cn.element.datastructure.hash;
 import cn.element.datastructure.list.SinglyList;
 import cn.element.datastructure.list.node.Node;
 
-/**
+/*
  * 声明散列表类HashSet<T>
  * 采用地址链法,成员变量table表示散列数组,元素是SinglyList<T>对象
  * 表示同义词单链表,散列函数hash(x)采用除留余数法
@@ -133,9 +133,7 @@ public class HashSet<T> {
      * @return boolean
      */
     public boolean contains(T key) {
-        Node<T> node = this.table[this.hash(key)].search(key);
-
-        return node != null;
+        return table[this.hash(key)].search(key) != null;
     }
 
     /**
@@ -177,15 +175,13 @@ public class HashSet<T> {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-
         sb.append("[");
-
+        
         for (SinglyList<T> list : this.table) {
-            sb.append(list).append(",");
+            sb.append(list).append(", ");
         }
-
+        
         sb.append("]");
-
         return sb.toString();
     }
 }

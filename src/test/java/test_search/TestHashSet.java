@@ -6,8 +6,7 @@ import org.junit.Test;
 public class TestHashSet {
 
     @Test
-    public void test01(){
-
+    public void test01() {
         HashSet<Integer> set = new HashSet<>();
 
         for (int i = 0; i < 10; i++) {
