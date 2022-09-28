@@ -125,7 +125,7 @@ public final class IString implements Comparable<IString>, Serializable {
         char[] temp = new char[value.length - 1];
         System.arraycopy(value, 0, temp, 0, i);
         System.arraycopy(value, i + 1, temp, i, value.length - i - 1);
-        
+
         return new IString(temp);
     }
 
@@ -442,7 +442,7 @@ public final class IString implements Comparable<IString>, Serializable {
         int n = s.length();  //拿到长度
 
         for (int i = 0; i < n / 2; i++) {
-            if (s.charAt(i) != s.charAt(n - i)) {
+            if (s.charAt(i) != s.charAt(n - i - 1)) {
                 return false;
             }
         }

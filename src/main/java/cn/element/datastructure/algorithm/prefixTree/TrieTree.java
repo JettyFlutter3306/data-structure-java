@@ -142,7 +142,7 @@ public class TrieTree {
     }
 
     public static class Trie2 {
-        private Node2 root;
+        private final Node2 root;
 
         public Trie2() {
             root = new Node2();
@@ -174,7 +174,7 @@ public class TrieTree {
                 node.pass--;
                 int index;
                 for (int i = 0; i < chs.length; i++) {
-                    index = (int) chs[i];
+                    index = chs[i];
                     if (--node.nexts.get(index).pass == 0) {
                         node.nexts.remove(index);
                         return;
