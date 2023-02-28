@@ -1,7 +1,7 @@
 package test_graph;
 
-import cn.element.datastructure.graph.AdjListGraph;
-import cn.element.datastructure.matrix.Triple;
+import org.codeart.datastructure.graph.AdjListGraph;
+import org.codeart.datastructure.matrix.Triple;
 import org.junit.Test;
 
 public class TestAdjListMatrix {

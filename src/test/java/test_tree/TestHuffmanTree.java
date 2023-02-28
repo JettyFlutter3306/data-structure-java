@@ -1,6 +1,6 @@
 package test_tree;
 
-import cn.element.datastructure.tree.huffman.HuffmanTree;
+import org.codeart.datastructure.tree.huffman.HuffmanTree;
 import org.junit.Test;
 
 public class TestHuffmanTree {

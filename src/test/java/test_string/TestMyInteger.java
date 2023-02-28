@@ -1,7 +1,7 @@
 package test_string;
 
 import org.junit.Test;
-import cn.element.datastructure.string.MyInteger;
+import org.codeart.datastructure.string.MyInteger;
 
 public class TestMyInteger {
 

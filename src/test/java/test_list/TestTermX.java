@@ -1,6 +1,6 @@
 package test_list;
 
-import cn.element.datastructure.polynomial.TermX;
+import org.codeart.datastructure.polynomial.TermX;
 import org.junit.Test;
 
 public class TestTermX {

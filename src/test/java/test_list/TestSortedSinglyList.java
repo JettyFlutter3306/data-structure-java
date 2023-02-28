@@ -1,7 +1,7 @@
 package test_list;
 
-import cn.element.datastructure.list.SinglyList;
-import cn.element.datastructure.list.SortedSinglyList;
+import org.codeart.datastructure.list.SinglyList;
+import org.codeart.datastructure.list.SortedSinglyList;
 import org.junit.Test;
 
 public class TestSortedSinglyList {

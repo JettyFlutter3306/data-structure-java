@@ -1,6 +1,6 @@
 package test_search;
 
-import cn.element.datastructure.search.BinarySearch;
+import org.codeart.datastructure.search.BinarySearch;
 import org.junit.Test;
 
 /**

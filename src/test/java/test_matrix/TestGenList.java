@@ -1,7 +1,7 @@
 package test_matrix;
 
-import cn.element.datastructure.matrix.GenList;
-import cn.element.datastructure.matrix.GenListBuilder;
+import org.codeart.datastructure.matrix.GenList;
+import org.codeart.datastructure.matrix.GenListBuilder;
 import org.junit.Test;
 
 public class TestGenList {

@@ -1,7 +1,7 @@
 package test_list;
 
-import cn.element.datastructure.algorithm.Josephus;
-import cn.element.datastructure.list.SeqList;
+import org.codeart.datastructure.algorithm.Josephus;
+import org.codeart.datastructure.list.SeqList;
 import org.junit.Test;
 
 import java.io.IOException;

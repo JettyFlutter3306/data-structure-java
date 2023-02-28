@@ -1,6 +1,6 @@
 package test_xor;
 
-import cn.element.datastructure.algorithm.xor.SwapByXOR;
+import org.codeart.datastructure.algorithm.xor.SwapByXOR;
 import org.junit.Test;
 
 public class TestXor {

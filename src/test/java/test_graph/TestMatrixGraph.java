@@ -1,7 +1,7 @@
 package test_graph;
 
-import cn.element.datastructure.graph.MatrixGraph;
-import cn.element.datastructure.matrix.Triple;
+import org.codeart.datastructure.graph.MatrixGraph;
+import org.codeart.datastructure.matrix.Triple;
 import org.junit.Test;
 
 public class TestMatrixGraph {

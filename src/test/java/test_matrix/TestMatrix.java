@@ -1,6 +1,6 @@
 package test_matrix;
 
-import cn.element.datastructure.matrix.Matrix;
+import org.codeart.datastructure.matrix.Matrix;
 import org.junit.Test;
 
 /**

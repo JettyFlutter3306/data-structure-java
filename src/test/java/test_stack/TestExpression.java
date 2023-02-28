@@ -1,7 +1,7 @@
 package test_stack;
 
 import org.junit.Test;
-import cn.element.datastructure.stack.Expression;
+import org.codeart.datastructure.stack.Expression;
 
 public class TestExpression {
 

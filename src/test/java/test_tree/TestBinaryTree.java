@@ -1,7 +1,7 @@
 package test_tree;
 
-import cn.element.datastructure.tree.BinaryTree;
-import cn.element.datastructure.tree.BinaryTrees;
+import org.codeart.datastructure.tree.BinaryTree;
+import org.codeart.datastructure.tree.BinaryTrees;
 import org.junit.Test;
 
 public class TestBinaryTree {

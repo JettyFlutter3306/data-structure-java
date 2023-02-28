@@ -1,7 +1,7 @@
 package test_matrix;
 
-import cn.element.datastructure.matrix.LinkedMatrix;
-import cn.element.datastructure.matrix.Triple;
+import org.codeart.datastructure.matrix.LinkedMatrix;
+import org.codeart.datastructure.matrix.Triple;
 import org.junit.Test;
 
 public class TestLinkedMatrix {

@@ -1,7 +1,7 @@
 package test_stack;
 
 import org.junit.Test;
-import cn.element.datastructure.stack.Bracket;
+import org.codeart.datastructure.stack.Bracket;
 
 public class TestBracket {
 

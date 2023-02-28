@@ -1,7 +1,7 @@
 package test_search;
 
-import cn.element.datastructure.hash.HashMap;
-import cn.element.datastructure.common.Map;
+import org.codeart.datastructure.hash.HashMap;
+import org.codeart.datastructure.common.Map;
 import org.junit.Test;
 
 import java.util.Arrays;

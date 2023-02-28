@@ -1,8 +1,8 @@
 package test_string;
 
 import org.junit.Test;
-import cn.element.datastructure.string.IString;
-import cn.element.datastructure.string.IStringBuffer;
+import org.codeart.datastructure.string.IString;
+import org.codeart.datastructure.string.IStringBuffer;
 
 import java.util.Arrays;
 

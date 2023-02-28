@@ -1,6 +1,6 @@
 package test_list;
 
-import cn.element.datastructure.list.CirDoublyList;
+import org.codeart.datastructure.list.CirDoublyList;
 import org.junit.Test;
 
 public class TestCirDoublyList {

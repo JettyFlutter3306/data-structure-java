@@ -1,6 +1,6 @@
 package test_tree;
 
-import cn.element.datastructure.tree.expression.ExpressionBinaryTree;
+import org.codeart.datastructure.tree.expression.ExpressionBinaryTree;
 import org.junit.Test;
 
 public class TestExpressionBinaryTree {

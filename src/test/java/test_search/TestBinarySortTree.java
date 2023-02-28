@@ -1,6 +1,6 @@
 package test_search;
 
-import cn.element.datastructure.search.sort_tree.BinarySortedTree;
+import org.codeart.datastructure.search.sort_tree.BinarySortedTree;
 import org.junit.Test;
 
 /**

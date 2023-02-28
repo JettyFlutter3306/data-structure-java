@@ -1,8 +1,8 @@
 package test_list;
 
-import cn.element.datastructure.list.PolySinglyList;
-import cn.element.datastructure.polynomial.Polynomial;
-import cn.element.datastructure.polynomial.TermX;
+import org.codeart.datastructure.list.PolySinglyList;
+import org.codeart.datastructure.polynomial.Polynomial;
+import org.codeart.datastructure.polynomial.TermX;
 import org.junit.Test;
 
 public class TestPolySinglyList {
