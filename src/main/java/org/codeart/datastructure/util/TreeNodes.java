@@ -23,7 +23,6 @@ public class TreeNodes {
 
             if (element != null) {  //不能 element != "^",因为 T 不一定是 String
                 p = new TreeNode(element);  //创建叶子结点
-
                 p.left = createTreeNode(value);  //创建 p 的左子树,递归调用
                 p.right = createTreeNode(value);  //创建 p 的右子树,递归调用
             }
@@ -47,7 +46,6 @@ public class TreeNodes {
             if (2 * i + 1 < value.length) {
                 if (value[2 * i + 1] != null) {
                     p.left = new TreeNode(value[2 * i + 1]);
-
                     queue.add(p.left);
                 }
             }
@@ -55,16 +53,12 @@ public class TreeNodes {
             if (2 * i + 2 < value.length) {
                 if (value[2 * i + 2] != null) {
                     p.right = new TreeNode(value[2 * i + 2]);
-
                     queue.add(p.right);
                 }
             }
-
             p = queue.poll();
-
             i += 1;
         }
-
         return q;
     }
 
@@ -107,20 +101,20 @@ public class TreeNodes {
                 }
             }
 
-            System.out.println(sb.toString());
+            System.out.println(sb);
         }
     }
 
     private static void writeArray(TreeNode node, int rowIndex, int columnIndex, String[][] res, int treeDepth) {
-        if (node == null) {  //保证输入的树不为空
+        if (node == null) {  // 保证输入的树不为空
             return;
         }
 
         res[rowIndex][columnIndex] = String.valueOf(node.val);  //先将当前的结点保存到二维数组中去
 
-        int currLevel = (rowIndex + 1) / 2;  //计算当前位于树的第几层
+        int currLevel = (rowIndex + 1) / 2;  // 计算当前位于树的第几层
 
-        if (currLevel == treeDepth) {  //若到了最后一层,则返回
+        if (currLevel == treeDepth) {  // 若到了最后一层,则返回
             return;
         }
 
@@ -128,13 +122,11 @@ public class TreeNodes {
 
         if (node.left != null) {  // 对左儿子进行判断，若有左儿子，则记录相应的"/"与左儿子的值
             res[rowIndex + 1][columnIndex - gap] = "/";
-
             writeArray(node.left, rowIndex + 2, columnIndex - gap * 2, res, treeDepth);
         }
 
         if (node.right != null) {  // 对右儿子进行判断，若有右儿子，则记录相应的"\"与右儿子的值
             res[rowIndex + 1][columnIndex + gap] = "\\";
-
             writeArray(node.right, rowIndex + 2, columnIndex + gap * 2, res, treeDepth);
         }
     }

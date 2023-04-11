@@ -7,7 +7,7 @@ import java.util.Iterator;
 
 /**
  * 链式队列,最终类
- * @param <T>  元素类型
+ * @param <T> 元素类型
  */
 public final class LinkedQueue<T> extends AbstractQueue<T> {
 
@@ -27,8 +27,8 @@ public final class LinkedQueue<T> extends AbstractQueue<T> {
 
     /**
      * 元素x入队,空对象不能入队
-     * @param x     元素
-     * @return      boolean
+     * @param x 元素
+     * @return boolean
      */
     @Override
     public boolean add(T x) {
@@ -36,7 +36,7 @@ public final class LinkedQueue<T> extends AbstractQueue<T> {
             return false;
         }
 
-        Node<T> q = new Node<>(x,null);
+        Node<T> q = new Node<>(x, null);
 
         if (this.front == null) {
             this.front = q;

@@ -22,21 +22,16 @@ public class SwapSort {
      */
     public static void bubbleSort(int[] keys, boolean asc) {
         String str = asc ? "升序" : "降序";
-
         System.out.println("冒泡排序: " + str);
-
         boolean exchange = true;  // 是否交换的标记
-
         for (int i = 0; i < keys.length - 1 && exchange; i++) {  // 比较的轮数  总共需要 keys.length - 1 轮
             exchange = false;
-
             for (int j = 0; j < keys.length - i - 1; j++) {  // 每一轮比较的次数  keys.length - i - 1
                 if (asc ? keys[j] > keys[j + 1] : keys[j] < keys[j + 1]) {
                     IArrays.swap(keys, j, j + 1);
                     exchange = true;
                 }
             }
-
             System.out.println("第" + i + "趟: " + Arrays.toString(keys));
         }
     }

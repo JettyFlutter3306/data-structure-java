@@ -28,7 +28,7 @@ public class FullPermutation {
     }
 
     private void dfs(String[] arr, Stack<String> stack, List<List<String>> lists, int index) {
-        if (arr.length <= 0) {
+        if (arr.length == 0) {
             lists.add(new ArrayList<>(stack));
         } else {
             for (int i = 0; i < arr.length; i++) {

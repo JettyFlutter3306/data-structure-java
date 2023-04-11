@@ -33,7 +33,7 @@ public class MergeSort {
         int i = begin1, j = begin2, k = begin1;
 
         // 将x中的两个相邻子序列归并到y中
-        while (i < begin1 + n && j < begin2 + n && j < x.length) {  
+        while (i < begin1 + n && j < begin2 + n && j < x.length) {
             if (x[i] < x[j]) {
                 y[k++] = x[i++];
             } else {
@@ -42,12 +42,12 @@ public class MergeSort {
         }
 
         // 将前一个子序列剩余元素复制到y,序列长度可能不是n
-        while (i < begin1 + n && i < x.length) {  
+        while (i < begin1 + n && i < x.length) {
             y[k++] = x[i++];
         }
 
         // 将后一个子序列剩余元素复制到y中
-        while (j < begin2 + n && j < x.length) {  
+        while (j < begin2 + n && j < x.length) {
             y[k++] = x[j++];
         }
     }
