@@ -156,8 +156,8 @@ public class TrieTree {
             Node2 node = root;
             node.pass++;
             int index;
-            for (int i = 0; i < chs.length; i++) {
-                index = (int) chs[i];
+            for (char ch : chs) {
+                index = ch;
                 if (!node.nexts.containsKey(index)) {
                     node.nexts.put(index, new Node2());
                 }
@@ -173,8 +173,8 @@ public class TrieTree {
                 Node2 node = root;
                 node.pass--;
                 int index;
-                for (int i = 0; i < chs.length; i++) {
-                    index = chs[i];
+                for (char ch : chs) {
+                    index = ch;
                     if (--node.nexts.get(index).pass == 0) {
                         node.nexts.remove(index);
                         return;
@@ -193,8 +193,8 @@ public class TrieTree {
             char[] chs = word.toCharArray();
             Node2 node = root;
             int index = 0;
-            for (int i = 0; i < chs.length; i++) {
-                index = (int) chs[i];
+            for (char ch : chs) {
+                index = ch;
                 if (!node.nexts.containsKey(index)) {
                     return 0;
                 }
@@ -211,8 +211,8 @@ public class TrieTree {
             char[] chs = pre.toCharArray();
             Node2 node = root;
             int index = 0;
-            for (int i = 0; i < chs.length; i++) {
-                index = (int) chs[i];
+            for (char ch : chs) {
+                index = ch;
                 if (!node.nexts.containsKey(index)) {
                     return 0;
                 }
@@ -248,11 +248,7 @@ public class TrieTree {
         }
 
         public int search(String word) {
-            if (!box.containsKey(word)) {
-                return 0;
-            } else {
-                return box.get(word);
-            }
+            return box.getOrDefault(word, 0);
         }
 
         public int prefixNumber(String pre) {
@@ -323,6 +319,5 @@ public class TrieTree {
             }
         }
         System.out.println("finish!");
-
     }
 }

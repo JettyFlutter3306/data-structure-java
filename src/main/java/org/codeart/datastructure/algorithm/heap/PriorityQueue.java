@@ -160,7 +160,7 @@ public class PriorityQueue<T extends Comparable<T>> {
         
         // 构造大根堆
         PriorityQueue<Integer> maxHeap = new PriorityQueue<>(values, (o1, o2) -> o2.compareTo(o1));
-        //返回最大值
+        // 返回最大值
         System.out.println(maxHeap.peek());
     }
 }
